@@ -6,8 +6,21 @@ import {
   SectionHeading,
   TextLink,
   Placeholder,
-  LogoPlaceholder,
 } from '../lib/ui'
+
+/* Proof of model — ten placeholder companies per marquee row. */
+const COMPANIES = [
+  { tag: 'Essential services', location: 'Chicago, IL' },
+  { tag: 'Facilities', location: 'Dallas, TX' },
+  { tag: 'Logistics', location: 'Atlanta, GA' },
+  { tag: 'HVAC', location: 'Denver, CO' },
+  { tag: 'Industrial', location: 'Phoenix, AZ' },
+  { tag: 'Healthcare', location: 'Tampa, FL' },
+  { tag: 'Distribution', location: 'Columbus, OH' },
+  { tag: 'Environmental', location: 'Charlotte, NC' },
+  { tag: 'Security', location: 'Nashville, TN' },
+  { tag: 'Field services', location: 'Kansas City, MO' },
+]
 
 const METRICS = [
   { value: 'XX', label: 'Portfolio companies', caption: 'Essential services across North America' },
@@ -175,6 +188,49 @@ function ThesisCard({
         </p>
       </div>
     </button>
+  )
+}
+
+/* Square company card: pill tag at the top, logo centred, location at the
+   bottom. The right margin doubles as the marquee's inter-card gap, so the
+   duplicated track is exactly twice one group's width. */
+function CompanyCard({ co }: { co: (typeof COMPANIES)[number] }) {
+  return (
+    <div className="mr-4 flex h-[200px] w-[200px] shrink-0 flex-col rounded-[3px] bg-paper-warm p-5">
+      <div>
+        <span className="inline-flex rounded-full border border-line bg-paper px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.08em] text-ink-soft">
+          {co.tag}
+        </span>
+      </div>
+      <div className="flex flex-1 items-center justify-center">
+        <span className="text-[12px] text-ink-faint">Logo placeholder</span>
+      </div>
+      <div className="text-[11px] uppercase tracking-[0.08em] text-ink-faint">
+        {co.location}
+      </div>
+    </div>
+  )
+}
+
+/* One marquee row. The cards render twice and the track animates by -50%, so
+   the loop is seamless and effectively infinite. Hovering the row pauses it. */
+function MarqueeRow({ direction }: { direction: 'left' | 'right' }) {
+  return (
+    <div className="group overflow-hidden">
+      <div
+        className={`flex w-max group-hover:[animation-play-state:paused] ${
+          direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'
+        }`}
+      >
+        {[0, 1].map((copy) => (
+          <div key={copy} className="flex shrink-0" aria-hidden={copy === 1 || undefined}>
+            {COMPANIES.map((co, i) => (
+              <CompanyCard key={i} co={co} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -363,21 +419,13 @@ export default function Investors() {
             </div>
             <TextLink href="/companies">View all companies</TextLink>
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[1, 2, 3, 4].map((n) => (
-              <div key={n} className="overflow-hidden rounded-[3px] border border-line">
-                <LogoPlaceholder label="Logo placeholder" className="h-[130px] w-full" />
-                <div className="p-6">
-                  <h3 className="text-[18px] font-semibold">Company name {n}</h3>
-                  <div className="mt-1 text-[14px] text-ink-soft">Essential services</div>
-                  <div className="mt-3 text-[12px] uppercase tracking-[0.1em] text-ink-faint">
-                    Region, state
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </Container>
+
+        {/* Two full-bleed marquee rows panning in opposite directions. */}
+        <div className="mt-12 space-y-5">
+          <MarqueeRow direction="left" />
+          <MarqueeRow direction="right" />
+        </div>
       </Section>
 
       {/* Investor resources */}

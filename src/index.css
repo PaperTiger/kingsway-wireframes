@@ -20,6 +20,36 @@
   --color-paper-warm: #f5f5f4;
   --color-dark: #0b0b0b;
   --color-ph: #ececec;
+
+  /* Proof-of-model marquee. Each row renders its cards twice, so translating
+     the track by exactly -50% loops seamlessly. */
+  --animate-marquee-left: marquee-left 70s linear infinite;
+  --animate-marquee-right: marquee-right 70s linear infinite;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none;
+  }
 }
 
 html {
