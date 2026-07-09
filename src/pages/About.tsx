@@ -217,13 +217,19 @@ function KbsCard({
           aria-label={open ? 'Show less' : 'Show more'}
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink hover:text-ink"
         >
-          <span
-            className={`text-[22px] leading-none transition-transform duration-300 ${
-              open ? 'rotate-45' : ''
-            }`}
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            aria-hidden
+            className={`transition-transform duration-300 ${open ? 'rotate-45' : ''}`}
           >
-            +
-          </span>
+            <path d="M12 5v14M5 12h14" />
+          </svg>
         </button>
       </div>
 
