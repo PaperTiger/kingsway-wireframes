@@ -49,10 +49,50 @@ const NAV = [
   },
 ]
 
+// Per-item dropdown detail. Reuses the old MegaMenu panel styling — bordered
+// white panel, uppercase overline, semibold title, soft desc, thumbnail
+// placeholder — scoped to a single nav item. `text-ink` is pinned so the panel
+// stays dark-on-white even while the header is in its white-text overlay state.
+function NavDetail({
+  item,
+  panelId,
+}: {
+  item: (typeof NAV)[number]
+  panelId: string
+}) {
+  return (
+    // The outer wrapper's top padding forms the visual gap while staying part of
+    // the trigger's hover region, so the pointer can cross into the panel without
+    // the dropdown closing. right-0 keeps right-justified items on screen.
+    <div className="absolute right-0 top-full z-50 pt-3">
+      <div
+        id={panelId}
+        role="region"
+        aria-label={item.label}
+        className="w-[300px] border border-line bg-paper p-6 text-ink shadow-[0_24px_40px_-24px_rgba(0,0,0,0.18)]"
+      >
+        <div className="aspect-[16/10] w-full overflow-hidden rounded-[4px] bg-ph" />
+        <p className="mt-4 text-[12px] font-medium uppercase tracking-[0.16em] text-ink-faint">
+          {item.overline}
+        </p>
+        <h3 className="mt-2 text-[18px] font-semibold tracking-[-0.01em]">
+          {item.label}
+        </h3>
+        <p className="mt-1.5 text-[14px] leading-[1.6] text-ink-soft">
+          {item.desc}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function Header() {
   const [location] = useLocation()
   const [mobile, setMobile] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  // href of the nav item whose detail panel is open (desktop only). Only one at
+  // a time; setting a new href replaces the previous.
+  const [openHref, setOpenHref] = useState<string | null>(null)
 
   // Pages whose hero is a dark full-bleed billboard the header overlays.
   const overlayRoute =
@@ -84,18 +124,44 @@ function Header() {
           </Link>
 
           <div className="flex items-center gap-5">
-            <nav className="hidden items-center gap-6 lg:flex">
-              {NAV.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`whitespace-nowrap text-[15px] transition-opacity hover:opacity-70 ${
-                    location === item.href ? 'font-medium' : ''
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+            <nav
+              className="hidden items-center gap-6 lg:flex"
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') setOpenHref(null)
+              }}
+            >
+              {NAV.map((item, i) => {
+                const panelId = `nav-detail-${i}`
+                const open = openHref === item.href
+                return (
+                  <div
+                    key={item.href}
+                    className="relative"
+                    onMouseEnter={() => setOpenHref(item.href)}
+                    onMouseLeave={() => setOpenHref(null)}
+                    // Close when keyboard focus leaves this item entirely; keep
+                    // open while focus moves within it.
+                    onBlur={(e) => {
+                      if (!e.currentTarget.contains(e.relatedTarget as Node))
+                        setOpenHref((h) => (h === item.href ? null : h))
+                    }}
+                  >
+                    <Link
+                      href={item.href}
+                      aria-haspopup="true"
+                      aria-expanded={open}
+                      aria-controls={panelId}
+                      onFocus={() => setOpenHref(item.href)}
+                      className={`whitespace-nowrap text-[15px] transition-opacity hover:opacity-70 ${
+                        location === item.href ? 'font-medium' : ''
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                    {open && <NavDetail item={item} panelId={panelId} />}
+                  </div>
+                )
+              })}
             </nav>
 
             <button
