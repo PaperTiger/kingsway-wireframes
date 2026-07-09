@@ -89,7 +89,7 @@ export default function Companies() {
       <Section className="pt-20 md:pt-24">
         <Container>
           <Overline>Our portfolio</Overline>
-          <div className="mt-8 grid gap-10 lg:grid-cols-2 md:gap-16">
+          <div className="mt-8 grid gap-10 lg:grid-cols-2 md:gap-16 lg:items-center">
             <h1 className="text-[44px] font-normal tracking-[-0.03em] md:text-[64px]">Our companies</h1>
             <div className="flex items-center">
               <Lede>

@@ -150,7 +150,7 @@ export default function Investors() {
       {/* Hero */}
       <Section className="pt-20 md:pt-24">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-2 md:gap-16">
+          <div className="grid gap-10 lg:grid-cols-2 md:gap-16 lg:items-center">
             <div>
               <Overline>For investors · NYSE: KWY</Overline>
               <h1 className="mt-8 text-[40px] leading-none font-normal tracking-[-0.03em] md:text-[60px]">
@@ -283,7 +283,7 @@ export default function Investors() {
       {/* Contact investor relations */}
       <Section>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-2 md:gap-16">
+          <div className="grid gap-10 lg:grid-cols-2 md:gap-16 lg:items-center">
             <div>
               <SectionHeading>Contact investor relations</SectionHeading>
               <p className="mt-6 max-w-[46ch] text-[18px] leading-[1.55] text-ink-soft">

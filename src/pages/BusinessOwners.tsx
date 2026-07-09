@@ -53,7 +53,7 @@ export default function BusinessOwners() {
       {/* Hero. KU-9: CTA removed here; a single dedicated CTA closes the page. */}
       <Section className="pt-20 md:pt-24">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-2 md:gap-16">
+          <div className="grid gap-10 lg:grid-cols-2 md:gap-16 lg:items-center">
             <div>
               <Overline>For business owners</Overline>
               <h1 className="mt-8 text-[44px] font-normal tracking-[-0.03em] md:text-[60px]">
