@@ -298,10 +298,10 @@ export default function Entrepreneurs() {
       {/* KU-24: social proof strip */}
       <SocialProof overline="Backing operators from top programmes and networks" warm />
 
-      {/* From our operators */}
+      {/* What operators say */}
       <Section>
         <Container>
-          <SectionHeading>From our operators</SectionHeading>
+          <SectionHeading>What operators say about Kingsway</SectionHeading>
           <div className="mt-12">
             <TestimonialGallery items={TESTIMONIALS} />
           </div>

@@ -13,14 +13,20 @@ const PROMISES = [
   {
     title: 'We keep it whole',
     body: "We don't strip assets or rebrand what works. Your business keeps its identity, people, and culture intact.",
+    // shield
+    icon: 'M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3',
   },
   {
     title: 'Permanent capital, no clock',
     body: "Kingsway isn't a fund with a 10-year exit horizon. We hold businesses for the long run because we're a public company.",
+    // infinity
+    icon: 'M9.828 9.172a4 4 0 1 0 0 5.656a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828',
   },
   {
     title: 'A growth partner, not a passive owner',
     body: 'We pair your business with a talented operator and proven KBS playbooks to help it reach its full potential.',
+    // trending up
+    icon: 'M3 17l6 -6l4 4l8 -8 M14 7l7 0l0 7',
   },
 ]
 
@@ -107,7 +113,21 @@ export default function BusinessOwners() {
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {PROMISES.map((p) => (
               <div key={p.title} className="rounded-[3px] border border-line bg-paper p-8 lg:p-10">
-                <h3 className="text-[20px] font-semibold tracking-[-0.01em]">{p.title}</h3>
+                <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-ink"
+                  aria-hidden
+                >
+                  <path d={p.icon} />
+                </svg>
+                <h3 className="mt-6 text-[20px] font-semibold tracking-[-0.01em]">{p.title}</h3>
                 <p className="mt-4 text-[15px] leading-[1.6] text-ink-soft">{p.body}</p>
               </div>
             ))}
@@ -157,10 +177,10 @@ export default function BusinessOwners() {
         </Container>
       </Section>
 
-      {/* What sellers say */}
+      {/* What business owners say */}
       <Section>
         <Container>
-          <SectionHeading>What sellers say about Kingsway</SectionHeading>
+          <SectionHeading>What business owners say about Kingsway</SectionHeading>
           <div className="mt-12">
             <TestimonialGallery items={TESTIMONIALS} />
           </div>
@@ -169,33 +189,6 @@ export default function BusinessOwners() {
 
       {/* KU-13: social proof strip */}
       <SocialProof overline="Trusted by owners across essential services" warm />
-
-      {/* Ready to have a conversation — dark. The one CTA this page needs. */}
-      <Section dark>
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-2 md:items-center">
-            <div>
-              <SectionHeading>Ready to have a conversation?</SectionHeading>
-              <p className="mt-5 max-w-[44ch] text-[18px] leading-[1.55] text-paper/60">
-                There's no obligation and complete confidentiality from the first
-                call.
-              </p>
-            </div>
-            <div className="md:text-right">
-              <a
-                href="mailto:partnerships@kingswaycorporation.com"
-                className="inline-flex items-center gap-3 rounded-[2px] bg-paper px-6 py-3.5 text-[15px] font-medium text-ink transition-opacity hover:opacity-90"
-              >
-                Talk to an expert <span aria-hidden>→</span>
-              </a>
-              <div className="mt-6 text-[15px] text-paper/60">
-                partnerships@kingswaycorporation.com
-              </div>
-              <div className="mt-2 text-[15px] text-paper/60">+1 (000) 000-0000</div>
-            </div>
-          </div>
-        </Container>
-      </Section>
     </>
   )
 }

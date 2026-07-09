@@ -4,7 +4,6 @@ import {
   Section,
   Overline,
   SectionHeading,
-  OutlineButton,
   Placeholder,
 } from '../lib/ui'
 
@@ -294,24 +293,6 @@ export default function About() {
         </Container>
       </Section>
 
-      {/* CTA */}
-      <Section>
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-2 md:items-center">
-            <div>
-              <SectionHeading>Want to learn more or get in touch?</SectionHeading>
-              <p className="mt-5 max-w-[48ch] text-[18px] leading-[1.55] text-ink-soft">
-                Whether you're an investor, a business owner, or a prospective
-                operator — we'd like to hear from you.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 md:justify-end">
-              <OutlineButton href="/talk-to-an-expert">Talk to an expert</OutlineButton>
-              <OutlineButton href="/investors">Investor information</OutlineButton>
-            </div>
-          </div>
-        </Container>
-      </Section>
     </>
   )
 }

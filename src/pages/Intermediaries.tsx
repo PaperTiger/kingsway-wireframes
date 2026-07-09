@@ -198,7 +198,7 @@ export default function Intermediaries() {
       <Section warm>
         <Container>
           <div className="flex flex-wrap items-start justify-between gap-4">
-            <SectionHeading>What intermediaries say</SectionHeading>
+            <SectionHeading>What intermediaries say about Kingsway</SectionHeading>
             <span className="rounded-[2px] border border-dashed border-line px-3 py-1.5 text-[12px] text-ink-faint">
               Hidden until quotes confirmed
             </span>
