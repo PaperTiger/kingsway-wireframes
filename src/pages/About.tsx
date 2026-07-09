@@ -136,12 +136,12 @@ function ExecCard({ m }: { m: Member }) {
 export default function About() {
   return (
     <>
-      {/* Hero. KU-6: image with text overlay execution. */}
-      <section className="relative overflow-hidden">
+      {/* Hero. KU-6: image with text overlay execution. 100vh billboard; the header overlays it. */}
+      <section className="relative -mt-20 h-screen overflow-hidden">
         <Placeholder dark label="Hero image" dims="1600 × 900px — visual content TBD" className="absolute inset-0 h-full w-full" />
-        <div className="relative">
+        <div className="relative flex h-full items-center">
           <Container>
-            <div className="max-w-[46rem] py-28 text-paper md:py-40">
+            <div className="max-w-[46rem] text-paper">
               <Overline className="text-paper/60">About Kingsway Corporation</Overline>
               <h1 className="mt-8 text-[44px] font-semibold tracking-[-0.03em] md:text-[68px]">
                 Who we are

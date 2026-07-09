@@ -61,21 +61,27 @@ function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
               onClick={onNavigate}
               className="group block"
             >
-              <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-ink-faint">
-                {a.overline}
-              </p>
-              <h3 className="mt-4 text-[22px] font-semibold tracking-[-0.01em]">
+              <div className="aspect-[16/10] w-full overflow-hidden rounded-[4px] bg-ph" />
+              <h3 className="mt-4 inline-flex items-center gap-1 text-[18px] font-semibold tracking-[-0.01em]">
                 {a.title}
+                <svg
+                  aria-hidden
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mt-0.5 text-ink-faint transition-transform group-hover:translate-x-0.5"
+                >
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
               </h3>
-              <p className="mt-3 text-[14px] leading-[1.6] text-ink-soft">
+              <p className="mt-1.5 text-[14px] leading-[1.5] text-ink-soft">
                 {a.desc}
               </p>
-              <span className="mt-5 inline-flex items-center gap-2 text-[14px] font-medium text-ink">
-                Explore{' '}
-                <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-                  →
-                </span>
-              </span>
             </Link>
           ))}
         </div>
@@ -90,7 +96,8 @@ function Header() {
   const [mobile, setMobile] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  const isHome = location === '/'
+  // Pages whose hero is a dark full-bleed billboard the header overlays.
+  const overlayRoute = location === '/' || location === '/about'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -99,9 +106,9 @@ function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // On the homepage the header overlays the dark billboard (white text) until you
+  // On those pages the header overlays the dark billboard (white text) until you
   // scroll or open a menu, then fades to the solid white bar with black text.
-  const overlay = isHome && !scrolled && !mega && !mobile
+  const overlay = overlayRoute && !scrolled && !mega && !mobile
 
   return (
     <header
@@ -208,15 +215,10 @@ function Header() {
                 <Link
                   key={a.href}
                   href={a.href}
-                  className="block border-b border-line py-4"
+                  className="block border-b border-line py-4 text-[20px] font-semibold tracking-[-0.01em]"
                   onClick={() => setMobile(false)}
                 >
-                  <span className="block text-[11px] font-medium uppercase tracking-[0.14em] text-ink-faint">
-                    {a.overline}
-                  </span>
-                  <span className="mt-1 block text-[20px] font-semibold tracking-[-0.01em]">
-                    {a.title}
-                  </span>
+                  {a.title}
                 </Link>
               ))}
               <Link
