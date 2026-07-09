@@ -8,6 +8,42 @@ import {
 } from '../lib/ui'
 import Accordion from '../components/Accordion'
 import SocialProof from '../components/SocialProof'
+import TestimonialGallery, { type Testimonial } from '../components/TestimonialGallery'
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    label: 'The broker',
+    desc: "On Kingsway's speed of response and follow-through to close.",
+    quote:
+      "Intermediary testimonial pending approval. Will reference Kingsway's speed of response, transparency on criteria, and follow-through to close.",
+    name: '[Name]',
+    title: '[Firm], [Location]',
+  },
+  {
+    label: 'The advisor',
+    desc: 'On transparent criteria and no re-trading.',
+    quote:
+      "Intermediary testimonial pending approval. Will reference Kingsway's speed of response, transparency on criteria, and follow-through to close.",
+    name: '[Name]',
+    title: '[Firm], [Location]',
+  },
+  {
+    label: 'The banker',
+    desc: 'On certainty of close and a clean process.',
+    quote:
+      "Intermediary testimonial pending approval. Will reference Kingsway's speed of response, transparency on criteria, and follow-through to close.",
+    name: '[Name]',
+    title: '[Firm], [Location]',
+  },
+  {
+    label: 'The dealmaker',
+    desc: 'On a reliable buyer that honours the terms.',
+    quote:
+      "Intermediary testimonial pending approval. Will reference Kingsway's speed of response, transparency on criteria, and follow-through to close.",
+    name: '[Name]',
+    title: '[Firm], [Location]',
+  },
+]
 
 const WHY = [
   {
@@ -167,20 +203,8 @@ export default function Intermediaries() {
               Hidden until quotes confirmed
             </span>
           </div>
-          <div className="mt-12 grid gap-6 opacity-60 lg:grid-cols-2">
-            {[0, 1].map((i) => (
-              <figure key={i} className="rounded-[3px] border border-line bg-paper p-8 md:p-10">
-                <div className="text-[40px] leading-none text-line">&#8220;</div>
-                <blockquote className="mt-4 text-[18px] italic leading-[1.6] text-ink-soft">
-                  Intermediary testimonial pending approval. Will reference Kingsway's
-                  speed of response, transparency on criteria, and follow-through to
-                  close.
-                </blockquote>
-                <figcaption className="mt-6 text-[13px] uppercase tracking-[0.1em] text-ink-faint">
-                  — [Name], [Firm], [Location]
-                </figcaption>
-              </figure>
-            ))}
+          <div className="mt-12 opacity-60">
+            <TestimonialGallery items={TESTIMONIALS} />
           </div>
         </Container>
       </Section>

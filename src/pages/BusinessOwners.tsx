@@ -7,6 +7,7 @@ import {
 } from '../lib/ui'
 import Accordion from '../components/Accordion'
 import SocialProof from '../components/SocialProof'
+import TestimonialGallery, { type Testimonial } from '../components/TestimonialGallery'
 
 const PROMISES = [
   {
@@ -42,9 +43,39 @@ const STEPS = [
   { title: 'Transition agreed', body: 'Closing and onboarding begins, with a transition plan built around you.' },
 ]
 
-const TESTIMONIALS = [
-  "Testimonial text will appear here — seller quote pending approval. It will speak to the ease of transition and Kingsway's commitment to preserving the business.",
-  "Testimonial text will appear here — seller quote pending approval. It will speak to the ease of transition and Kingsway's commitment to preserving the business.",
+const TESTIMONIALS: Testimonial[] = [
+  {
+    label: 'The seller',
+    desc: 'On the ease of transition and preserving the business.',
+    quote:
+      "Testimonial text will appear here — seller quote pending approval. It will speak to the ease of transition and Kingsway's commitment to preserving the business.",
+    name: '[Name]',
+    title: '[Business], [Location]',
+  },
+  {
+    label: 'The family',
+    desc: 'On finding a permanent, responsible home.',
+    quote:
+      "Testimonial text will appear here — seller quote pending approval. It will speak to the ease of transition and Kingsway's commitment to preserving the business.",
+    name: '[Name]',
+    title: '[Business], [Location]',
+  },
+  {
+    label: 'The founder',
+    desc: 'On stepping back while the business keeps its identity.',
+    quote:
+      "Testimonial text will appear here — seller quote pending approval. It will speak to the ease of transition and Kingsway's commitment to preserving the business.",
+    name: '[Name]',
+    title: '[Business], [Location]',
+  },
+  {
+    label: 'The team',
+    desc: 'On continuity for the people and the culture.',
+    quote:
+      "Testimonial text will appear here — seller quote pending approval. It will speak to the ease of transition and Kingsway's commitment to preserving the business.",
+    name: '[Name]',
+    title: '[Business], [Location]',
+  },
 ]
 
 export default function BusinessOwners() {
@@ -130,18 +161,8 @@ export default function BusinessOwners() {
       <Section>
         <Container>
           <SectionHeading>What sellers say about Kingsway</SectionHeading>
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            {TESTIMONIALS.map((t, i) => (
-              <figure key={i} className="rounded-[3px] border border-line p-8 md:p-10">
-                <div className="text-[40px] leading-none text-line">&#8220;</div>
-                <blockquote className="mt-4 text-[18px] italic leading-[1.6] text-ink-soft">
-                  {t}
-                </blockquote>
-                <figcaption className="mt-6 text-[13px] uppercase tracking-[0.1em] text-ink-faint">
-                  — [Name], [Business], [Location]
-                </figcaption>
-              </figure>
-            ))}
+          <div className="mt-12">
+            <TestimonialGallery items={TESTIMONIALS} />
           </div>
         </Container>
       </Section>

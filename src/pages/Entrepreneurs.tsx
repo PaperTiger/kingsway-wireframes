@@ -9,6 +9,42 @@ import {
   Placeholder,
 } from '../lib/ui'
 import SocialProof from '../components/SocialProof'
+import TestimonialGallery, { type Testimonial } from '../components/TestimonialGallery'
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    label: 'The operator',
+    desc: 'On the KSX programme and the support to lead.',
+    quote:
+      'Operator testimonial text pending approval. Will speak to the KSX programme experience, the capital and coaching support, and the outcome of leading their acquired company.',
+    name: '[Name]',
+    title: 'CEO of [Company], acquired [year]',
+  },
+  {
+    label: 'The CEO',
+    desc: 'On the capital, coaching, and the outcome.',
+    quote:
+      'Operator testimonial text pending approval. Will speak to the KSX programme experience, the capital and coaching support, and the outcome of leading their acquired company.',
+    name: '[Name]',
+    title: 'CEO of [Company], acquired [year]',
+  },
+  {
+    label: 'The searcher',
+    desc: 'On the deal flow and infrastructure behind the search.',
+    quote:
+      'Operator testimonial text pending approval. Will speak to the KSX programme experience, the capital and coaching support, and the outcome of leading their acquired company.',
+    name: '[Name]',
+    title: 'CEO of [Company], acquired [year]',
+  },
+  {
+    label: 'The graduate',
+    desc: 'On going from programme to leading a company.',
+    quote:
+      'Operator testimonial text pending approval. Will speak to the KSX programme experience, the capital and coaching support, and the outcome of leading their acquired company.',
+    name: '[Name]',
+    title: 'CEO of [Company], acquired [year]',
+  },
+]
 
 const ADVANTAGES = [
   { n: '01', title: 'Capital', body: 'Kingsway provides committed capital. No fundraising, no LP pitches. You focus on finding and running the business.' },
@@ -264,20 +300,8 @@ export default function Entrepreneurs() {
       <Section>
         <Container>
           <SectionHeading>From our operators</SectionHeading>
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            {[0, 1].map((i) => (
-              <figure key={i} className="rounded-[3px] border border-line p-8 md:p-10">
-                <div className="text-[40px] leading-none text-line">&#8220;</div>
-                <blockquote className="mt-4 text-[18px] italic leading-[1.6] text-ink-soft">
-                  Operator testimonial text pending approval. Will speak to the KSX
-                  programme experience, the capital and coaching support, and the
-                  outcome of leading their acquired company.
-                </blockquote>
-                <figcaption className="mt-6 text-[13px] uppercase tracking-[0.1em] text-ink-faint">
-                  — [Name], CEO of [Company], acquired [year]
-                </figcaption>
-              </figure>
-            ))}
+          <div className="mt-12">
+            <TestimonialGallery items={TESTIMONIALS} />
           </div>
         </Container>
       </Section>
