@@ -102,11 +102,11 @@ const PHASES = [
 ]
 
 const PROFILE = [
-  'MBA or equivalent practical experience',
-  'Demonstrated leadership and management skills',
-  'Financially literate — able to analyse a P&L and balance sheet',
-  'Entrepreneurial drive and ownership mindset',
-  'Willingness to relocate to the business location',
+  { title: 'Strong credentials', desc: 'An MBA or equivalent practical operating experience.' },
+  { title: 'Proven leadership', desc: 'Demonstrated leadership and management skills.' },
+  { title: 'Financial literacy', desc: 'Comfortable analysing a P&L and a balance sheet.' },
+  { title: 'Ownership mindset', desc: "Entrepreneurial drive and a builder's mentality." },
+  { title: 'Willing to relocate', desc: "Ready to move to the business's location and lead on the ground." },
 ]
 
 const APPLY: AccordionItem[] = [
@@ -266,30 +266,52 @@ export default function Entrepreneurs() {
         </Container>
       </Section>
 
-      {/* Who we're looking for. KU-21: overlaid on the image. */}
-      <section className="relative overflow-hidden">
-        <Placeholder dark label="Image" dims="1600 × 900px — visual content TBD" className="absolute inset-0 h-full w-full" />
-        <div className="relative">
-          <Container>
-            <div className="py-24 md:py-32">
-              <div className="max-w-[42rem] text-paper">
-                <SectionHeading>Who we're looking for</SectionHeading>
-                <p className="mt-5 text-[18px] leading-[1.55] text-paper/70 md:text-[20px]">
-                  KSX is selective. We look for a specific profile.
-                </p>
-                <ul className="mt-8 space-y-4">
-                  {PROFILE.map((p, i) => (
-                    <li key={p} className="flex items-baseline gap-5 border-t border-paper/20 pt-4">
-                      <span className="text-[13px] font-medium tabular-nums text-paper/50">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span className="text-[18px] text-paper/90">{p}</span>
-                    </li>
-                  ))}
-                </ul>
+      {/* What we're looking for. KU-21: full-width — image with the heading
+          overlaid top-left, dark checklist panel on the right. */}
+      <section className="grid lg:grid-cols-2">
+        <div className="relative min-h-[340px] overflow-hidden">
+          <Placeholder dark label="Image" className="absolute inset-0 h-full w-full" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/55 via-black/10 to-transparent" />
+          <div className="relative p-8 md:p-12">
+            <SectionHeading className="max-w-[12ch] text-paper">
+              What we're looking for
+            </SectionHeading>
+          </div>
+        </div>
+
+        <div className="bg-dark px-8 py-14 text-paper md:px-14 md:py-16 lg:py-20">
+          <p className="text-[16px] leading-[1.55] text-paper/60">
+            KSX is selective — we look for a specific profile.
+          </p>
+          <div className="mt-10 space-y-9">
+            {PROFILE.map((p) => (
+              <div key={p.title} className="flex gap-5">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mt-0.5 shrink-0 text-paper"
+                  aria-hidden
+                >
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                  <path d="M9 12l2 2l4 -4" />
+                </svg>
+                <div>
+                  <h3 className="text-[21px] font-semibold tracking-[-0.01em]">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 max-w-[44ch] text-[16px] leading-[1.6] text-paper/70">
+                    {p.desc}
+                  </p>
+                </div>
               </div>
-            </div>
-          </Container>
+            ))}
+          </div>
         </div>
       </section>
 
