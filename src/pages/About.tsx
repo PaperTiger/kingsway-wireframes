@@ -193,8 +193,9 @@ function KbsCard({
 }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="flex min-h-[280px] w-[300px] shrink-0 snap-start flex-col rounded-[12px] border border-line bg-paper p-6 sm:w-[340px]">
-      <div className="flex items-start justify-between">
+    <div className="flex h-[440px] w-[300px] shrink-0 snap-start flex-col rounded-[12px] border border-line bg-paper p-6 sm:w-[340px]">
+      {/* Header: icon left, toggle right */}
+      <div className="flex items-center justify-between">
         <svg
           width="28"
           height="28"
@@ -230,26 +231,23 @@ function KbsCard({
         {item.name}
       </h3>
 
-      {/* Teaser — fades out when opened */}
-      <div
-        className={`grid transition-all duration-300 ${
-          open ? 'grid-rows-[0fr] opacity-0' : 'mt-3 grid-rows-[1fr] opacity-100'
-        }`}
-      >
-        <div className="overflow-hidden">
-          <p className="text-[15px] leading-[1.6] text-ink-soft">{item.teaser}</p>
-        </div>
-      </div>
-
-      {/* Detail — fades in when opened */}
-      <div
-        className={`grid transition-all duration-300 ${
-          open ? 'mt-3 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-        }`}
-      >
-        <div className="overflow-hidden">
-          <p className="text-[15px] leading-[1.6] text-ink-soft">{item.detail}</p>
-        </div>
+      {/* Description sits at the bottom. On open the teaser fades out and the
+          detail fades up from the bottom. */}
+      <div className="relative mt-4 flex-1">
+        <p
+          className={`absolute inset-x-0 bottom-0 text-[15px] leading-[1.6] text-ink-soft transition-opacity duration-300 ${
+            open ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          {item.teaser}
+        </p>
+        <p
+          className={`absolute inset-x-0 bottom-0 text-[15px] leading-[1.6] text-ink-soft transition-all duration-500 ${
+            open ? 'translate-y-0 opacity-100 delay-300' : 'translate-y-4 opacity-0'
+          }`}
+        >
+          {item.detail}
+        </p>
       </div>
     </div>
   )
