@@ -1,5 +1,5 @@
-import { useState, type ReactNode } from 'react'
-import { Link } from 'wouter'
+import { useState, useEffect, type ReactNode } from 'react'
+import { Link, useLocation } from 'wouter'
 import { Container } from '../lib/ui'
 
 const AUDIENCES = [
@@ -80,30 +80,37 @@ function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
           ))}
         </div>
       </Container>
-      <div className="border-t border-line bg-paper-warm">
-        <Container>
-          <div className="flex items-center justify-between py-5">
-            <span className="text-[14px] text-ink-soft">Not sure where to start?</span>
-            <Link
-              href="/talk-to-an-expert"
-              onClick={onNavigate}
-              className="inline-flex items-center gap-2 text-[14px] font-medium text-ink"
-            >
-              Talk to an expert <span aria-hidden>→</span>
-            </Link>
-          </div>
-        </Container>
-      </div>
     </div>
   )
 }
 
 function Header() {
+  const [location] = useLocation()
   const [mega, setMega] = useState(false)
   const [mobile, setMobile] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  const isHome = location === '/'
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // On the homepage the header overlays the dark billboard (white text) until you
+  // scroll or open a menu, then fades to the solid white bar with black text.
+  const overlay = isHome && !scrolled && !mega && !mobile
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper">
+    <header
+      className={`sticky top-0 z-50 transition-colors duration-300 ${
+        overlay
+          ? 'border-b border-transparent bg-transparent text-paper'
+          : 'border-b border-line bg-paper text-ink'
+      }`}
+    >
       <div onMouseLeave={() => setMega(false)}>
         <Container>
           <div className="grid h-20 grid-cols-[1fr_auto_1fr] items-center">
@@ -117,7 +124,7 @@ function Header() {
                 onMouseEnter={() => setMega(true)}
                 onClick={() => setMega((v) => !v)}
                 aria-expanded={mega}
-                className="inline-flex items-center gap-1.5 text-[15px] text-ink"
+                className="inline-flex items-center gap-1.5 text-[15px]"
               >
                 Work with us
                 <svg
@@ -138,14 +145,14 @@ function Header() {
               <Link
                 href="/companies"
                 onMouseEnter={() => setMega(false)}
-                className="text-[15px] text-ink"
+                className="text-[15px]"
               >
                 Our companies
               </Link>
               <Link
                 href="/about"
                 onMouseEnter={() => setMega(false)}
-                className="text-[15px] text-ink"
+                className="text-[15px]"
               >
                 About us
               </Link>
@@ -154,7 +161,9 @@ function Header() {
             <div className="col-start-3 flex items-center justify-end gap-3">
               <Link
                 href="/talk-to-an-expert"
-                className="hidden items-center rounded-[2px] bg-ink px-5 py-3 text-[15px] font-medium text-paper transition-opacity hover:opacity-90 md:inline-flex"
+                className={`hidden items-center rounded-[2px] px-5 py-3 text-[15px] font-medium transition-colors hover:opacity-90 md:inline-flex ${
+                  overlay ? 'bg-paper text-ink' : 'bg-ink text-paper'
+                }`}
               >
                 Talk to an expert
               </Link>
@@ -171,9 +180,9 @@ function Header() {
                   </svg>
                 ) : (
                   <div className="space-y-1.5">
-                    <span className="block h-0.5 w-6 bg-ink" />
-                    <span className="block h-0.5 w-6 bg-ink" />
-                    <span className="block h-0.5 w-6 bg-ink" />
+                    <span className="block h-0.5 w-6 bg-current" />
+                    <span className="block h-0.5 w-6 bg-current" />
+                    <span className="block h-0.5 w-6 bg-current" />
                   </div>
                 )}
               </button>

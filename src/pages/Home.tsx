@@ -33,12 +33,13 @@ const AUDIENCES = [
 export default function Home() {
   return (
     <>
-      {/* Hero. KU-2: photography-led, primary CTA to the investment story. */}
-      <section className="relative overflow-hidden">
+      {/* Hero. KU-2: photography-led, primary CTA to the investment story.
+          100vh billboard; the header overlays it (pulled up under the sticky bar). */}
+      <section className="relative -mt-20 h-screen overflow-hidden">
         <Placeholder dark label="Hero image" dims="1600 × 900px — visual content TBD" className="absolute inset-0 h-full w-full" />
-        <div className="relative">
+        <div className="relative flex h-full items-center">
           <Container>
-            <div className="max-w-[52rem] py-32 text-paper md:py-48">
+            <div className="max-w-[52rem] text-paper">
               <Overline className="text-paper/60">NYSE: KWY · Building through search</Overline>
               <h1 className="mt-8 text-[46px] font-semibold tracking-[-0.03em] md:text-[76px]">
                 Growing enduring businesses through entrepreneurial talent

@@ -88,6 +88,51 @@ function MemberGrid({ members, avatar = 'round' }: { members: Member[]; avatar?:
   )
 }
 
+/*
+  Executive card (Lattice style): large headshot by default; on click the headshot
+  smoothly shrinks and moves up, and the bio reveals. Chevron flips.
+*/
+function ExecCard({ m }: { m: Member }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <button
+      type="button"
+      onClick={() => setOpen((v) => !v)}
+      aria-expanded={open}
+      className="flex w-full flex-col rounded-[3px] border border-line bg-paper p-6 text-left transition-colors hover:border-ink-faint"
+    >
+      <div
+        className={`overflow-hidden rounded-[2px] bg-ph transition-all duration-500 ease-in-out ${
+          open ? 'h-20 w-20' : 'h-[280px] w-full'
+        }`}
+      />
+      <div className="mt-5 flex items-start justify-between gap-3">
+        <div>
+          <div className="text-[18px] font-semibold">{m.name}</div>
+          <div className="mt-2 inline-block rounded-[2px] bg-paper-warm px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.1em] text-ink-soft">
+            {m.title}
+          </div>
+        </div>
+        <span
+          aria-hidden
+          className={`mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-ink-soft transition-transform duration-300 ${
+            open ? 'rotate-180' : ''
+          }`}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </span>
+      </div>
+      <div className={`grid transition-all duration-500 ease-in-out ${open ? 'mt-4 grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+        <div className="overflow-hidden">
+          <p className="text-[14px] leading-[1.65] text-ink-soft">{m.bio}</p>
+        </div>
+      </div>
+    </button>
+  )
+}
+
 export default function About() {
   return (
     <>
@@ -226,7 +271,11 @@ export default function About() {
 
           <div className="mt-12">
             <Overline>Executive team</Overline>
-            <MemberGrid members={EXEC} avatar="photo" />
+            <div className="mt-6 grid gap-6 md:grid-cols-3">
+              {EXEC.map((m) => (
+                <ExecCard key={m.name} m={m} />
+              ))}
+            </div>
           </div>
 
           <div className="mt-14">
