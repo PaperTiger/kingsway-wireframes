@@ -55,7 +55,8 @@ function Header() {
   const [scrolled, setScrolled] = useState(false)
 
   // Pages whose hero is a dark full-bleed billboard the header overlays.
-  const overlayRoute = location === '/' || location === '/about'
+  const overlayRoute =
+    location === '/' || location === '/about' || location === '/entrepreneurs'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)

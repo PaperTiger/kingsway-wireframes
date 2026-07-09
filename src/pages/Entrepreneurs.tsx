@@ -145,13 +145,15 @@ function PhaseJourney() {
 export default function Entrepreneurs() {
   return (
     <>
-      {/* Hero. KU-19: photography-led, image with text overlay, made to "pop". */}
-      <section className="relative overflow-hidden">
+      {/* Hero. KU-19: photography-led, image with text overlay, made to "pop".
+          Pulled up under the sticky header (-mt-20) so the transparent nav
+          overlays the dark billboard, matching the Home/About heroes. */}
+      <section className="relative -mt-20 overflow-hidden">
         <Placeholder dark label="Hero image" dims="1600 × 900px — visual content TBD" className="absolute inset-0 h-full w-full" />
         <div className="relative">
           <Container>
-            <div className="max-w-[46rem] py-28 text-paper md:py-40">
-              <Overline className="text-paper/60">Kingsway Search Xcelerator · KSX</Overline>
+            <div className="max-w-[46rem] pb-28 pt-40 text-paper md:pb-40 md:pt-56">
+              <Overline className="text-paper/60">NYSE: KWY · Kingsway Search Xcelerator</Overline>
               <h1 className="mt-8 text-[44px] font-semibold tracking-[-0.03em] md:text-[68px]">
                 Become a CEO through the Kingsway Search Xcelerator
               </h1>

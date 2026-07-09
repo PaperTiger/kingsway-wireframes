@@ -1,8 +1,10 @@
-import { Container, Section, Overline } from '../lib/ui'
+import { Container, Section, Overline, Placeholder } from '../lib/ui'
 import AudienceCards from '../components/AudienceCards'
 
 /*
   KU-27: kept deliberately simple. No full contact form; the less the better.
+  Editorial two-column layout — a large image alongside a short description
+  and labelled inquiry blocks with the addresses set in large type.
   KU-28: routing mirrors the homepage's interactive audience cards.
 */
 const SPECIFIC = [
@@ -12,32 +14,52 @@ const SPECIFIC = [
   { title: 'For intermediaries', desc: 'Criteria & CIM submission', cta: 'Go', href: '/intermediaries' },
 ]
 
+const INQUIRIES = [
+  { label: 'General inquiries:', email: 'hello@kingswaycorporation.com' },
+  { label: 'Investor relations:', email: 'ir@kingswaycorporation.com' },
+]
+
 export default function TalkToAnExpert() {
   return (
     <>
       <Section className="pt-20 md:pt-24">
         <Container>
-          <Overline>Let's talk</Overline>
-          <h1 className="mt-8 max-w-[16ch] text-[44px] font-normal tracking-[-0.03em] md:text-[64px]">
+          <Overline>Contact us</Overline>
+          <h1 className="mt-6 max-w-[14ch] text-[48px] font-normal leading-[1.0] tracking-[-0.03em] md:text-[80px]">
             Talk to an expert
           </h1>
-          <p className="mt-8 max-w-[52ch] text-[18px] leading-[1.55] text-ink-soft md:text-[20px]">
-            Tell us who you are and we'll point you to the right person. The fastest
-            way to reach us is a direct email — no forms required. The right person
-            will be in touch within one business day.
-          </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-6">
-            <a
-              href="mailto:hello@kingswaycorporation.com"
-              className="inline-flex items-center gap-3 rounded-[2px] bg-ink px-6 py-3.5 text-[15px] font-medium text-paper transition-opacity hover:opacity-90"
-            >
-              Email us <span aria-hidden>→</span>
-            </a>
-            <div className="text-[16px]">
-              <span className="text-ink-soft">hello@kingswaycorporation.com</span>
-              <span className="mx-3 text-line">·</span>
-              <span className="text-ink-soft">+1 (000) 000-0000</span>
+          <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+            <Placeholder
+              label="Image placeholder"
+              dims="1000 × 1120px"
+              className="w-full"
+            />
+
+            <div className="lg:pt-2">
+              <p className="max-w-[40ch] text-[22px] leading-[1.4] tracking-[-0.01em] md:text-[26px]">
+                Kingsway partners with exceptional operators to acquire and grow
+                essential-services businesses for the long run.
+              </p>
+              <p className="mt-6 max-w-[40ch] text-[22px] leading-[1.4] tracking-[-0.01em] md:text-[26px]">
+                Tell us who you are and we'll point you to the right person — no
+                forms required, and the right person will be in touch within one
+                business day.
+              </p>
+
+              <div className="mt-12 space-y-8">
+                {INQUIRIES.map((q) => (
+                  <div key={q.email}>
+                    <div className="text-[15px] font-medium text-ink">{q.label}</div>
+                    <a
+                      href={`mailto:${q.email}`}
+                      className="mt-2 block text-[26px] tracking-[-0.01em] text-ink transition-opacity hover:opacity-60 md:text-[32px]"
+                    >
+                      {q.email}
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </Container>
