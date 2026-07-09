@@ -100,7 +100,8 @@ function ResourceIcon({ path }: { path: string }) {
 /*
   Same card treatment as the About KBS carousel (icon top-left, toggle top-
   right, bottom-anchored copy that crossfades teaser → detail on open), but
-  sized for a static grid rather than a slider.
+  sized for a static grid rather than a slider. The whole card is the toggle,
+  so the plus is a decorative span rather than a nested button.
 */
 function ThesisCard({
   item,
@@ -109,9 +110,14 @@ function ThesisCard({
 }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="flex h-[440px] flex-col rounded-[12px] border border-line bg-paper p-6">
+    <button
+      type="button"
+      onClick={() => setOpen((v) => !v)}
+      aria-expanded={open}
+      className="group flex h-[440px] flex-col rounded-[12px] border border-line bg-paper p-6 text-left transition-colors hover:border-ink-faint"
+    >
       {/* Header: icon left, toggle right */}
-      <div className="flex items-center justify-between">
+      <div className="flex w-full items-center justify-between">
         <svg
           width="28"
           height="28"
@@ -126,12 +132,9 @@ function ThesisCard({
         >
           <path d={item.icon} />
         </svg>
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-label={open ? 'Show less' : 'Show more'}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink hover:text-ink"
+        <span
+          aria-hidden
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-ink-soft transition-colors group-hover:border-ink group-hover:text-ink"
         >
           <svg
             width="16"
@@ -146,7 +149,7 @@ function ThesisCard({
           >
             <path d="M12 5v14M5 12h14" />
           </svg>
-        </button>
+        </span>
       </div>
 
       <h3 className="mt-6 text-[19px] font-semibold tracking-[-0.01em]">
@@ -155,7 +158,7 @@ function ThesisCard({
 
       {/* Description sits at the bottom. On open the teaser fades out and the
           detail fades up from the bottom. */}
-      <div className="relative mt-4 flex-1">
+      <div className="relative mt-4 w-full flex-1">
         <p
           className={`absolute inset-x-0 bottom-0 text-[15px] leading-[1.6] text-ink-soft transition-opacity duration-300 ${
             open ? 'opacity-0' : 'opacity-100'
@@ -171,7 +174,7 @@ function ThesisCard({
           {item.detail}
         </p>
       </div>
-    </div>
+    </button>
   )
 }
 
