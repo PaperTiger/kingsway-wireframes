@@ -8,14 +8,39 @@ import {
 } from '../lib/ui'
 
 const VALUES = [
-  { n: '01', title: 'Permanent stewardship', body: 'Evergreen ownership, not flip-and-exit. We hold companies indefinitely and make decisions on a decade timescale, never under pressure to sell.' },
+  { n: '01', title: 'Permanent stewardship', body: 'Evergreen ownership, not fix-and-flip. We hold companies indefinitely and make decisions on a decades timescale, never under pressure to sell.' },
   { n: '02', title: 'Entrepreneurial empowerment', body: 'Backing talented operators with real autonomy. We hire great people and trust them to lead — providing capital, infrastructure, and support without micromanaging.' },
   { n: '03', title: 'Legacy preservation', body: 'Honouring what founders worked hard to build. We protect the culture, the name, the team, and the community the business serves.' },
-  { n: '04', title: 'Disciplined process', body: 'The Kingsway Business System as a repeatable engine. Rigour in acquisition, integration, and operations ensures every company improves under our ownership.' },
-  { n: '05', title: 'Radical transparency', body: 'A commitment to public company accountability. We report openly, communicate plainly, and hold ourselves to the same standards we expect of our operators.' },
+  { n: '04', title: 'Disciplined process', body: 'The Kingsway Business System as a repeatable engine. Rigour in acquisition, integration, operations, and growth ensures every company improves under our ownership.' },
+  { n: '05', title: 'Full transparency', body: 'Accountability of a publicly-traded company. We report openly, communicate plainly, and hold ourselves to the same standards we expect of our operators.' },
 ]
 
-const KBS = ['[KBS pillar 1 name]', '[KBS pillar 2 name]', '[KBS pillar 3 name]', '[KBS pillar 4 name]']
+const KBS = [
+  {
+    name: 'Leadership Training',
+    body: 'Builds leaders through disciplined practice, self-awareness, and the consistent use of proven tools — not charisma or instinct alone. By helping CEOs create inspiration, shape strong teams, chart the course, translate strategy into action, follow through, communicate clearly, and manage time effectively, KBS develops leaders who can align people, execute with discipline, and continuously improve themselves and their businesses.',
+  },
+  {
+    name: 'Data and Daily Management',
+    body: 'Makes performance visible, measurable, and actionable across the business. By translating strategy into weekly scorecards, clear ownership, and daily operating rhythms, leaders can spot issues early, solve them with facts, and keep teams aligned on the activities that drive growth, cash, and continuous improvement.',
+  },
+  {
+    name: 'Talent',
+    body: 'The KBS system for attracting, developing, retaining, and rewarding the right people in the right seats. By using clear accountabilities, rigorous hiring, objective talent assessment, continuous performance management, aligned incentives, effective onboarding, and fair treatment of underperformance, leaders build meritocratic teams where A-players thrive and people decisions drive business performance.',
+  },
+  {
+    name: 'Enterprise Excellence',
+    body: 'The KBS system for making work visible, improving flow, and sustaining better performance across the business. By using tools like Gemba walks, 5S, value stream mapping, Kaizen, standard work, and daily management, leaders eliminate waste, reduce errors, shorten lead times, and build a culture where continuous improvement becomes part of how the company operates every day.',
+  },
+  {
+    name: 'Plan and Policy Deployment',
+    body: 'The KBS system for turning vision and strategy into focused execution. It defines where the business is going, how it will win, and which breakthrough priorities matter most — then deploys those priorities through clear ownership, aligned action plans, measurable targets, and regular review so strategy becomes daily progress, not an annual offsite artifact.',
+  },
+  {
+    name: 'Growth',
+    body: 'The KBS system for building profitable, customer-driven growth — not growth for growth’s sake. By understanding unit economics, listening to the Voice of the Customer, strengthening retention, optimizing pricing, expanding customer relationships, entering attractive markets, and building disciplined sales capability, leaders create growth that compounds value.',
+  },
+]
 
 type Member = { name: string; title: string; bio: string }
 
@@ -148,7 +173,7 @@ export default function About() {
               <p className="mt-6 max-w-[52ch] text-[19px] leading-[1.5] text-paper/75 md:text-[22px]">
                 Kingsway is a public evergreen owner of entrepreneur-led, essential
                 services businesses. We combine permanent capital with exceptional
-                talent, a decentralised operating model, and the Kingsway Business
+                talent, a decentralized operating model, and the Kingsway Business
                 System to buy and build great companies.
               </p>
             </div>
@@ -161,7 +186,7 @@ export default function About() {
         <Container>
           <Overline className="text-paper/50">Our mission</Overline>
           <p className="mt-8 max-w-[24ch] text-[38px] font-normal tracking-[-0.02em] md:text-[56px]">
-            We provide a permanent, responsible exit for small business owners who
+            We provide a permanent, responsible home for small business owners who
             have built something worth protecting — and pair their companies with
             the talent and systems to grow.
           </p>
@@ -205,7 +230,7 @@ export default function About() {
               </h3>
               <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.65] text-ink-soft">
                 Millions of business owners will retire without a logical succession
-                plan. Kingsway provides the solution: permanent capital, a
+                plan. Kingsway provides the solution: a permanent home, a
                 professional operator, and a system to grow the business long after
                 the founder steps back.
               </p>
@@ -223,11 +248,12 @@ export default function About() {
                 Operators, capital, and systems — together
               </h3>
               <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.65] text-ink-soft">
-                We recruit exceptional entrepreneurs, back them with Kingsway capital,
-                and help them acquire small, high-growth essential services
-                businesses. Unlike private equity, we hold indefinitely. Unlike
-                traditional search funds, we provide full infrastructure, support,
-                and a brand behind every operator.
+                We recruit exceptional entrepreneurs, back them with Kingsway
+                resources and capital, and help them acquire small, high-growth
+                essential services businesses. Unlike private equity, we hold
+                indefinitely. Unlike traditional search funds, we provide full
+                infrastructure, support, and the weight of a public company behind
+                every operator.
               </p>
             </div>
           </div>
@@ -239,20 +265,19 @@ export default function About() {
         <Container>
           <SectionHeading>The Kingsway Business System</SectionHeading>
           <p className="mt-6 max-w-[56ch] text-[18px] leading-[1.55] text-ink-soft">
-            KBS is our shared operating platform — a set of proven playbooks and
-            tools that help every portfolio company perform at its best, while
-            preserving its autonomy.
+            KBS is our shared operating platform — a set of beliefs, proven
+            playbooks and tools that help every portfolio company perform at its
+            best, while preserving its autonomy.
           </p>
-          <div className="mt-14 grid grid-cols-1 divide-y divide-line border border-line sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
-            {KBS.map((title) => (
-              <div key={title} className="p-8">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {KBS.map((k) => (
+              <div key={k.name} className="rounded-[3px] border border-line bg-paper p-8">
                 <div className="flex h-10 w-10 items-center justify-center bg-ph">
                   <div className="h-4 w-4 border border-ink-faint" />
                 </div>
-                <h3 className="mt-6 text-[18px] font-semibold">{title}</h3>
+                <h3 className="mt-6 text-[18px] font-semibold">{k.name}</h3>
                 <p className="mt-3 text-[15px] leading-[1.6] text-ink-soft">
-                  Description TBD per brand guidelines. 2–3 sentences on what this
-                  pillar does for portfolio companies.
+                  {k.body}
                 </p>
               </div>
             ))}
@@ -264,9 +289,6 @@ export default function About() {
       <Section>
         <Container>
           <SectionHeading>Our team</SectionHeading>
-          <p className="mt-5 text-[18px] text-ink-soft md:text-[20px]">
-            Cleanly separated by team. Select a person for more detail.
-          </p>
 
           <div className="mt-12">
             <Overline>Executive team</Overline>
