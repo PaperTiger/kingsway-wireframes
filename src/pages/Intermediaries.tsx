@@ -49,14 +49,20 @@ const WHY = [
   {
     title: 'Clear investment criteria',
     body: "We are explicit about what we buy: sector, size, geography, and situation. You'll know immediately whether a client fits — no ambiguity, no wasted calls.",
+    // target
+    icon: 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0 M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0 M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0',
   },
   {
     title: 'Permanent capital',
     body: "Kingsway is a public company with no fund expiry date. Our capital is always available, and our process doesn't change quarter to quarter.",
+    // infinity
+    icon: 'M9.828 9.172a4 4 0 1 0 0 5.656a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828',
   },
   {
     title: 'Quick & transparent feedback',
     body: 'We commit to responding to all CIMs within a stated timeframe. We give honest, direct feedback even on passes.',
+    // message
+    icon: 'M12 20l-3 -3h-2a3 3 0 0 1 -3 -3v-6a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-2l-3 3 M8 9h8 M8 13h6',
   },
 ]
 
@@ -116,7 +122,21 @@ export default function Intermediaries() {
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {WHY.map((w) => (
               <div key={w.title} className="rounded-[3px] border border-line bg-paper p-8 lg:p-10">
-                <h3 className="text-[20px] font-semibold tracking-[-0.01em]">{w.title}</h3>
+                <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-ink"
+                  aria-hidden
+                >
+                  <path d={w.icon} />
+                </svg>
+                <h3 className="mt-6 text-[20px] font-semibold tracking-[-0.01em]">{w.title}</h3>
                 <p className="mt-4 text-[15px] leading-[1.6] text-ink-soft">{w.body}</p>
               </div>
             ))}
