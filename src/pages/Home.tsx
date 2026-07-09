@@ -7,7 +7,7 @@ import {
   Placeholder,
 } from '../lib/ui'
 import FlywheelScroll from '../components/FlywheelScroll'
-import AudienceCards from '../components/AudienceCards'
+import AudiencePathways from '../components/AudiencePathways'
 
 const STEPS = [
   {
@@ -140,7 +140,7 @@ export default function Home() {
           <p className="mt-5 text-[18px] text-ink-soft md:text-[20px]">
             Kingsway serves four distinct audiences. Find your path.
           </p>
-          <AudienceCards items={AUDIENCES} columns={4} />
+          <AudiencePathways items={AUDIENCES} />
         </Container>
       </Section>
     </>
