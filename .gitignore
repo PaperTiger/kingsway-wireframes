@@ -1,0 +1,9 @@
+# dependencies
+node_modules
+
+# build output (deployed to the gh-pages branch, not committed to source)
+dist
+
+# misc
+.DS_Store
+*.local

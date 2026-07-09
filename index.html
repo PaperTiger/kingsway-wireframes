@@ -3,26 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Kingsway Wireframes</title>
-    <meta name="description" content="Kingsway Wireframes — built on Replit. Update this description to reflect the app." />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Kingsway Wireframes" />
-    <meta property="og:description" content="Kingsway Wireframes — built on Replit. Update this description to reflect the app." />
+    <title>Kingsway Corporation — Wireframes</title>
+    <meta name="description" content="Kingsway Corporation (NYSE: KWY) — building through search. Wireframe prototype." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:title" content="Kingsway Corporation — Wireframes" />
+    <meta property="og:description" content="Kingsway Corporation (NYSE: KWY) — building through search. Wireframe prototype." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kingsway Wireframes" />
-    <meta name="twitter:description" content="Kingsway Wireframes — built on Replit. Update this description to reflect the app." />
-    <link rel="icon" type="image/svg+xml" href="/kingsway-wireframes/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/kingsway-wireframes/assets/index-BpOkk38M.js"></script>
-    <link rel="stylesheet" crossorigin href="/kingsway-wireframes/assets/index-DnOHKu16.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <!-- GitHub Pages SPA redirect: restores the deep-linked path stashed by 404.html -->
     <script>
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) {
-            return s.replace(/~and~/g, '&')
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
           });
           window.history.replaceState(null, null,
             l.pathname.slice(0, -1) + decoded[0] +
@@ -32,6 +26,7 @@
         }
       }(window.location));
     </script>
+    <!-- Marker.io feedback widget -->
     <script>
       window.markerConfig = {
         project: '6a429e10657db3ce9cde578c',
@@ -43,5 +38,6 @@
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
