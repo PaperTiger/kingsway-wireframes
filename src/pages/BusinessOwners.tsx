@@ -164,14 +164,18 @@ export default function BusinessOwners() {
         </Container>
       </Section>
 
-      {/* What happens next. KU-11: high-level view, click a step to dive into detail. */}
+      {/* What happens next. KU-11: two-column — high-level steps on the right,
+          click one to dive into detail. */}
       <Section warm>
         <Container>
-          <SectionHeading>What happens next</SectionHeading>
-          <p className="mt-5 text-[18px] text-ink-soft md:text-[20px]">
-            A simple, respectful process — no surprises. Click a step for the detail.
-          </p>
-          <div className="mt-12">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+            <div className="lg:sticky lg:top-28">
+              <SectionHeading>What happens next</SectionHeading>
+              <p className="mt-5 max-w-[36ch] text-[18px] leading-[1.55] text-ink-soft">
+                A simple, respectful process — no surprises. Click a step for the
+                detail.
+              </p>
+            </div>
             <Accordion items={STEPS} />
           </div>
         </Container>

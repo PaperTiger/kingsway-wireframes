@@ -2,51 +2,15 @@ import { useState, useEffect, type ReactNode } from 'react'
 import { Link, useLocation } from 'wouter'
 import { Container } from '../lib/ui'
 
-// Primary nav. Each item carries the overline + desc so the "dropdown detail"
-// can be reused for the per-item dropdowns planned later.
+// Primary nav, right-justified in the header. About sits left-most.
 const NAV = [
-  {
-    href: '/companies',
-    label: 'Our companies',
-    overline: 'The portfolio',
-    desc: 'The essential-services businesses we own and operate across North America.',
-  },
-  {
-    href: '/investors',
-    label: 'Investors',
-    overline: 'The equity story',
-    desc: 'Understand our compounding model and permanent capital advantage.',
-  },
-  {
-    href: '/business-owners',
-    label: 'Business owners',
-    overline: 'A permanent home',
-    desc: 'A responsible exit that honours your legacy, your people, and your culture.',
-  },
-  {
-    href: '/intermediaries',
-    label: 'Intermediaries',
-    overline: 'A reliable buyer',
-    desc: 'Clear criteria, quick feedback, and no re-trading. Submit a CIM directly.',
-  },
-  {
-    href: '/entrepreneurs',
-    label: 'Entrepreneurs',
-    overline: 'Become a CEO',
-    desc: 'Capital, coaching, and infrastructure to find and run your first business.',
-  },
-  {
-    href: '/about',
-    label: 'About',
-    overline: 'The company',
-    desc: 'Who we are, the Kingsway Business System, and how we work.',
-  },
-  {
-    href: '/talk-to-an-expert',
-    label: 'Contact',
-    overline: 'Get in touch',
-    desc: 'Talk to an expert about a business, an investment, or a partnership.',
-  },
+  { href: '/about', label: 'About' },
+  { href: '/companies', label: 'Our companies' },
+  { href: '/investors', label: 'Investors' },
+  { href: '/business-owners', label: 'Business owners' },
+  { href: '/intermediaries', label: 'Intermediaries' },
+  { href: '/entrepreneurs', label: 'Entrepreneurs' },
+  { href: '/talk-to-an-expert', label: 'Contact' },
 ]
 
 function Header() {

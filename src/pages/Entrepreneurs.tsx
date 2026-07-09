@@ -10,6 +10,7 @@ import {
 } from '../lib/ui'
 import SocialProof from '../components/SocialProof'
 import TestimonialGallery, { type Testimonial } from '../components/TestimonialGallery'
+import Accordion, { type AccordionItem } from '../components/Accordion'
 
 const TESTIMONIALS: Testimonial[] = [
   {
@@ -83,10 +84,19 @@ const PROFILE = [
   'Willingness to relocate to the business location',
 ]
 
-const APPLY = [
-  'Send your résumé and a short letter on why you want to be a CEO',
-  'Initiate a conversation with the KSX team',
-  "If selected, you're admitted to the KSX programme",
+const APPLY: AccordionItem[] = [
+  {
+    title: 'Apply',
+    body: 'Send your résumé and a short letter on why you want to be a CEO. We review every application personally and respond quickly.',
+  },
+  {
+    title: 'Meet the KSX team',
+    body: 'Initiate a conversation with the KSX team to explore fit, the programme, and the path from search to running your own company.',
+  },
+  {
+    title: 'Join the programme',
+    body: "If selected, you're admitted to the KSX programme — paired with committed capital, coaching, and infrastructure from day one.",
+  },
 ]
 
 const METRICS = [
@@ -232,31 +242,24 @@ export default function Entrepreneurs() {
         </div>
       </section>
 
-      {/* How to apply */}
+      {/* How to apply. KU-22: high-level steps, click one to dive into detail. */}
       <Section warm>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-2 md:gap-16">
-            <div>
-              <SectionHeading>How to apply</SectionHeading>
-              <p className="mt-5 max-w-[40ch] text-[18px] leading-[1.55] text-ink-soft">
-                A straightforward three-step process. We respond to every
-                application personally.
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+            <div className="lg:sticky lg:top-28">
+              <SectionHeading>Ready to apply?</SectionHeading>
+              <p className="mt-5 max-w-[36ch] text-[18px] leading-[1.55] text-ink-soft">
+                A straightforward process — we respond to every application
+                personally. Follow the steps to see what to expect.
               </p>
-            </div>
-            <div className="border border-line bg-paper">
-              {APPLY.map((a, i) => (
-                <div key={a} className="flex items-center gap-6 border-b border-line p-6">
-                  <span className="text-[13px] font-medium tabular-nums text-line">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="text-[16px]">{a}</span>
-                </div>
-              ))}
-              <div className="flex flex-wrap items-center gap-5 p-6">
-                <Button href="mailto:ksx@kingswaycorporation.com">Partner with us</Button>
-                <span className="text-[15px] text-ink-soft">ksx@kingswaycorporation.com</span>
+              <div className="mt-8 flex flex-wrap items-center gap-5">
+                <Button href="mailto:ksx@kingswaycorporation.com">Apply now</Button>
+                <span className="text-[15px] text-ink-soft">
+                  ksx@kingswaycorporation.com
+                </span>
               </div>
             </div>
+            <Accordion items={APPLY} />
           </div>
         </Container>
       </Section>
