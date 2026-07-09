@@ -6,6 +6,7 @@ import {
   SectionHeading,
   Placeholder,
 } from '../lib/ui'
+import Carousel from '../components/Carousel'
 
 const VALUES = [
   { n: '01', title: 'Permanent stewardship', body: 'Evergreen ownership, not fix-and-flip. We hold companies indefinitely and make decisions on a decades timescale, never under pressure to sell.' },
@@ -17,28 +18,46 @@ const VALUES = [
 
 const KBS = [
   {
-    name: 'Leadership Training',
-    body: 'Builds leaders through disciplined practice, self-awareness, and the consistent use of proven tools — not charisma or instinct alone. By helping CEOs create inspiration, shape strong teams, chart the course, translate strategy into action, follow through, communicate clearly, and manage time effectively, KBS develops leaders who can align people, execute with discipline, and continuously improve themselves and their businesses.',
+    name: 'Leadership training',
+    teaser:
+      'Builds leaders through disciplined practice, self-awareness, and the consistent use of proven tools — not charisma or instinct alone.',
+    detail:
+      'By helping CEOs create inspiration, shape strong teams, chart the course, translate strategy into action, follow through, communicate clearly, and manage time effectively, KBS develops leaders who can align people, execute with discipline, and continuously improve themselves and their businesses.',
   },
   {
-    name: 'Data and Daily Management',
-    body: 'Makes performance visible, measurable, and actionable across the business. By translating strategy into weekly scorecards, clear ownership, and daily operating rhythms, leaders can spot issues early, solve them with facts, and keep teams aligned on the activities that drive growth, cash, and continuous improvement.',
+    name: 'Data and daily management',
+    teaser:
+      'Makes performance visible, measurable, and actionable across the business.',
+    detail:
+      'By translating strategy into weekly scorecards, clear ownership, and daily operating rhythms, leaders can spot issues early, solve them with facts, and keep teams aligned on the activities that drive growth, cash, and continuous improvement.',
   },
   {
     name: 'Talent',
-    body: 'The KBS system for attracting, developing, retaining, and rewarding the right people in the right seats. By using clear accountabilities, rigorous hiring, objective talent assessment, continuous performance management, aligned incentives, effective onboarding, and fair treatment of underperformance, leaders build meritocratic teams where A-players thrive and people decisions drive business performance.',
+    teaser:
+      'The KBS system for attracting, developing, retaining, and rewarding the right people in the right seats.',
+    detail:
+      'By using clear accountabilities, rigorous hiring, objective talent assessment, continuous performance management, aligned incentives, effective onboarding, and fair treatment of underperformance, leaders build meritocratic teams where A-players thrive and people decisions drive business performance.',
   },
   {
-    name: 'Enterprise Excellence',
-    body: 'The KBS system for making work visible, improving flow, and sustaining better performance across the business. By using tools like Gemba walks, 5S, value stream mapping, Kaizen, standard work, and daily management, leaders eliminate waste, reduce errors, shorten lead times, and build a culture where continuous improvement becomes part of how the company operates every day.',
+    name: 'Enterprise excellence',
+    teaser:
+      'The KBS system for making work visible, improving flow, and sustaining better performance across the business.',
+    detail:
+      'By using tools like Gemba walks, 5S, value stream mapping, Kaizen, standard work, and daily management, leaders eliminate waste, reduce errors, shorten lead times, and build a culture where continuous improvement becomes part of how the company operates every day.',
   },
   {
-    name: 'Plan and Policy Deployment',
-    body: 'The KBS system for turning vision and strategy into focused execution. It defines where the business is going, how it will win, and which breakthrough priorities matter most — then deploys those priorities through clear ownership, aligned action plans, measurable targets, and regular review so strategy becomes daily progress, not an annual offsite artifact.',
+    name: 'Plan and policy deployment',
+    teaser:
+      'The KBS system for turning vision and strategy into focused execution.',
+    detail:
+      'It defines where the business is going, how it will win, and which breakthrough priorities matter most — then deploys those priorities through clear ownership, aligned action plans, measurable targets, and regular review so strategy becomes daily progress, not an annual offsite artifact.',
   },
   {
     name: 'Growth',
-    body: 'The KBS system for building profitable, customer-driven growth — not growth for growth’s sake. By understanding unit economics, listening to the Voice of the Customer, strengthening retention, optimizing pricing, expanding customer relationships, entering attractive markets, and building disciplined sales capability, leaders create growth that compounds value.',
+    teaser:
+      'The KBS system for building profitable, customer-driven growth — not growth for growth’s sake.',
+    detail:
+      'By understanding unit economics, listening to the Voice of the Customer, strengthening retention, optimizing pricing, expanding customer relationships, entering attractive markets, and building disciplined sales capability, leaders create growth that compounds value.',
   },
 ]
 
@@ -157,6 +176,39 @@ function ExecCard({ m }: { m: Member }) {
   )
 }
 
+/* KBS carousel card: a teaser is shown first; the +/× button reveals the detail. */
+function KbsCard({ item }: { item: { name: string; teaser: string; detail: string } }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="flex min-h-[260px] w-[300px] shrink-0 snap-start flex-col rounded-[12px] border border-line bg-paper p-6 sm:w-[340px]">
+      <h3 className="text-[19px] font-semibold tracking-[-0.01em]">{item.name}</h3>
+      <p className="mt-3 text-[15px] leading-[1.6] text-ink-soft">{item.teaser}</p>
+      <div
+        className={`grid transition-all duration-300 ${
+          open ? 'mt-3 grid-rows-[1fr]' : 'grid-rows-[0fr]'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="text-[15px] leading-[1.6] text-ink-soft">{item.detail}</p>
+        </div>
+      </div>
+      <div className="mt-auto flex justify-end pt-6">
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? 'Show less' : 'Show more'}
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink hover:text-ink"
+        >
+          <span className={`text-[22px] leading-none transition-transform ${open ? 'rotate-45' : ''}`}>
+            +
+          </span>
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export default function About() {
   return (
     <>
@@ -260,8 +312,9 @@ export default function About() {
         </Container>
       </Section>
 
-      {/* Kingsway Business System */}
-      <Section warm>
+      {/* Kingsway Business System — horizontal carousel. Divider separates it
+          from the section above. */}
+      <Section warm className="border-t border-line">
         <Container>
           <SectionHeading>The Kingsway Business System</SectionHeading>
           <p className="mt-6 max-w-[56ch] text-[18px] leading-[1.55] text-ink-soft">
@@ -269,18 +322,12 @@ export default function About() {
             playbooks and tools that help every portfolio company perform at its
             best, while preserving its autonomy.
           </p>
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {KBS.map((k) => (
-              <div key={k.name} className="rounded-[3px] border border-line bg-paper p-8">
-                <div className="flex h-10 w-10 items-center justify-center bg-ph">
-                  <div className="h-4 w-4 border border-ink-faint" />
-                </div>
-                <h3 className="mt-6 text-[18px] font-semibold">{k.name}</h3>
-                <p className="mt-3 text-[15px] leading-[1.6] text-ink-soft">
-                  {k.body}
-                </p>
-              </div>
-            ))}
+          <div className="mt-14">
+            <Carousel>
+              {KBS.map((k) => (
+                <KbsCard key={k.name} item={k} />
+              ))}
+            </Carousel>
           </div>
         </Container>
       </Section>
