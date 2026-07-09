@@ -9,11 +9,11 @@ import {
 import Carousel from '../components/Carousel'
 
 const VALUES = [
-  { n: '01', title: 'Permanent stewardship', body: 'Evergreen ownership, not fix-and-flip. We hold companies indefinitely and make decisions on a decades timescale, never under pressure to sell.' },
-  { n: '02', title: 'Entrepreneurial empowerment', body: 'Backing talented operators with real autonomy. We hire great people and trust them to lead — providing capital, infrastructure, and support without micromanaging.' },
-  { n: '03', title: 'Legacy preservation', body: 'Honouring what founders worked hard to build. We protect the culture, the name, the team, and the community the business serves.' },
-  { n: '04', title: 'Disciplined process', body: 'The Kingsway Business System as a repeatable engine. Rigour in acquisition, integration, operations, and growth ensures every company improves under our ownership.' },
-  { n: '05', title: 'Full transparency', body: 'Accountability of a publicly-traded company. We report openly, communicate plainly, and hold ourselves to the same standards we expect of our operators.' },
+  { n: '1', category: 'Ownership', title: 'Permanent stewardship', body: 'Evergreen ownership, not fix-and-flip. We hold companies indefinitely and make decisions on a decades timescale, never under pressure to sell.' },
+  { n: '2', category: 'Autonomy', title: 'Entrepreneurial empowerment', body: 'Backing talented operators with real autonomy. We hire great people and trust them to lead — providing capital, infrastructure, and support without micromanaging.' },
+  { n: '3', category: 'Legacy', title: 'Legacy preservation', body: 'Honouring what founders worked hard to build. We protect the culture, the name, the team, and the community the business serves.' },
+  { n: '4', category: 'Process', title: 'Disciplined process', body: 'The Kingsway Business System as a repeatable engine. Rigour in acquisition, integration, operations, and growth ensures every company improves under our ownership.' },
+  { n: '5', category: 'Accountability', title: 'Full transparency', body: 'Accountability of a publicly-traded company. We report openly, communicate plainly, and hold ourselves to the same standards we expect of our operators.' },
 ]
 
 const KBS = [
@@ -282,30 +282,55 @@ export default function About() {
         </Container>
       </Section>
 
-      {/* What we stand for */}
-      <Section>
+      {/* What we stand for. Same stacking-scroll layout as "Why choose the KSX
+          platform" (Entrepreneurs): each principle pins and the next panel
+          scrolls up to overlap it. Sticky stacking on desktop; plain stacked
+          blocks on mobile. */}
+      <section className="bg-paper pt-20 md:pt-28">
         <Container>
-          <div className="grid gap-12 md:grid-cols-[0.85fr_1.5fr] md:gap-16">
-            <div className="md:sticky md:top-28 md:self-start">
-              <Overline>What we stand for</Overline>
-              <SectionHeading className="mt-6">Five principles that guide every decision</SectionHeading>
-              <p className="mt-6 max-w-[40ch] text-[17px] leading-[1.6] text-ink-soft">
-                From how we acquire companies to how we support our operators — these
-                values define what Kingsway is.
-              </p>
-            </div>
-            <div className="border-y border-line">
-              {VALUES.map((v, i) => (
-                <div key={v.n} className={`py-12 ${i > 0 ? 'border-t border-line' : ''}`}>
-                  <div className="text-[13px] font-medium tabular-nums text-line">{v.n}</div>
-                  <h3 className="mt-6 text-[24px] font-semibold tracking-[-0.01em]">{v.title}</h3>
-                  <p className="mt-4 max-w-[64ch] text-[16px] leading-[1.65] text-ink-soft">{v.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Overline>What we stand for</Overline>
+          <SectionHeading className="mt-6">
+            Five principles that guide every decision
+          </SectionHeading>
+          <p className="mt-5 max-w-[46ch] text-[18px] text-ink-soft md:text-[20px]">
+            From how we acquire companies to how we support our operators — these
+            values define what Kingsway is.
+          </p>
         </Container>
-      </Section>
+
+        <div className="mt-12">
+          {VALUES.map((v) => (
+            <div
+              key={v.n}
+              className="border-t border-line bg-paper lg:sticky lg:top-0 lg:min-h-screen lg:shadow-[0_-16px_40px_-28px_rgba(0,0,0,0.25)]"
+            >
+              <Container>
+                <div className="grid gap-x-10 gap-y-6 py-14 md:py-20 lg:grid-cols-[minmax(0,180px)_minmax(0,160px)_minmax(0,1fr)] lg:items-start lg:py-28">
+                  <div className="text-[88px] font-medium leading-[0.8] tracking-[-0.03em] md:text-[160px]">
+                    {v.n}
+                  </div>
+                  <div className="text-[16px] text-ink-soft">({v.category})</div>
+                  <div>
+                    <h3 className="max-w-[16ch] text-[32px] font-semibold leading-[1.05] tracking-[-0.02em] md:text-[52px]">
+                      {v.title}
+                    </h3>
+                    <div className="mt-8 max-w-[420px] lg:mt-10">
+                      <Placeholder
+                        label="Image placeholder"
+                        dims="1000 × 560px"
+                        className="w-full"
+                      />
+                    </div>
+                    <p className="mt-8 max-w-[52ch] text-[17px] leading-[1.6] text-ink-soft md:text-[19px]">
+                      {v.body}
+                    </p>
+                  </div>
+                </div>
+              </Container>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* How we operate */}
       <Section warm>
