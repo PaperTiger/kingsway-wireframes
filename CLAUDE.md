@@ -90,9 +90,12 @@ automatically. Hard-coded `<a>`s must include the `/kingsway-wireframes` prefix.
 - Notable components: `FlywheelScroll` (home model section — sticky diagram +
   scroll steps / mobile tabs), `TestimonialGallery` (black 2:3 portrait cards,
   auto-rotate, expand), `Carousel` (draggable horizontal, dots + arrows — used
-  by the About KBS section), `AudiencePathways` (home "Who we work with" flush-
-  imagery cards), `AudienceCards` (compact contact-page routing cards),
-  `Accordion`, `RevealPanel`, `SocialProof`.
+  by the About KBS section and the Entrepreneurs "Three phases" slider: full-
+  width dark cards, equal height via the flex track, neighbours peek both
+  sides), `AudiencePathways` (home "Who we work with" flush-imagery cards),
+  `AudienceCards` (compact contact-page routing cards), `Accordion`,
+  `SocialProof`. (`RevealPanel` exists but is no longer used — the Investors
+  "Why invest" section now reuses the Entrepreneurs KSX stacking-scroll layout.)
 
 ## Feedback / tickets (Marker.io)
 

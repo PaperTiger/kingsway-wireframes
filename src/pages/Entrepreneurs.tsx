@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   Container,
   Section,
@@ -8,6 +7,7 @@ import {
   TextLink,
   Placeholder,
 } from '../lib/ui'
+import Carousel from '../components/Carousel'
 import SocialProof from '../components/SocialProof'
 import TestimonialGallery, { type Testimonial } from '../components/TestimonialGallery'
 import Accordion, { type AccordionItem } from '../components/Accordion'
@@ -130,49 +130,47 @@ const METRICS = [
   { value: '$XXM', label: 'Combined portfolio revenue', caption: 'Growing year on year' },
 ]
 
-/* KU-20/KU-22: each phase takes the full width; click to follow the path. */
+/* KU-20/KU-22: the phases are a draggable slider — each phase is a full-width
+   dark card with an image on the right. Cards peek to the left and right; drag
+   (or use the arrows / dots) to follow the path. All cards share one height
+   (the flex track stretches every card to the tallest). */
 function PhaseJourney() {
-  const [open, setOpen] = useState(0)
   return (
-    <div className="mt-12 space-y-4">
-      {PHASES.map((p, i) => {
-        const isOpen = open === i
-        return (
-          <div key={p.phase} className="overflow-hidden rounded-[3px] border border-line bg-paper">
-            <button
-              type="button"
-              onClick={() => setOpen(isOpen ? -1 : i)}
-              aria-expanded={isOpen}
-              className="flex w-full items-center gap-6 px-8 py-7 text-left md:px-10"
-            >
-              <span className="text-[13px] font-medium uppercase tracking-[0.14em] text-ink-faint">
+    <div className="mt-10">
+      <Carousel>
+        {PHASES.map((p) => (
+          <div
+            key={p.phase}
+            className="flex w-[86%] max-w-[1120px] shrink-0 snap-center flex-col overflow-hidden rounded-[3px] bg-dark text-paper lg:grid lg:grid-cols-[1fr_42%]"
+          >
+            <div className="flex flex-col p-8 md:p-12">
+              <div className="text-[13px] font-medium uppercase tracking-[0.14em] text-paper/50">
                 {p.phase}
-              </span>
-              <span className="flex-1 text-[26px] font-semibold tracking-[-0.02em] md:text-[34px]">
-                {p.title}
-              </span>
-              <span className={`text-[24px] leading-none text-ink-soft transition-transform ${isOpen ? 'rotate-45' : ''}`}>
-                +
-              </span>
-            </button>
-            <div className={`grid transition-all duration-300 ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-              <div className="overflow-hidden">
-                <div className="px-8 pb-8 md:px-10 md:pl-[8.5rem]">
-                  <p className="max-w-[70ch] text-[16px] leading-[1.65] text-ink-soft">{p.body}</p>
-                  <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
-                    {p.checks.map((c) => (
-                      <li key={c} className="flex gap-2.5 text-[15px] text-ink-soft">
-                        <span aria-hidden className="text-ink-faint">→</span>
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
+              <h3 className="mt-4 text-[40px] font-semibold tracking-[-0.02em] md:text-[64px]">
+                {p.title}
+              </h3>
+              <p className="mt-5 max-w-[46ch] text-[16px] leading-[1.65] text-paper/70 md:text-[18px]">
+                {p.body}
+              </p>
+              <ul className="mt-7 grid gap-2.5 sm:grid-cols-2">
+                {p.checks.map((c) => (
+                  <li key={c} className="flex gap-2.5 text-[15px] text-paper/75">
+                    <span aria-hidden className="text-paper/40">→</span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="px-8 pb-8 md:px-12 md:pb-12 lg:p-12 lg:pl-0">
+              <Placeholder
+                label="Image placeholder"
+                className="h-[200px] w-full rounded-[2px] lg:h-full"
+              />
             </div>
           </div>
-        )
-      })}
+        ))}
+      </Carousel>
     </div>
   )
 }
@@ -260,7 +258,7 @@ export default function Entrepreneurs() {
         <Container>
           <SectionHeading>Three phases of the KSX programme</SectionHeading>
           <p className="mt-5 text-[18px] text-ink-soft md:text-[20px]">
-            A high-level view of the journey. Click a phase to follow the path.
+            A high-level view of the journey. Follow the path phase by phase.
           </p>
           <PhaseJourney />
         </Container>

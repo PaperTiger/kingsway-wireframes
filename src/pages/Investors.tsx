@@ -8,7 +8,6 @@ import {
   Placeholder,
   LogoPlaceholder,
 } from '../lib/ui'
-import RevealPanel from '../components/RevealPanel'
 
 const METRICS = [
   { value: 'XX', label: 'Portfolio companies', caption: 'Essential services across North America' },
@@ -20,23 +19,27 @@ const METRICS = [
 
 const THESIS = [
   {
-    n: '01',
-    title: 'Permanent capital advantage',
+    n: '1',
+    category: 'Structure',
+    heading: 'Permanent capital advantage',
     body: 'No fund lifecycle, no forced exits. We hold and compound indefinitely, allowing operators to make long-term decisions without artificial horizons. There is no pressure to sell — ever.',
   },
   {
-    n: '02',
-    title: 'Repeatable acquisition engine',
+    n: '2',
+    category: 'Model',
+    heading: 'Repeatable acquisition engine',
     body: 'The KBS and operator platform create a systematic, scalable acquisition model. We repeatedly find, acquire, and transition great businesses with disciplined rigour at every step.',
   },
   {
-    n: '03',
-    title: 'Fragmented market opportunity',
+    n: '3',
+    category: 'Market',
+    heading: 'Fragmented market opportunity',
     body: 'Millions of SMB succession events represent a structural, long-duration opportunity. The market is vast and ripe for a disciplined, permanent buyer with deep operator infrastructure.',
   },
   {
-    n: '04',
-    title: 'Aligned incentives',
+    n: '4',
+    category: 'Alignment',
+    heading: 'Aligned incentives',
     body: "Operators have meaningful ownership in the companies they run. Kingsway's interests and theirs are the same — sustainable, long-term compounding of intrinsic value, not short-term exits.",
   },
 ]
@@ -202,16 +205,51 @@ export default function Investors() {
         </Container>
       </Section>
 
-      {/* Why invest */}
-      <Section>
+      {/* Why invest. Same stacking-scroll layout as "Why choose the KSX
+          platform" (Entrepreneurs): each advantage pins and the next panel
+          scrolls up to overlap it. Sticky stacking on desktop; plain stacked
+          blocks on mobile. */}
+      <section className="bg-paper pt-20 md:pt-28">
         <Container>
           <SectionHeading>Why invest in Kingsway</SectionHeading>
-          <p className="mt-5 text-[18px] text-ink-soft md:text-[20px]">
+          <p className="mt-5 max-w-[46ch] text-[18px] text-ink-soft md:text-[20px]">
             Four structural advantages that compound over time.
           </p>
-          <RevealPanel items={THESIS} />
         </Container>
-      </Section>
+
+        <div className="mt-12">
+          {THESIS.map((a) => (
+            <div
+              key={a.n}
+              className="border-t border-line bg-paper lg:sticky lg:top-0 lg:min-h-screen lg:shadow-[0_-16px_40px_-28px_rgba(0,0,0,0.25)]"
+            >
+              <Container>
+                <div className="grid gap-x-10 gap-y-6 py-14 md:py-20 lg:grid-cols-[minmax(0,180px)_minmax(0,160px)_minmax(0,1fr)] lg:items-start lg:py-28">
+                  <div className="text-[88px] font-medium leading-[0.8] tracking-[-0.03em] md:text-[160px]">
+                    {a.n}
+                  </div>
+                  <div className="text-[16px] text-ink-soft">({a.category})</div>
+                  <div>
+                    <h3 className="max-w-[16ch] text-[32px] font-semibold leading-[1.05] tracking-[-0.02em] md:text-[52px]">
+                      {a.heading}
+                    </h3>
+                    <div className="mt-8 max-w-[420px] lg:mt-10">
+                      <Placeholder
+                        label="Image placeholder"
+                        dims="1000 × 560px"
+                        className="w-full"
+                      />
+                    </div>
+                    <p className="mt-8 max-w-[52ch] text-[17px] leading-[1.6] text-ink-soft md:text-[19px]">
+                      {a.body}
+                    </p>
+                  </div>
+                </div>
+              </Container>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* How the model compounds — dark interactive flywheel */}
       <Section dark>

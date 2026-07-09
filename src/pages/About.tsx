@@ -95,44 +95,31 @@ function LinkedIn() {
   )
 }
 
-/* KU-29: team layout with more information on click, cleanly separated by team. */
+/* KU-29: team layout, cleanly separated by team. Non-executive members are
+   static cards — no plus sign / expand-to-reveal (that's reserved for the
+   executive team's ExecCard). */
 function MemberGrid({ members, avatar = 'round' }: { members: Member[]; avatar?: 'round' | 'photo' }) {
-  const [open, setOpen] = useState<number | null>(null)
   return (
     <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {members.map((m, i) => {
-        const isOpen = open === i
-        return (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setOpen(isOpen ? null : i)}
-            aria-expanded={isOpen}
-            className="flex flex-col rounded-[3px] border border-line p-6 text-left transition-colors hover:border-ink-faint"
-          >
-            <div className="flex items-start justify-between">
-              {avatar === 'photo' ? (
-                <div className="h-16 w-16 bg-ph" />
-              ) : (
-                <div className="h-14 w-14 rounded-full bg-ph" />
-              )}
-              <LinkedIn />
-            </div>
-            <div className="mt-5 flex items-center justify-between gap-3">
-              <div>
-                <div className="text-[17px] font-semibold">{m.name}</div>
-                <div className="mt-1 text-[14px] text-ink-soft">{m.title}</div>
-              </div>
-              <span className={`text-[18px] leading-none text-ink-faint transition-transform ${isOpen ? 'rotate-45' : ''}`}>+</span>
-            </div>
-            <div className={`grid transition-all duration-300 ${isOpen ? 'mt-4 grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-              <div className="overflow-hidden">
-                <p className="text-[14px] leading-[1.6] text-ink-soft">{m.bio}</p>
-              </div>
-            </div>
-          </button>
-        )
-      })}
+      {members.map((m, i) => (
+        <div
+          key={i}
+          className="flex flex-col rounded-[3px] border border-line p-6"
+        >
+          <div className="flex items-start justify-between">
+            {avatar === 'photo' ? (
+              <div className="h-16 w-16 bg-ph" />
+            ) : (
+              <div className="h-14 w-14 rounded-full bg-ph" />
+            )}
+            <LinkedIn />
+          </div>
+          <div className="mt-5">
+            <div className="text-[17px] font-semibold">{m.name}</div>
+            <div className="mt-1 text-[14px] text-ink-soft">{m.title}</div>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
