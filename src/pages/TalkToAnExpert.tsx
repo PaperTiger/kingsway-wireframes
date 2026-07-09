@@ -1,5 +1,5 @@
-import { Container, Section, Overline, Placeholder } from '../lib/ui'
-import AudienceCards from '../components/AudienceCards'
+import { Container, Section, Overline, SectionHeading, Placeholder } from '../lib/ui'
+import AudiencePathways from '../components/AudiencePathways'
 
 /*
   KU-27: kept deliberately simple. No full contact form; the less the better.
@@ -65,11 +65,12 @@ export default function TalkToAnExpert() {
         </Container>
       </Section>
 
-      {/* Looking for something specific — mirrors the homepage audience cards (KU-28). */}
+      {/* Looking for something specific — mirrors the homepage "Who we work
+          with" pathway cards (KU-28). */}
       <Section warm>
         <Container>
-          <Overline>Looking for something specific?</Overline>
-          <AudienceCards items={SPECIFIC} columns={4} />
+          <SectionHeading>Looking for something specific?</SectionHeading>
+          <AudiencePathways items={SPECIFIC} />
         </Container>
       </Section>
     </>
