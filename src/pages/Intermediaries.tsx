@@ -184,29 +184,62 @@ export default function Intermediaries() {
           <div className="mt-12">
             <Accordion items={SUBMISSION} />
           </div>
+        </Container>
+      </Section>
 
-          <div className="mt-14 rounded-[3px] border border-line bg-paper p-8 md:p-12">
-            <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-              <div>
-                <Overline>Your direct contact</Overline>
-                <div className="mt-5 flex items-center gap-4">
-                  <div className="h-14 w-14 rounded-full bg-ph" />
-                  <div>
-                    <div className="text-[18px] font-semibold">[Contact name]</div>
-                    <div className="mt-1 text-[14px] text-ink-soft">
-                      Head of business development
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-5 text-[15px]">deals@kingswaycorporation.com</div>
-                <div className="mt-1 text-[15px]">+1 (000) 000-0000</div>
+      {/* Your direct contact. KU-17: editorial two-column layout mirroring the
+          contact page — portrait on the left; italic intro + large inquiry
+          blocks on the right. */}
+      <Section className="border-b border-line">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+            <Placeholder
+              label="Image placeholder"
+              dims="1000 × 1120px"
+              className="w-full"
+            />
+
+            <div className="lg:pt-2">
+              <Overline>Your direct contact</Overline>
+              <h2 className="mt-5 text-[24px] font-semibold tracking-[-0.01em] md:text-[28px]">
+                [Contact name]
+              </h2>
+              <div className="mt-1 text-[15px] text-ink-soft">
+                Head of business development
               </div>
-              <Button href="mailto:deals@kingswaycorporation.com">Submit an opportunity</Button>
+
+              <p className="mt-6 max-w-[46ch] text-[16px] leading-[1.6] text-ink-soft md:text-[18px]">
+                "We value long-term relationships with deal intermediaries.
+                You'll find Kingsway a reliable partner, deal after deal."
+              </p>
+
+              <div className="mt-8 space-y-6">
+                <div>
+                  <div className="text-[14px] font-medium text-ink">Deal submissions:</div>
+                  <a
+                    href="mailto:deals@kingswaycorporation.com"
+                    className="mt-1 block text-[18px] tracking-[-0.01em] text-ink transition-opacity hover:opacity-60 md:text-[20px]"
+                  >
+                    deals@kingswaycorporation.com
+                  </a>
+                </div>
+                <div>
+                  <div className="text-[14px] font-medium text-ink">Direct line:</div>
+                  <a
+                    href="tel:+10000000000"
+                    className="mt-1 block text-[18px] tracking-[-0.01em] text-ink transition-opacity hover:opacity-60 md:text-[20px]"
+                  >
+                    +1 (000) 000-0000
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <Button href="mailto:deals@kingswaycorporation.com">
+                  Submit an opportunity
+                </Button>
+              </div>
             </div>
-            <p className="mt-8 border-t border-line pt-6 text-[16px] italic leading-[1.6] text-ink-soft">
-              "We value long-term relationships with deal intermediaries. You'll find
-              Kingsway a reliable partner, deal after deal."
-            </p>
           </div>
         </Container>
       </Section>
