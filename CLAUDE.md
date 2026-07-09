@@ -6,6 +6,23 @@ design/wireframe prototype — content is intentionally placeholder in places
 (`[Name]`, image placeholders, "pending approval" copy). It is **not** the
 production site.
 
+## Keeping this doc current (every session — read this first)
+
+This file is the onboarding contract that lets any new session pick up the
+project without losing context. **Preserve and maintain it** so future
+sessions stay reproducible. Whenever you change something a later session
+would need to know, update `CLAUDE.md` **in the same commit** and push it —
+including:
+
+- new / renamed / removed pages, routes, or key components;
+- changes to the build or **deploy flow** (still: push to `develop`);
+- new conventions or client preferences (e.g. sentence case);
+- new gotchas you hit and the workaround.
+
+Keep it accurate and concise. Durable project knowledge lives **here** (it
+travels with the repo and every clone); machine-local Claude memory does not,
+so put anything a teammate or fresh session needs into this file, not memory.
+
 ## Stack
 
 - **Vite + React 19 + TypeScript**, **Tailwind CSS v4** (config-less; theme
