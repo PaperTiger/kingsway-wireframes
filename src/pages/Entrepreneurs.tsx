@@ -187,7 +187,7 @@ export default function Entrepreneurs() {
           <Container>
             <div className="max-w-[46rem] pb-28 pt-40 text-paper md:pb-40 md:pt-56">
               <Overline className="text-paper/60">NYSE: KWY · Kingsway Search Xcelerator</Overline>
-              <h1 className="mt-8 text-[44px] font-semibold tracking-[-0.03em] md:text-[68px]">
+              <h1 className="mt-8 text-[46px] font-semibold tracking-[-0.03em] md:text-[68px]">
                 Become a CEO through the Kingsway Search Xcelerator
               </h1>
               <p className="mt-6 max-w-[44ch] text-[19px] leading-[1.5] text-paper/75 md:text-[22px]">

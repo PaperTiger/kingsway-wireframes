@@ -25,7 +25,7 @@ export default function TalkToAnExpert() {
       <Section className="pt-20 md:pt-24">
         <Container>
           <Overline>Contact us</Overline>
-          <h1 className="mt-6 max-w-[14ch] text-[48px] font-normal leading-[1.0] tracking-[-0.03em] md:text-[80px]">
+          <h1 className="mt-6 max-w-[14ch] text-[46px] font-semibold leading-[1.0] tracking-[-0.03em] md:text-[80px]">
             Talk to an expert
           </h1>
 
