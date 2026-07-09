@@ -19,6 +19,7 @@ const VALUES = [
 const KBS = [
   {
     name: 'Leadership training',
+    icon: 'M22 9l-10 -4l-10 4l10 4l10 -4v6 M6 10.6v5.4c0 1 2.7 2 6 2s6 -1 6 -2v-5.4',
     teaser:
       'Builds leaders through disciplined practice, self-awareness, and the consistent use of proven tools — not charisma or instinct alone.',
     detail:
@@ -26,6 +27,7 @@ const KBS = [
   },
   {
     name: 'Data and daily management',
+    icon: 'M4 20h16 M7 16v-5 M12 16V8 M17 16v-7',
     teaser:
       'Makes performance visible, measurable, and actionable across the business.',
     detail:
@@ -33,6 +35,7 @@ const KBS = [
   },
   {
     name: 'Talent',
+    icon: 'M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2 M16 3.13a4 4 0 0 1 0 7.75 M21 21v-2a4 4 0 0 0 -3 -3.85',
     teaser:
       'The KBS system for attracting, developing, retaining, and rewarding the right people in the right seats.',
     detail:
@@ -40,6 +43,7 @@ const KBS = [
   },
   {
     name: 'Enterprise excellence',
+    icon: 'M12 9m-6 0a6 6 0 1 0 12 0a6 6 0 1 0 -12 0 M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889 M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889',
     teaser:
       'The KBS system for making work visible, improving flow, and sustaining better performance across the business.',
     detail:
@@ -47,6 +51,7 @@ const KBS = [
   },
   {
     name: 'Plan and policy deployment',
+    icon: 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0 M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0 M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0',
     teaser:
       'The KBS system for turning vision and strategy into focused execution.',
     detail:
@@ -54,6 +59,7 @@ const KBS = [
   },
   {
     name: 'Growth',
+    icon: 'M3 17l6 -6l4 4l8 -8 M14 7l7 0l0 7',
     teaser:
       'The KBS system for building profitable, customer-driven growth — not growth for growth’s sake.',
     detail:
@@ -176,34 +182,74 @@ function ExecCard({ m }: { m: Member }) {
   )
 }
 
-/* KBS carousel card: a teaser is shown first; the +/× button reveals the detail. */
-function KbsCard({ item }: { item: { name: string; teaser: string; detail: string } }) {
+/*
+  KBS carousel card: icon top-left, toggle button top-right. A teaser is shown
+  first; clicking the button crossfades it out and reveals the fuller detail.
+*/
+function KbsCard({
+  item,
+}: {
+  item: { name: string; icon: string; teaser: string; detail: string }
+}) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="flex min-h-[260px] w-[300px] shrink-0 snap-start flex-col rounded-[12px] border border-line bg-paper p-6 sm:w-[340px]">
-      <h3 className="text-[19px] font-semibold tracking-[-0.01em]">{item.name}</h3>
-      <p className="mt-3 text-[15px] leading-[1.6] text-ink-soft">{item.teaser}</p>
-      <div
-        className={`grid transition-all duration-300 ${
-          open ? 'mt-3 grid-rows-[1fr]' : 'grid-rows-[0fr]'
-        }`}
-      >
-        <div className="overflow-hidden">
-          <p className="text-[15px] leading-[1.6] text-ink-soft">{item.detail}</p>
-        </div>
-      </div>
-      <div className="mt-auto flex justify-end pt-6">
+    <div className="flex min-h-[280px] w-[300px] shrink-0 snap-start flex-col rounded-[12px] border border-line bg-paper p-6 sm:w-[340px]">
+      <div className="flex items-start justify-between">
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-ink"
+          aria-hidden
+        >
+          <path d={item.icon} />
+        </svg>
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? 'Show less' : 'Show more'}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink hover:text-ink"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink hover:text-ink"
         >
-          <span className={`text-[22px] leading-none transition-transform ${open ? 'rotate-45' : ''}`}>
+          <span
+            className={`text-[22px] leading-none transition-transform duration-300 ${
+              open ? 'rotate-45' : ''
+            }`}
+          >
             +
           </span>
         </button>
+      </div>
+
+      <h3 className="mt-6 text-[19px] font-semibold tracking-[-0.01em]">
+        {item.name}
+      </h3>
+
+      {/* Teaser — fades out when opened */}
+      <div
+        className={`grid transition-all duration-300 ${
+          open ? 'grid-rows-[0fr] opacity-0' : 'mt-3 grid-rows-[1fr] opacity-100'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="text-[15px] leading-[1.6] text-ink-soft">{item.teaser}</p>
+        </div>
+      </div>
+
+      {/* Detail — fades in when opened */}
+      <div
+        className={`grid transition-all duration-300 ${
+          open ? 'mt-3 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="text-[15px] leading-[1.6] text-ink-soft">{item.detail}</p>
+        </div>
       </div>
     </div>
   )

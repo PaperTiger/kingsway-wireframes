@@ -1,13 +1,12 @@
 import { useRef, useState, type ReactNode } from 'react'
 
 /*
-  Horizontal card carousel: native/trackpad scroll, pointer-drag to scroll,
-  prev/next arrows, and dots below. Children are the cards (each sets its own
-  width + `snap-start shrink-0`).
+  Horizontal card carousel: native/trackpad scroll, smooth pointer-drag with
+  momentum, prev/next arrows, and dots below. Children are the cards (each sets
+  its own width + `snap-start shrink-0`).
 */
 export default function Carousel({ children }: { children: ReactNode[] }) {
   const track = useRef<HTMLDivElement>(null)
-  const drag = useRef({ down: false, startX: 0, startLeft: 0 })
   const [active, setActive] = useState(0)
   const count = children.length
 
@@ -34,18 +33,42 @@ export default function Carousel({ children }: { children: ReactNode[] }) {
     el.scrollTo({ left: idx * step(), behavior: 'smooth' })
   }
 
+  // Pointer-drag: free-scroll 1:1 while dragging (snap disabled so it doesn't
+  // fight), then settle to the nearest card on release with a little momentum.
   const onPointerDown = (e: React.PointerEvent) => {
     const el = track.current
-    if (!el) return
-    drag.current = { down: true, startX: e.clientX, startLeft: el.scrollLeft }
-  }
-  const onPointerMove = (e: React.PointerEvent) => {
-    const el = track.current
-    if (!el || !drag.current.down) return
-    el.scrollLeft = drag.current.startLeft - (e.clientX - drag.current.startX)
-  }
-  const endDrag = () => {
-    drag.current.down = false
+    if (!el || e.button !== 0) return
+    const startX = e.clientX
+    const startLeft = el.scrollLeft
+    let lastX = startX
+    let lastT = performance.now()
+    let v = 0
+    let moved = false
+    el.style.scrollSnapType = 'none'
+    el.style.cursor = 'grabbing'
+
+    const move = (ev: PointerEvent) => {
+      const now = performance.now()
+      const dt = now - lastT || 16
+      v = (ev.clientX - lastX) / dt
+      lastX = ev.clientX
+      lastT = now
+      el.scrollLeft = startLeft - (ev.clientX - startX)
+      if (Math.abs(ev.clientX - startX) > 4) moved = true
+    }
+    const up = () => {
+      window.removeEventListener('pointermove', move)
+      window.removeEventListener('pointerup', up)
+      el.style.scrollSnapType = ''
+      el.style.cursor = ''
+      if (moved) {
+        let target = Math.round(el.scrollLeft / (step() || 1))
+        if (Math.abs(v) > 0.35) target += v < 0 ? 1 : -1
+        goTo(target)
+      }
+    }
+    window.addEventListener('pointermove', move)
+    window.addEventListener('pointerup', up)
   }
 
   const Arrow = ({ dir }: { dir: -1 | 1 }) => {
@@ -71,10 +94,7 @@ export default function Carousel({ children }: { children: ReactNode[] }) {
         ref={track}
         onScroll={onScroll}
         onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerLeave={endDrag}
-        className="flex cursor-grab snap-x snap-mandatory select-none gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden"
+        className="flex cursor-grab snap-x snap-mandatory select-none gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {children}
       </div>
