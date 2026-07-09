@@ -2,97 +2,55 @@ import { useState, useEffect, type ReactNode } from 'react'
 import { Link, useLocation } from 'wouter'
 import { Container } from '../lib/ui'
 
-const AUDIENCES = [
+// Primary nav. Each item carries the overline + desc so the "dropdown detail"
+// can be reused for the per-item dropdowns planned later.
+const NAV = [
   {
-    overline: 'The equity story',
-    title: 'For investors',
-    desc: 'Understand our compounding model and permanent capital advantage.',
+    href: '/companies',
+    label: 'Our companies',
+    overline: 'The portfolio',
+    desc: 'The essential-services businesses we own and operate across North America.',
+  },
+  {
     href: '/investors',
+    label: 'Investors',
+    overline: 'The equity story',
+    desc: 'Understand our compounding model and permanent capital advantage.',
   },
   {
-    overline: 'A permanent home',
-    title: 'For business owners',
-    desc: 'A responsible exit that honours your legacy, your people, and your culture.',
     href: '/business-owners',
+    label: 'Business owners',
+    overline: 'A permanent home',
+    desc: 'A responsible exit that honours your legacy, your people, and your culture.',
   },
   {
-    overline: 'A reliable buyer',
-    title: 'For intermediaries',
-    desc: 'Clear criteria, quick feedback, and no re-trading. Submit a CIM directly.',
     href: '/intermediaries',
+    label: 'Intermediaries',
+    overline: 'A reliable buyer',
+    desc: 'Clear criteria, quick feedback, and no re-trading. Submit a CIM directly.',
   },
   {
-    overline: 'Become a CEO',
-    title: 'For entrepreneurs',
-    desc: 'Capital, coaching, and infrastructure to find and run your first business.',
     href: '/entrepreneurs',
+    label: 'Entrepreneurs',
+    overline: 'Become a CEO',
+    desc: 'Capital, coaching, and infrastructure to find and run your first business.',
+  },
+  {
+    href: '/about',
+    label: 'About',
+    overline: 'The company',
+    desc: 'Who we are, the Kingsway Business System, and how we work.',
+  },
+  {
+    href: '/talk-to-an-expert',
+    label: 'Contact',
+    overline: 'Get in touch',
+    desc: 'Talk to an expert about a business, an investment, or a partnership.',
   },
 ]
 
-function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
-  return (
-    <div className="absolute inset-x-0 top-full border-t border-line bg-paper shadow-[0_24px_40px_-24px_rgba(0,0,0,0.18)]">
-      <Container>
-        <div className="grid grid-cols-1 gap-y-8 py-12 md:grid-cols-5 md:gap-x-10">
-          <div className="md:border-r md:border-line md:pr-10">
-            <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-ink-faint">
-              Explore
-            </p>
-            <h3 className="mt-4 text-[22px] font-semibold tracking-[-0.01em]">
-              Who we work with
-            </h3>
-            <p className="mt-3 text-[14px] leading-[1.6] text-ink-soft">
-              Kingsway serves four distinct audiences. Each has a dedicated page
-              with relevant information.
-            </p>
-            <Link
-              href="/about"
-              onClick={onNavigate}
-              className="mt-5 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.12em] text-ink"
-            >
-              About us <span aria-hidden>→</span>
-            </Link>
-          </div>
-
-          {AUDIENCES.map((a) => (
-            <Link
-              key={a.href}
-              href={a.href}
-              onClick={onNavigate}
-              className="group block"
-            >
-              <div className="aspect-[16/10] w-full overflow-hidden rounded-[4px] bg-ph" />
-              <h3 className="mt-4 inline-flex items-center gap-1 text-[18px] font-semibold tracking-[-0.01em]">
-                {a.title}
-                <svg
-                  aria-hidden
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="mt-0.5 text-ink-faint transition-transform group-hover:translate-x-0.5"
-                >
-                  <path d="M9 6l6 6-6 6" />
-                </svg>
-              </h3>
-              <p className="mt-1.5 text-[14px] leading-[1.5] text-ink-soft">
-                {a.desc}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </Container>
-    </div>
-  )
-}
-
 function Header() {
   const [location] = useLocation()
-  const [mega, setMega] = useState(false)
   const [mobile, setMobile] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -108,7 +66,7 @@ function Header() {
 
   // On those pages the header overlays the dark billboard (white text) until you
   // scroll or open a menu, then fades to the solid white bar with black text.
-  const overlay = overlayRoute && !scrolled && !mega && !mobile
+  const overlay = overlayRoute && !scrolled && !mobile
 
   return (
     <header
@@ -118,130 +76,66 @@ function Header() {
           : 'border-b border-line bg-paper text-ink'
       }`}
     >
-      <div onMouseLeave={() => setMega(false)}>
-        <Container>
-          <div className="grid h-20 grid-cols-[1fr_auto_1fr] items-center">
-            <Link href="/" className="text-[20px] font-semibold tracking-[-0.02em]">
-              Kingsway
-            </Link>
+      <Container>
+        <div className="flex h-20 items-center justify-between">
+          <Link href="/" className="text-[20px] font-semibold tracking-[-0.02em]">
+            Kingsway
+          </Link>
 
-            <nav className="hidden items-center gap-9 lg:flex">
-              <button
-                type="button"
-                onMouseEnter={() => setMega(true)}
-                onClick={() => setMega((v) => !v)}
-                aria-expanded={mega}
-                className="inline-flex items-center gap-1.5 text-[15px]"
-              >
-                Work with us
-                <svg
-                  aria-hidden
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className={`mt-0.5 transition-transform ${mega ? 'rotate-180' : ''}`}
+          <div className="flex items-center gap-5">
+            <nav className="hidden items-center gap-6 lg:flex">
+              {NAV.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`whitespace-nowrap text-[15px] transition-opacity hover:opacity-70 ${
+                    location === item.href ? 'font-medium' : ''
+                  }`}
                 >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-              <Link
-                href="/companies"
-                onMouseEnter={() => setMega(false)}
-                className="text-[15px]"
-              >
-                Our companies
-              </Link>
-              <Link
-                href="/about"
-                onMouseEnter={() => setMega(false)}
-                className="text-[15px]"
-              >
-                About us
-              </Link>
+                  {item.label}
+                </Link>
+              ))}
             </nav>
 
-            <div className="col-start-3 flex items-center justify-end gap-3">
-              <Link
-                href="/talk-to-an-expert"
-                className={`hidden items-center rounded-[2px] px-5 py-3 text-[15px] font-medium transition-colors hover:opacity-90 md:inline-flex ${
-                  overlay ? 'bg-paper text-ink' : 'bg-ink text-paper'
-                }`}
-              >
-                Talk to an expert
-              </Link>
-              <button
-                type="button"
-                aria-label={mobile ? 'Close menu' : 'Open menu'}
-                aria-expanded={mobile}
-                className="flex h-10 w-10 items-center justify-center lg:hidden"
-                onClick={() => setMobile((v) => !v)}
-              >
-                {mobile ? (
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                    <path d="M6 6l12 12M18 6 6 18" />
-                  </svg>
-                ) : (
-                  <div className="space-y-1.5">
-                    <span className="block h-0.5 w-6 bg-current" />
-                    <span className="block h-0.5 w-6 bg-current" />
-                    <span className="block h-0.5 w-6 bg-current" />
-                  </div>
-                )}
-              </button>
-            </div>
+            <button
+              type="button"
+              aria-label={mobile ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobile}
+              className="flex h-10 w-10 items-center justify-center lg:hidden"
+              onClick={() => setMobile((v) => !v)}
+            >
+              {mobile ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M6 6l12 12M18 6 6 18" />
+                </svg>
+              ) : (
+                <div className="space-y-1.5">
+                  <span className="block h-0.5 w-6 bg-current" />
+                  <span className="block h-0.5 w-6 bg-current" />
+                  <span className="block h-0.5 w-6 bg-current" />
+                </div>
+              )}
+            </button>
           </div>
-        </Container>
-
-        {mega && (
-          <div className="hidden lg:block">
-            <MegaMenu onNavigate={() => setMega(false)} />
-          </div>
-        )}
-      </div>
+        </div>
+      </Container>
 
       {mobile && (
         <div className="border-t border-line bg-paper lg:hidden">
           <Container>
             <nav className="py-4">
-              <p className="pb-1 pt-2 text-[12px] font-medium uppercase tracking-[0.16em] text-ink-faint">
-                Work with us
-              </p>
-              {AUDIENCES.map((a) => (
+              {NAV.map((item, i) => (
                 <Link
-                  key={a.href}
-                  href={a.href}
-                  className="block border-b border-line py-4 text-[20px] font-semibold tracking-[-0.01em]"
+                  key={item.href}
+                  href={item.href}
+                  className={`block py-4 text-[20px] font-semibold tracking-[-0.01em] ${
+                    i < NAV.length - 1 ? 'border-b border-line' : ''
+                  }`}
                   onClick={() => setMobile(false)}
                 >
-                  {a.title}
+                  {item.label}
                 </Link>
               ))}
-              <Link
-                href="/companies"
-                className="block border-b border-line py-4 text-[20px] font-semibold tracking-[-0.01em]"
-                onClick={() => setMobile(false)}
-              >
-                Our companies
-              </Link>
-              <Link
-                href="/about"
-                className="block py-4 text-[20px] font-semibold tracking-[-0.01em]"
-                onClick={() => setMobile(false)}
-              >
-                About us
-              </Link>
-              <Link
-                href="/talk-to-an-expert"
-                className="mt-4 flex items-center justify-center rounded-[2px] bg-ink px-5 py-4 text-[15px] font-medium text-paper"
-                onClick={() => setMobile(false)}
-              >
-                Talk to an expert
-              </Link>
             </nav>
           </Container>
         </div>

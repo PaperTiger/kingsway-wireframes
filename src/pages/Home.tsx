@@ -10,10 +10,34 @@ import FlywheelScroll from '../components/FlywheelScroll'
 import AudienceCards from '../components/AudienceCards'
 
 const STEPS = [
-  { n: '01', title: 'Attract', body: 'We recruit highly qualified operators ready to lead.' },
-  { n: '02', title: 'Acquire', body: 'Backed by Kingsway capital, operators acquire small, high-growth essential businesses.' },
-  { n: '03', title: 'Grow', body: 'The Kingsway Business System compounds value across the portfolio over the long run.' },
-  { n: '04', title: 'Repeat', body: 'Permanent capital means we never need to sell. We build, not flip.' },
+  {
+    n: '01',
+    title: 'Attract',
+    body: 'We recruit highly qualified operators ready to lead.',
+    detail:
+      'Placeholder copy — a longer description of how Kingsway sources and evaluates operator talent will live here. It will expand on the pipeline: top MBA programmes, operator networks, and our own alumni, along with the qualities we screen for before backing someone to lead an acquisition.',
+  },
+  {
+    n: '02',
+    title: 'Acquire',
+    body: 'Backed by Kingsway capital, operators acquire small, high-growth essential businesses.',
+    detail:
+      'Placeholder copy — more detail on the acquisition process goes here. Committed capital lets operators move quickly and credibly on small, high-growth essential-services businesses, acquired at disciplined valuations with a permanent-hold mindset rather than a fixed fund horizon.',
+  },
+  {
+    n: '03',
+    title: 'Grow',
+    body: 'The Kingsway Business System compounds value across the portfolio over the long run.',
+    detail:
+      'Placeholder copy — how the Kingsway Business System is applied after close. Proven playbooks across operations, sales, pricing, and talent are deployed to lift performance, while shared infrastructure and follow-on capital fund bolt-on acquisitions.',
+  },
+  {
+    n: '04',
+    title: 'Repeat',
+    body: 'Permanent capital means we never need to sell. We build, not flip.',
+    detail:
+      'Placeholder copy — the compounding loop described in full. Durable cash flow from well-run businesses is reinvested into new operators and acquisitions, so intrinsic value compounds over decades. Permanent capital means we never have to sell — we build, not flip.',
+  },
 ]
 
 const METRICS = [
