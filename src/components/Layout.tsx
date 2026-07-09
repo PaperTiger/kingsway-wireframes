@@ -1,6 +1,7 @@
 import { useState, useEffect, type ReactNode } from 'react'
 import { Link, useLocation } from 'wouter'
 import { Container } from '../lib/ui'
+import Logo from './Logo'
 
 // Primary nav, right-justified in the header. About sits left-most.
 const NAV = [
@@ -43,8 +44,8 @@ function Header() {
     >
       <Container>
         <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="text-[20px] font-semibold tracking-[-0.02em]">
-            Kingsway
+          <Link href="/" aria-label="Kingsway — home" className="shrink-0">
+            <Logo className="h-auto w-[160px] max-w-full" />
           </Link>
 
           <div className="flex items-center gap-5">
@@ -145,7 +146,7 @@ function Footer() {
       <Container>
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr]">
           <div>
-            <div className="text-[20px] font-semibold tracking-[-0.02em]">Kingsway</div>
+            <Logo className="h-auto w-[160px] max-w-full" />
             <p className="mt-4 text-[14px] text-paper/60">Building through Search</p>
             <p className="mt-1 text-[13px] tracking-[0.08em] text-paper/40">NYSE: KWY</p>
           </div>

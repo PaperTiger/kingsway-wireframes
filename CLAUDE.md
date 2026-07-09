@@ -94,8 +94,13 @@ automatically. Hard-coded `<a>`s must include the `/kingsway-wireframes` prefix.
   width dark cards, equal height via the flex track, neighbours peek both
   sides), `AudiencePathways` (home "Who we work with" flush-imagery cards),
   `AudienceCards` (compact contact-page routing cards), `Accordion`,
-  `SocialProof`. (`RevealPanel` exists but is no longer used — the Investors
-  "Why invest" section now reuses the Entrepreneurs KSX stacking-scroll layout.)
+  `SocialProof`, `Logo` (Kingsway wordmark SVG; `fill: currentColor` so it
+  inherits the header/footer text colour — header and footer render it at
+  160px wide, never exceed 180px). (`RevealPanel` exists but is no longer
+  used.)
+- The Investors "Why invest" section reuses the About KBS card treatment in a
+  static 4-column grid; the About "Five principles" and Entrepreneurs "Why
+  choose the KSX platform" sections share the sticky stacking-scroll layout.
 
 ## Feedback / tickets (Marker.io)
 

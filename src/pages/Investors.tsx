@@ -183,7 +183,36 @@ function Flywheel() {
   const step = FLYWHEEL[active]
   const next = FLYWHEEL[(active + 1) % FLYWHEEL.length]
   return (
-    <div className="mt-14 grid overflow-hidden rounded-[3px] border border-paper/15 lg:grid-cols-2">
+    <>
+      {/* Mobile: side-scrollable cards — no tab list. Each step is a card the
+          reader swipes through; the flex track keeps them all the same height. */}
+      <div className="mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden">
+        {FLYWHEEL.map((s, i) => (
+          <div
+            key={s.cat}
+            className="flex w-[85%] shrink-0 snap-center flex-col overflow-hidden rounded-[3px] border border-paper/15"
+          >
+            <Placeholder
+              dark
+              label={`Image placeholder — ${s.cat}`}
+              className="min-h-[200px]"
+            />
+            <div className="border-t border-paper/15 p-6">
+              <div className="text-[13px] tabular-nums text-paper/50">
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div className="mt-1 text-[12px] uppercase tracking-[0.14em] text-paper/50">
+                {s.cat}
+              </div>
+              <h3 className="mt-2 text-[22px] font-semibold text-paper">{s.title}</h3>
+              <p className="mt-3 text-[15px] leading-[1.6] text-paper/60">{s.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: tab list on the left, detail panel on the right. */}
+      <div className="mt-14 hidden overflow-hidden rounded-[3px] border border-paper/15 lg:grid lg:grid-cols-2">
       <div>
         {FLYWHEEL.map((s, i) => {
           const on = i === active
@@ -212,7 +241,7 @@ function Flywheel() {
           )
         })}
       </div>
-      <div className="flex flex-col border-t border-paper/15 md:border-l md:border-t-0">
+      <div className="flex flex-col border-l border-paper/15">
         <Placeholder dark label={`Image placeholder — ${step.cat}`} className="min-h-[240px] flex-1" />
         <div className="border-t border-paper/15 p-8">
           <div className="text-[13px] tabular-nums text-paper/50">
@@ -232,7 +261,8 @@ function Flywheel() {
           </button>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 
