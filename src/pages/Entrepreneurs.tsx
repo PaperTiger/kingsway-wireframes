@@ -48,11 +48,36 @@ const TESTIMONIALS: Testimonial[] = [
 ]
 
 const ADVANTAGES = [
-  { n: '01', title: 'Capital', body: 'Kingsway provides committed capital. No fundraising, no LP pitches. You focus on finding and running the business.' },
-  { n: '02', title: 'Coaching', body: "Structured mentorship with experienced operators and the KSX advisory board. You're never alone in the process." },
-  { n: '03', title: 'Deal flow', body: "Kingsway's relationships and M&A infrastructure accelerate the search timeline significantly." },
-  { n: '04', title: 'Growth mindset', body: 'KBS playbooks and follow-on capital for bolt-ons give you a platform to compound, not just operate.' },
-  { n: '05', title: 'Win-win economics', body: 'You hold ownership in the company you lead. Aligned incentives, genuine partnership.' },
+  {
+    n: '1',
+    category: 'Capital',
+    heading: 'Committed capital, so you can focus on the search.',
+    body: 'Kingsway provides committed capital — no fundraising, no LP pitches. You focus on finding and running the business.',
+  },
+  {
+    n: '2',
+    category: 'Coaching',
+    heading: 'Coaching from operators who have done it before.',
+    body: "Structured mentorship with experienced operators and the KSX advisory board. You're never alone in the process.",
+  },
+  {
+    n: '3',
+    category: 'Deal flow',
+    heading: 'Deal flow and infrastructure that accelerate your search.',
+    body: "Kingsway's relationships and M&A infrastructure accelerate the search timeline significantly.",
+  },
+  {
+    n: '4',
+    category: 'Growth',
+    heading: 'A platform built to compound, not just operate.',
+    body: 'KBS playbooks and follow-on capital for bolt-ons give you a platform to compound, not just operate.',
+  },
+  {
+    n: '5',
+    category: 'Economics',
+    heading: 'Ownership and aligned incentives from day one.',
+    body: 'You hold ownership in the company you lead — aligned incentives and a genuine partnership.',
+  },
 ]
 
 const PHASES = [
@@ -184,25 +209,51 @@ export default function Entrepreneurs() {
         </div>
       </section>
 
-      {/* Why choose KSX */}
-      <Section warm>
+      {/* Why choose KSX. KU-19: stacking scroll — each advantage pins and the
+          next panel scrolls up to overlap it, revealing a new image each time.
+          Sticky stacking on desktop; plain stacked blocks on mobile. */}
+      <section className="bg-paper pt-20 md:pt-28">
         <Container>
           <SectionHeading>Why choose the KSX platform</SectionHeading>
-          <p className="mt-5 text-[18px] text-ink-soft md:text-[20px]">
+          <p className="mt-5 max-w-[46ch] text-[18px] text-ink-soft md:text-[20px]">
             Five advantages that make Kingsway the right accelerator for serious
             operators.
           </p>
-          <div className="mt-14 grid grid-cols-1 divide-y divide-line border border-line sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-5 lg:divide-x">
-            {ADVANTAGES.map((a) => (
-              <div key={a.n} className="p-7">
-                <div className="text-[34px] font-medium leading-none text-line">{a.n}</div>
-                <h3 className="mt-6 text-[18px] font-semibold">{a.title}</h3>
-                <p className="mt-3 text-[14px] leading-[1.6] text-ink-soft">{a.body}</p>
-              </div>
-            ))}
-          </div>
         </Container>
-      </Section>
+
+        <div className="mt-12">
+          {ADVANTAGES.map((a) => (
+            <div
+              key={a.n}
+              className="border-t border-line bg-paper lg:sticky lg:top-0 lg:min-h-screen lg:shadow-[0_-16px_40px_-28px_rgba(0,0,0,0.25)]"
+            >
+              <Container>
+                <div className="grid gap-x-10 gap-y-6 py-14 md:py-20 lg:grid-cols-[minmax(0,180px)_minmax(0,160px)_minmax(0,1fr)] lg:items-start lg:py-28">
+                  <div className="text-[88px] font-medium leading-[0.8] tracking-[-0.03em] md:text-[160px]">
+                    {a.n}
+                  </div>
+                  <div className="text-[16px] text-ink-soft">({a.category})</div>
+                  <div>
+                    <h3 className="max-w-[16ch] text-[32px] font-semibold leading-[1.05] tracking-[-0.02em] md:text-[52px]">
+                      {a.heading}
+                    </h3>
+                    <div className="mt-8 max-w-[600px] lg:mt-10">
+                      <Placeholder
+                        label="Image placeholder"
+                        dims="1000 × 600px"
+                        className="w-full"
+                      />
+                    </div>
+                    <p className="mt-8 max-w-[52ch] text-[17px] leading-[1.6] text-ink-soft md:text-[19px]">
+                      {a.body}
+                    </p>
+                  </div>
+                </div>
+              </Container>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Three phases. KU-20/KU-22: full-width phases, click to follow the path. */}
       <Section>

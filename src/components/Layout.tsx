@@ -175,7 +175,14 @@ function Footer() {
               Contact
             </h3>
             <ul className="mt-5 space-y-3">
-              <li className="text-[14px] text-paper/70">General inquiries</li>
+              <li>
+                <Link
+                  href="/talk-to-an-expert"
+                  className="text-[14px] text-paper/70 transition-colors hover:text-paper"
+                >
+                  General inquiries
+                </Link>
+              </li>
               <li className="text-[14px] text-paper/70">Investor relations</li>
             </ul>
             <address className="mt-5 text-[14px] not-italic leading-[1.6] text-paper/50">
