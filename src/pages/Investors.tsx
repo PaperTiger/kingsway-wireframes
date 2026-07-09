@@ -19,28 +19,36 @@ const METRICS = [
 
 const THESIS = [
   {
-    n: '1',
-    category: 'Structure',
-    heading: 'Permanent capital advantage',
-    body: 'No fund lifecycle, no forced exits. We hold and compound indefinitely, allowing operators to make long-term decisions without artificial horizons. There is no pressure to sell — ever.',
+    name: 'Permanent capital advantage',
+    icon: 'M9.828 9.172a4 4 0 1 0 0 5.656a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828',
+    teaser:
+      'No fund lifecycle and no forced exits — we hold and compound indefinitely.',
+    detail:
+      'No fund lifecycle, no forced exits. We hold and compound indefinitely, allowing operators to make long-term decisions without artificial horizons. There is no pressure to sell — ever.',
   },
   {
-    n: '2',
-    category: 'Model',
-    heading: 'Repeatable acquisition engine',
-    body: 'The KBS and operator platform create a systematic, scalable acquisition model. We repeatedly find, acquire, and transition great businesses with disciplined rigour at every step.',
+    name: 'Repeatable acquisition engine',
+    icon: 'M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4 M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4',
+    teaser:
+      'A systematic, scalable model for finding, acquiring, and transitioning businesses.',
+    detail:
+      'The KBS and operator platform create a systematic, scalable acquisition model. We repeatedly find, acquire, and transition great businesses with disciplined rigour at every step.',
   },
   {
-    n: '3',
-    category: 'Market',
-    heading: 'Fragmented market opportunity',
-    body: 'Millions of SMB succession events represent a structural, long-duration opportunity. The market is vast and ripe for a disciplined, permanent buyer with deep operator infrastructure.',
+    name: 'Fragmented market opportunity',
+    icon: 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0 M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0 M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0',
+    teaser:
+      'Millions of SMB succession events — a structural, long-duration opportunity.',
+    detail:
+      'Millions of SMB succession events represent a structural, long-duration opportunity. The market is vast and ripe for a disciplined, permanent buyer with deep operator infrastructure.',
   },
   {
-    n: '4',
-    category: 'Alignment',
-    heading: 'Aligned incentives',
-    body: "Operators have meaningful ownership in the companies they run. Kingsway's interests and theirs are the same — sustainable, long-term compounding of intrinsic value, not short-term exits.",
+    name: 'Aligned incentives',
+    icon: 'M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0 M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2 M16 3.13a4 4 0 0 1 0 7.75 M21 21v-2a4 4 0 0 0 -3 -3.85',
+    teaser:
+      'Operators hold meaningful ownership in the companies they run.',
+    detail:
+      "Operators have meaningful ownership in the companies they run. Kingsway's interests and theirs are the same — sustainable, long-term compounding of intrinsic value, not short-term exits.",
   },
 ]
 
@@ -86,6 +94,84 @@ function ResourceIcon({ path }: { path: string }) {
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="text-ink-soft">
       <path d={path} />
     </svg>
+  )
+}
+
+/*
+  Same card treatment as the About KBS carousel (icon top-left, toggle top-
+  right, bottom-anchored copy that crossfades teaser → detail on open), but
+  sized for a static grid rather than a slider.
+*/
+function ThesisCard({
+  item,
+}: {
+  item: { name: string; icon: string; teaser: string; detail: string }
+}) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="flex h-[440px] flex-col rounded-[12px] border border-line bg-paper p-6">
+      {/* Header: icon left, toggle right */}
+      <div className="flex items-center justify-between">
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-ink"
+          aria-hidden
+        >
+          <path d={item.icon} />
+        </svg>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? 'Show less' : 'Show more'}
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink hover:text-ink"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            aria-hidden
+            className={`transition-transform duration-300 ${open ? 'rotate-45' : ''}`}
+          >
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+        </button>
+      </div>
+
+      <h3 className="mt-6 text-[19px] font-semibold tracking-[-0.01em]">
+        {item.name}
+      </h3>
+
+      {/* Description sits at the bottom. On open the teaser fades out and the
+          detail fades up from the bottom. */}
+      <div className="relative mt-4 flex-1">
+        <p
+          className={`absolute inset-x-0 bottom-0 text-[15px] leading-[1.6] text-ink-soft transition-opacity duration-300 ${
+            open ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          {item.teaser}
+        </p>
+        <p
+          className={`absolute inset-x-0 bottom-0 text-[15px] leading-[1.6] text-ink-soft transition-all duration-500 ${
+            open ? 'translate-y-0 opacity-100 delay-300' : 'translate-y-4 opacity-0'
+          }`}
+        >
+          {item.detail}
+        </p>
+      </div>
+    </div>
   )
 }
 
@@ -205,51 +291,21 @@ export default function Investors() {
         </Container>
       </Section>
 
-      {/* Why invest. Same stacking-scroll layout as "Why choose the KSX
-          platform" (Entrepreneurs): each advantage pins and the next panel
-          scrolls up to overlap it. Sticky stacking on desktop; plain stacked
-          blocks on mobile. */}
-      <section className="bg-paper pt-20 md:pt-28">
+      {/* Why invest. Same card treatment as the About "Kingsway Business
+          System" section, laid out as a static 4-column grid (no slider). */}
+      <Section>
         <Container>
           <SectionHeading>Why invest in Kingsway</SectionHeading>
-          <p className="mt-5 max-w-[46ch] text-[18px] text-ink-soft md:text-[20px]">
+          <p className="mt-6 max-w-[56ch] text-[18px] leading-[1.55] text-ink-soft">
             Four structural advantages that compound over time.
           </p>
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {THESIS.map((t) => (
+              <ThesisCard key={t.name} item={t} />
+            ))}
+          </div>
         </Container>
-
-        <div className="mt-12">
-          {THESIS.map((a) => (
-            <div
-              key={a.n}
-              className="border-t border-line bg-paper lg:sticky lg:top-0 lg:min-h-screen lg:shadow-[0_-16px_40px_-28px_rgba(0,0,0,0.25)]"
-            >
-              <Container>
-                <div className="grid gap-x-10 gap-y-6 py-14 md:py-20 lg:grid-cols-[minmax(0,180px)_minmax(0,160px)_minmax(0,1fr)] lg:items-start lg:py-28">
-                  <div className="text-[88px] font-medium leading-[0.8] tracking-[-0.03em] md:text-[160px]">
-                    {a.n}
-                  </div>
-                  <div className="text-[16px] text-ink-soft">({a.category})</div>
-                  <div>
-                    <h3 className="max-w-[16ch] text-[32px] font-semibold leading-[1.05] tracking-[-0.02em] md:text-[52px]">
-                      {a.heading}
-                    </h3>
-                    <div className="mt-8 max-w-[420px] lg:mt-10">
-                      <Placeholder
-                        label="Image placeholder"
-                        dims="1000 × 560px"
-                        className="w-full"
-                      />
-                    </div>
-                    <p className="mt-8 max-w-[52ch] text-[17px] leading-[1.6] text-ink-soft md:text-[19px]">
-                      {a.body}
-                    </p>
-                  </div>
-                </div>
-              </Container>
-            </div>
-          ))}
-        </div>
-      </section>
+      </Section>
 
       {/* How the model compounds — dark interactive flywheel */}
       <Section dark>
