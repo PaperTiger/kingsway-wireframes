@@ -237,10 +237,10 @@ export default function Entrepreneurs() {
                     <h3 className="max-w-[16ch] text-[32px] font-semibold leading-[1.05] tracking-[-0.02em] md:text-[52px]">
                       {a.heading}
                     </h3>
-                    <div className="mt-8 max-w-[600px] lg:mt-10">
+                    <div className="mt-8 max-w-[420px] lg:mt-10">
                       <Placeholder
                         label="Image placeholder"
-                        dims="1000 × 600px"
+                        dims="1000 × 560px"
                         className="w-full"
                       />
                     </div>
