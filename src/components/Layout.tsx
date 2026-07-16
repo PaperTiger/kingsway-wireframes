@@ -14,6 +14,8 @@ type NavItem = {
   label: string
   title: string
   blurb: string
+  /* An optional second link in the panel, alongside "Learn more". */
+  extra?: { label: string; href: string }
 }
 
 const NAV: NavItem[] = [
@@ -37,6 +39,8 @@ const NAV: NavItem[] = [
     title: 'The compounding power of entrepreneurship',
     blurb:
       'A public, permanent-capital platform that acquires essential services businesses and compounds them for the long run.',
+    // TODO: real IR portal URL pending from the client.
+    extra: { label: 'Visit our IR portal', href: '#' },
   },
   {
     href: '/business-owners',
@@ -114,6 +118,22 @@ function NavCard({ location }: { location: string }) {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setHovered(null)
       }}
     >
+      {/* Scrim over the page while the menu is open. It lives inside the
+          header, whose own z-50 stacking context already sits above the page,
+          so z-40 here puts it under the card (z-50) but over everything else.
+          Starts below the header bar so the logo and nav stay undimmed.
+
+          pointer-events-none is load-bearing: the scrim is a child of this
+          hover wrapper, so if it captured the pointer, moving onto the page
+          would still count as being inside the wrapper and onMouseLeave would
+          never fire — leaving the menu stuck open. */}
+      <div
+        aria-hidden
+        className={`pointer-events-none fixed inset-x-0 bottom-0 top-20 z-40 bg-ink/20 transition-opacity duration-200 ${
+          open ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+
       {/* Spacer: keeps the header's layout and height stable while the real
           card floats above it. */}
       <div className="invisible p-2" aria-hidden>
@@ -139,12 +159,40 @@ function NavCard({ location }: { location: string }) {
               <p className="mt-3 max-w-[42ch] text-[14px] leading-[1.6] text-ink-soft">
                 {open.blurb}
               </p>
-              <Link
-                href={open.href}
-                className="mt-auto self-start pt-4 text-[14px] font-medium underline underline-offset-4"
-              >
-                Learn more
-              </Link>
+              <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 pt-4">
+                <Link
+                  href={open.href}
+                  className="text-[14px] font-medium underline underline-offset-4"
+                >
+                  Learn more
+                </Link>
+                {open.extra && (
+                  <a
+                    href={open.extra.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[14px] font-medium underline underline-offset-4"
+                  >
+                    {open.extra.label}
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                      className="shrink-0"
+                    >
+                      <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+                      <path d="M10 14l10 -10" />
+                      <path d="M15 4h5v5" />
+                    </svg>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         )}
