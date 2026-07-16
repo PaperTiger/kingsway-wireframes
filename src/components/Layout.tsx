@@ -141,7 +141,7 @@ function NavCard({ location }: { location: string }) {
               </p>
               <Link
                 href={open.href}
-                className="mt-auto self-end pt-4 text-[14px] font-medium underline underline-offset-4"
+                className="mt-auto self-start pt-4 text-[14px] font-medium underline underline-offset-4"
               >
                 Learn more
               </Link>
