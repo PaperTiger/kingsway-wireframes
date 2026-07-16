@@ -82,7 +82,10 @@ automatically. Hard-coded `<a>`s must include the `/kingsway-wireframes` prefix.
 
 - `src/App.tsx` — routes (`/`, `/about`, `/companies`, `/investors`,
   `/business-owners`, `/intermediaries`, `/entrepreneurs`,
-  `/talk-to-an-expert`, `/legal`, 404).
+  `/talk-to-an-expert`, `/legal`, `/documents/:slug`, 404).
+- `src/pages/Document.tsx` — document detail page (date, title, description,
+  PDF link), driven by a `DOCUMENTS` array keyed on slug; unknown slugs render
+  a "document not found" state. Mirrors the live site's `/documents/<slug>`.
 - `src/pages/Legal.tsx` — legal notice, linked from the footer. Copy is
   verbatim from https://kingsway-financial.com/legal/ — lawyer-drafted, so
   don't apply the sentence-case/spelling conventions to it or "fix" its typos.

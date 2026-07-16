@@ -7,7 +7,7 @@ export default function NotFound() {
         <Overline>404</Overline>
         <SectionHeading>Page not found</SectionHeading>
         <div className="mt-8">
-          <TextLink href="/">← Back to home</TextLink>
+          <TextLink href="/" arrow="">← Back to home</TextLink>
         </div>
       </Container>
     </Section>
