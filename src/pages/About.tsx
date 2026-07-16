@@ -69,22 +69,77 @@ const KBS = [
 
 type Member = { name: string; title: string; bio: string }
 
+/* KU-45 */
 const EXEC: Member[] = [
-  { name: '[Executive name 1]', title: '[Title]', bio: '3–4 sentence bio placeholder. Background, prior experience, and relevant expertise described here.' },
-  { name: '[Executive name 2]', title: '[Title]', bio: '3–4 sentence bio placeholder. Background, prior experience, and relevant expertise described here.' },
-  { name: '[Executive name 3]', title: '[Title]', bio: '3–4 sentence bio placeholder. Background, prior experience, and relevant expertise described here.' },
+  {
+    name: 'John T. Fitzgerald',
+    title: 'Chief Executive Officer and Director',
+    bio: 'John T. Fitzgerald has served as Chief Executive Officer of Kingsway since September 2018. Mr. Fitzgerald joined Kingsway as Executive Vice President on April 21, 2016 following Kingsway’s acquisition of Argo Management Group, a private equity investment partnership co-founded by Mr. Fitzgerald in 2002. Effective March 8, 2017, Mr. Fitzgerald was appointed President and Chief Operating Officer of Kingsway. Mr. Fitzgerald received a Bachelor of Science degree from DePaul University and is an MBA graduate of the Kellogg School of Management, Northwestern University.',
+  },
+  {
+    name: 'Kent A. Hansen',
+    title: 'Executive Vice President and Chief Financial Officer',
+    bio: 'Kent A. Hansen has served as CFO of the Corporation’s subsidiary, Kingsway America Inc., since December 2019 and Executive Vice President and CFO of the Corporation since February 2020. Prior to joining the Corporation, Mr. Hansen served as Chief Accounting Officer and Controller of LSC Communications, Inc. from 2016 to 2019. His earlier experience includes roles in accounting and financial reporting at Accenture and as an auditor at Ernst and Young LLP. Mr. Hansen holds a bachelor of business administration degree from the University of Michigan, Ann Arbor and an MBA degree from the Kellogg School of Management, Northwestern University.',
+  },
 ]
+
+/* KU-46. The Chairman presides at all meetings of the Board and all executive
+   sessions held without management — see the footnote under the grid. */
 const BOARD: Member[] = [
-  { name: '[Director 1]', title: '[Title / affiliation]', bio: 'Short bio — 2 sentences describing background and board contribution.' },
-  { name: '[Director 2]', title: '[Title / affiliation]', bio: 'Short bio — 2 sentences describing background and board contribution.' },
-  { name: '[Director 3]', title: '[Title / affiliation]', bio: 'Short bio — 2 sentences describing background and board contribution.' },
-  { name: '[Director 4]', title: '[Title / affiliation]', bio: 'Short bio — 2 sentences describing background and board contribution.' },
+  {
+    name: 'Adam J. Patinkin',
+    title: 'Chairman*',
+    bio: 'Adam J. Patinkin is the Founder and Managing Partner of David Capital Partners, LLC, a long-term oriented alternative investment firm headquartered in Chicago with offices in London. Mr. Patinkin holds the Chartered Financial Analyst designation. Mr. Patinkin earned a B.A. from Dartmouth College with a double major in History and Government in 2007.',
+  },
+  {
+    name: 'Terence M. Kavanagh',
+    title: 'Vice Chairman',
+    bio: 'Terence M. Kavanagh has, since 1997, served as President and a Director of Oakmont Capital Inc., a Toronto-based private investment company. Mr. Kavanagh received a Bachelor of Law degree from Western University in 1978, and an M.B.A. from the Tuck School of Business at Dartmouth College in 1982.',
+  },
+  {
+    name: 'Gregory P. Hannon',
+    title: 'Director',
+    bio: 'Gregory P. Hannon has been a Vice-President and Director of Oakmont Capital Inc., a Toronto-based private investment company, since 1997. Mr. Hannon received a Bachelor of Commerce degree from Queen’s University in 1978 and an M.B.A. from The Harvard Business School in 1987.',
+  },
+  {
+    name: 'Joshua S. Horowitz',
+    title: 'Director',
+    bio: 'Joshua S. Horowitz is Portfolio Manager of the Palm Global Small Cap Fund and has over 23 years of experience as a professional investor. His expertise spans portfolio management, strategic problem-solving, and board leadership, underscoring his ability to drive value creation. He graduated magna cum laude from Binghamton University in 1999 with a Bachelor of Science in Management.',
+  },
+  {
+    name: 'Doug Levine',
+    title: 'Director',
+    bio: 'Doug Levine has been the President of Levine Management, a real estate developer, since January 2013. He graduated in 1980 from Tufts University with a Bachelor’s Degree in Economics.',
+  },
+  {
+    name: 'Corissa B. Porcelli',
+    title: 'Director',
+    bio: 'Corissa B. Porcelli began her career as an Analyst with The Stilwell Group. She was subsequently promoted and now serves as the Director of Research. Ms. Porcelli is a Chartered Financial Analyst. She graduated in 2008 from the University of Pennsylvania with a Bachelor of Arts in Economics and Psychology.',
+  },
+  {
+    name: 'Joseph D. Stilwell',
+    title: 'Director',
+    bio: 'Joseph D. Stilwell is the owner and managing member of Stilwell Value LLC, the General Partner of a group of funds known as The Stilwell Group. He graduated in 1983 from the Wharton School at the University of Pennsylvania with a Bachelor of Science in Economics.',
+  },
 ]
+
+/* KU-47 */
 const ADVISORS: Member[] = [
-  { name: '[Advisor 1]', title: '[Background / expertise]', bio: 'Short note on area of expertise and how they advise the KSX programme.' },
-  { name: '[Advisor 2]', title: '[Background / expertise]', bio: 'Short note on area of expertise and how they advise the KSX programme.' },
-  { name: '[Advisor 3]', title: '[Background / expertise]', bio: 'Short note on area of expertise and how they advise the KSX programme.' },
-  { name: '[Advisor 4]', title: '[Background / expertise]', bio: 'Short note on area of expertise and how they advise the KSX programme.' },
+  {
+    name: 'Thomas P. Joyce, Jr.',
+    title: 'Former President and CEO, Danaher Corporation',
+    bio: 'Mr. Joyce most recently served as President, Chief Executive Officer, and Director of Danaher Corporation, from which he retired in 2020. Prior to becoming CEO, Mr. Joyce held multiple executive positions during his 31-year career at Danaher. Mr. Joyce currently serves on the boards of Roper Technologies, Inc., College of the Holy Cross, MedStar Health, Inc., and The Economic Club of Washington.',
+  },
+  {
+    name: 'William N. Thorndike, Jr.',
+    title: 'Managing Partner, The Cromwell Harbor Partnership',
+    bio: 'Mr. Thorndike is the Managing Partner of The Cromwell Harbor Partnership, a private investment company with a variety of long-term holdings. Prior to Cromwell Harbor, Thorndike founded Housatonic Partners, a leading private equity firm with offices in Boston and San Francisco. Mr. Thorndike is Chairman of the Board at CNX Resources, and the Co-Chairman of EverArc Holdings. He is a Founder and Jury Member for The Singleton Prize for CEO Excellence. He is the author of “The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success”.',
+  },
+  {
+    name: 'Tyler Gordy',
+    title: 'Partner, Artesian',
+    bio: 'Mr. Gordy is a Partner at Artesian, a family office focused on acquiring and growing exceptional small businesses. Before joining Artesian, Tyler was the President and CEO of PWSC, a former subsidiary of Kingsway Financial Services. During his tenure, Tyler successfully guided PWSC through significant growth until its acquisition by PCF Insurance Services in 2022. Prior to transitioning into the business world, Tyler was an infantry officer in the US Army, including deployments to Iraq and Afghanistan, where he served with the 101st Airborne Division. He also completed Ranger, Airborne, and Air Assault School while on active duty. Tyler is a graduate of the United States Military Academy at West Point, and he holds a Master of Business Administration (MBA) from Harvard Business School.',
+  },
 ]
 
 function LinkedIn() {
@@ -401,7 +456,7 @@ export default function About() {
 
           <div className="mt-12">
             <Overline>Executive team</Overline>
-            <div className="mt-6 grid gap-6 md:grid-cols-3">
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
               {EXEC.map((m) => (
                 <ExecCard key={m.name} m={m} />
               ))}
@@ -411,13 +466,15 @@ export default function About() {
           <div className="mt-14">
             <Overline>Board of directors</Overline>
             <MemberGrid members={BOARD} />
+            <p className="mt-6 text-[13px] leading-[1.6] text-ink-faint">
+              * The Chairman presides at all meetings of the Board and all
+              executive sessions held without management.
+            </p>
           </div>
 
-          {/* KU-30: "don't think we need this here" — flagged for confirmation. */}
+          {/* KU-30 asked whether this section belonged here; KU-47 supplied the
+              advisory board content for this page, so it stays. */}
           <div className="mt-14">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-dashed border-ink-faint px-3 py-1 text-[12px] uppercase tracking-[0.1em] text-ink-faint">
-              Flagged (KU-30): do we need this here?
-            </div>
             <Overline>KSX advisory board</Overline>
             <MemberGrid members={ADVISORS} />
           </div>

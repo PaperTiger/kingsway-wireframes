@@ -18,19 +18,51 @@ type Company = {
   year: string
   ceo: string
   blurb: string
+  url: string
 }
 
-const SECTORS = ['All', 'Skilled trades', 'Healthcare', 'B2B services', 'Vertical SaaS']
+/* KU-52: Financial services added as a sector. */
+const SECTORS = [
+  'All',
+  'Skilled trades',
+  'Healthcare',
+  'B2B services',
+  'Vertical SaaS',
+  'Financial services',
+]
 
+/*
+  Portfolio content per KU-48 (B2B services), KU-49 (Healthcare), KU-50 (Skilled
+  trades), KU-51 (Vertical SaaS) and KU-53 (Financial services). The tickets
+  supplied the name, sector, description and website only — location, acquired
+  year and CEO are still placeholders except where a ticket stated them.
+*/
 const COMPANIES: Company[] = [
-  { name: 'Company name A', sector: 'Skilled trades', location: 'State, region', year: '20XX', ceo: '[CEO name]', blurb: 'One-line description of what this company does, expanded here into a short paragraph for the detail panel.' },
-  { name: 'Company name B', sector: 'Healthcare', location: 'State, region', year: '20XX', ceo: '[CEO name]', blurb: 'One-line description of what this company does, expanded here into a short paragraph for the detail panel.' },
-  { name: 'Company name C', sector: 'B2B services', location: 'State, region', year: '20XX', ceo: '[CEO name]', blurb: 'One-line description of what this company does, expanded here into a short paragraph for the detail panel.' },
-  { name: 'Company name D', sector: 'Skilled trades', location: 'State, region', year: '20XX', ceo: '[CEO name]', blurb: 'One-line description of what this company does, expanded here into a short paragraph for the detail panel.' },
-  { name: 'Company name E', sector: 'B2B services', location: 'State, region', year: '20XX', ceo: '[CEO name]', blurb: 'One-line description of what this company does, expanded here into a short paragraph for the detail panel.' },
-  { name: 'Company name F', sector: 'Healthcare', location: 'State, region', year: '20XX', ceo: '[CEO name]', blurb: 'One-line description of what this company does, expanded here into a short paragraph for the detail panel.' },
-  { name: 'Company name G', sector: 'Vertical SaaS', location: 'State, region', year: '20XX', ceo: '[CEO name]', blurb: 'One-line description of what this company does, expanded here into a short paragraph for the detail panel.' },
-  { name: 'Company name H', sector: 'Skilled trades', location: 'State, region', year: '20XX', ceo: '[CEO name]', blurb: 'One-line description of what this company does, expanded here into a short paragraph for the detail panel.' },
+  // KU-50 — Skilled trades
+  { name: 'Roundhouse Electric', sector: 'Skilled trades', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: '[Description pending — flagged in KU-50.]', url: 'https://www.roundhouseelectric.com' },
+  { name: "Bud's Plumbing", sector: 'Skilled trades', location: 'Southern Indiana & Northern Kentucky', year: '[Year]', ceo: '[CEO name]', blurb: "Bud's Plumbing (“Bud's”), is a service & repair plumbing company with over a century's history serving residential and commercial customers in Southern Indiana & Northern Kentucky.", url: 'https://www.budsplumbing.com' },
+  { name: 'AAA Advanced Plumbing', sector: 'Skilled trades', location: 'Cleveland, OH', year: '[Year]', ceo: '[CEO name]', blurb: 'AAA Advanced Plumbing & Drain (“AAA”), is a light-commercial & residential plumbing company serving northeast Ohio and the Cleveland metropolitan area for four generations.', url: 'https://www.advancedplumber.com' },
+  { name: 'Southside Plumbing', sector: 'Skilled trades', location: 'Omaha, NE', year: '[Year]', ceo: '[CEO name]', blurb: 'Southside Plumbing (“Southside”) is a residential & commercial plumbing company serving clients in Omaha, NE. The business provides a full range of plumbing services.', url: 'https://www.southsideplumbing.net' },
+
+  // KU-49 — Healthcare
+  { name: 'Digital Diagnostics, Inc.', sector: 'Healthcare', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: 'Digital Diagnostics, Inc. is a national provider of outsourced cardiac monitoring telemetry services, focused on acute long term care hospitals and in-patient rehabilitation facilities.', url: 'https://www.ddimagingusa.com' },
+  { name: 'Secure Nursing Services', sector: 'Healthcare', location: '[Location]', year: 'December 2022', ceo: '[CEO name]', blurb: 'Secure Nursing Services employs highly skilled and professional per diem and travel Registered Nurses, Licensed Vocational Nurses, Certified Nurse Assistants and Allied Healthcare Professionals with multiple years of acute care hospital experience.', url: 'https://www.securenursing.com' },
+
+  // KU-48 — B2B services
+  { name: 'Ravix Group', sector: 'B2B services', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: 'Ravix Group provides outsourced finance, technical and operational accounting, and HR consulting services to venture-backed businesses for short or long term engagements.', url: 'https://www.ravixgroup.com' },
+  { name: 'IS Technology', sector: 'B2B services', location: 'North Carolina', year: '[Year]', ceo: '[CEO name]', blurb: 'IS Technology (formerly Image Solutions, LLC) is considered one of the largest IT service providers in North Carolina, providing comprehensive IT services for both hardware and software.', url: 'https://www.istechnology.com' },
+  { name: 'CSuite Financial Partners', sector: 'B2B services', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: 'CSuite Financial Partners is a national, financial executive services firm providing financial management leadership to companies in every industry, regardless of size, throughout the United States.', url: 'https://www.csuitefinancialpartners.com' },
+  { name: 'The HR Team', sector: 'B2B services', location: 'Maryland', year: '[Year]', ceo: '[CEO name]', blurb: 'The HR Team is a Maryland based human resource outsourcing firm focused on delivering quality services to a wide variety of industries nationally.', url: 'https://www.thehrteam.com' },
+  { name: 'Ledgers Inc.', sector: 'B2B services', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: '[Description pending — flagged in KU-48.]', url: 'https://www.customledgers.com' },
+
+  // KU-51 — Vertical SaaS
+  { name: 'Systems Products Int.', sector: 'Vertical SaaS', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: 'Systems Products International (“SPI”), is the preferred partner in the development of software products, created exclusively to serve the management needs of all types of shared-ownership properties.', url: 'https://www.spisoftware.com' },
+  { name: 'Viewpoint', sector: 'Vertical SaaS', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: '@Work International Pty Ltd (“Viewpoint”) is a software and technology company acquired by SPI. Viewpoint offers cloud-native services to deepen the capabilities of SPI as the leading provider of vacation ownership software.', url: 'https://www.viewpointweb.com' },
+
+  // KU-53 — Financial services
+  { name: 'IWS Acquisition Corporation', sector: 'Financial services', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: "IWS is engaged in the marketing and administration of vehicle service agreements (VSA) and guaranteed asset protection (GAP) programs for new and used automobiles throughout the United States. Most of IWS' VSA and GAP products are sold by credit unions.", url: 'https://www.iwsgroup.com' },
+  { name: 'Penn Warranty Corporation', sector: 'Financial services', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: 'Geminus primarily sells vehicle service agreements to used car buyers across the United States, through its subsidiaries, The Penn Warranty Corporation ("Penn") and Prime Auto Care, Inc. ("Prime"). Penn and Prime distribute these products in 32 and 40 states, respectively, via independent used car dealerships and franchised car dealerships.', url: 'https://www.pennwarranty.com' },
+  { name: 'Preferred Warranties Inc', sector: 'Financial services', location: '[Location]', year: '[Year]', ceo: '[CEO name]', blurb: 'PWI sells and administers a full line of extended protection plans for pre-owned vehicles in all fifty states. PWI distributes its products primarily through a network of used car dealers.', url: 'https://www.preferredwarranties.com' },
 ]
 
 /* KU-25: minimal cards, fuller detail in a side panel (a16z-style). No individual company pages. */
@@ -64,7 +96,12 @@ function Drawer({ company, onClose }: { company: Company | null; onClose: () => 
               <div className="flex justify-between gap-6"><dt className="text-ink-faint">Acquired</dt><dd>{company.year}</dd></div>
               <div className="flex justify-between gap-6"><dt className="text-ink-faint">CEO / OIR</dt><dd>{company.ceo}</dd></div>
             </dl>
-            <a href="#" className="mt-8 inline-flex items-center gap-2 text-[15px] font-medium underline underline-offset-4">
+            <a
+              href={company.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2 text-[15px] font-medium underline underline-offset-4"
+            >
               Visit company website →
             </a>
           </>
