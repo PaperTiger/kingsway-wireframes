@@ -131,7 +131,7 @@ function NavCard({ location }: { location: string }) {
 
         {open && (
           <div className="grid grid-cols-[320px_1fr] items-start gap-8 px-3 pb-3 pt-5">
-            <Placeholder label="Image" className="h-[200px] w-full rounded-[3px]" />
+            <Placeholder label="Image" className="h-[200px] w-full rounded-[16px]" />
             <div className="flex h-full flex-col">
               <h2 className="text-[22px] font-semibold tracking-[-0.01em]">
                 {open.title}
