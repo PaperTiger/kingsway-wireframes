@@ -10,13 +10,15 @@ export default function SocialProof({
   overline = 'Trusted across essential services',
   warm = false,
   count = 5,
+  className = '',
 }: {
   overline?: string
   warm?: boolean
   count?: number
+  className?: string
 }) {
   return (
-    <Section warm={warm} className="py-14 md:py-16">
+    <Section warm={warm} className={`py-14 md:py-16 ${className}`}>
       <Container>
         <Overline className="text-center">{overline}</Overline>
         <div className="mt-8 grid grid-cols-2 items-center gap-6 sm:grid-cols-3 lg:grid-cols-5">

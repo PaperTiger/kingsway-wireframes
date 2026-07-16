@@ -107,8 +107,11 @@ export default function BusinessOwners() {
         </Container>
       </Section>
 
+      {/* Sections carry a top divider so each one reads as separate, including
+          where two same-coloured bands meet. */}
+
       {/* What we promise. KU-10: separate cards. */}
-      <Section warm id="promise">
+      <Section warm id="promise" className="border-t border-line">
         <Container>
           <SectionHeading>What we promise</SectionHeading>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -137,7 +140,7 @@ export default function BusinessOwners() {
       </Section>
 
       {/* What we look for. KU-12: image placeholder matches content height. */}
-      <Section id="criteria">
+      <Section id="criteria" className="border-t border-line">
         <Container>
           <div className="grid items-stretch gap-10 lg:grid-cols-2 md:gap-16">
             <Placeholder label="Image placeholder" dims="840 × 680px" className="h-full w-full" />
@@ -165,7 +168,7 @@ export default function BusinessOwners() {
         </Container>
       </Section>
 
-      <Section className="pt-0">
+      <Section className="border-t border-line">
         <Container>
           <PdfCallout
             eyebrow="Guide"
@@ -180,7 +183,7 @@ export default function BusinessOwners() {
 
       {/* What happens next. KU-11: two-column — high-level steps on the right,
           click one to dive into detail. */}
-      <Section warm id="process">
+      <Section warm id="process" className="border-t border-line">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
             <div className="lg:sticky lg:top-28">
@@ -196,7 +199,7 @@ export default function BusinessOwners() {
       </Section>
 
       {/* What business owners say */}
-      <Section id="testimonials">
+      <Section id="testimonials" className="border-t border-line">
         <Container>
           <SectionHeading>What business owners say about Kingsway</SectionHeading>
           <div className="mt-12">
@@ -206,7 +209,11 @@ export default function BusinessOwners() {
       </Section>
 
       {/* KU-13: social proof strip */}
-      <SocialProof overline="Trusted by owners across essential services" warm />
+      <SocialProof
+        overline="Trusted by owners across essential services"
+        warm
+        className="border-t border-line"
+      />
     </>
   )
 }
