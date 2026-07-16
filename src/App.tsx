@@ -9,6 +9,7 @@ import BusinessOwners from './pages/BusinessOwners'
 import Intermediaries from './pages/Intermediaries'
 import Entrepreneurs from './pages/Entrepreneurs'
 import TalkToAnExpert from './pages/TalkToAnExpert'
+import Legal from './pages/Legal'
 import NotFound from './pages/NotFound'
 
 // GitHub Pages project site base. Matches vite `base` and the 404.html redirect.
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/intermediaries" component={Intermediaries} />
           <Route path="/entrepreneurs" component={Entrepreneurs} />
           <Route path="/talk-to-an-expert" component={TalkToAnExpert} />
+          <Route path="/legal" component={Legal} />
           <Route component={NotFound} />
         </Switch>
       </Layout>

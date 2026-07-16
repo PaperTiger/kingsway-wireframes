@@ -379,7 +379,9 @@ function Footer() {
         <div className="mt-16 border-t border-paper/15 pt-8">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-paper/50">
             <span>© 2026 Kingsway Corporation. All rights reserved.</span>
-            <span>Legal</span>
+            <Link href="/legal" className="transition-colors hover:text-paper">
+              Legal
+            </Link>
             <span>WCAG 2.1 AA</span>
           </div>
           <p className="mt-4 max-w-[80ch] text-[12px] leading-[1.6] text-paper/40">

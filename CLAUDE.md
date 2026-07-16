@@ -82,7 +82,10 @@ automatically. Hard-coded `<a>`s must include the `/kingsway-wireframes` prefix.
 
 - `src/App.tsx` — routes (`/`, `/about`, `/companies`, `/investors`,
   `/business-owners`, `/intermediaries`, `/entrepreneurs`,
-  `/talk-to-an-expert`, 404).
+  `/talk-to-an-expert`, `/legal`, 404).
+- `src/pages/Legal.tsx` — legal notice, linked from the footer. Copy is
+  verbatim from https://kingsway-financial.com/legal/ — lawyer-drafted, so
+  don't apply the sentence-case/spelling conventions to it or "fix" its typos.
 - `src/components/Layout.tsx` — sticky header (flat right-justified nav; `NAV`
   array; About is left-most), footer. Overlay-header pages (transparent white
   nav over a dark hero) are listed in `overlayRoute`: `/`, `/about`,
