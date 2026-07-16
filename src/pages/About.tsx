@@ -329,7 +329,9 @@ export default function About() {
       <Section dark>
         <Container>
           <Overline className="text-paper/50">Our mission</Overline>
-          <p className="mt-8 max-w-[24ch] text-[38px] font-normal tracking-[-0.02em] md:text-[56px]">
+          {/* Display type, so it takes the headings' line-height (1) rather
+              than the default paragraph leading. */}
+          <p className="mt-8 max-w-[24ch] text-[38px] leading-none font-normal tracking-[-0.02em] md:text-[56px]">
             We provide a permanent, responsible home for small business owners who
             have built something worth protecting — and pair their companies with
             the talent and systems to grow.
