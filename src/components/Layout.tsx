@@ -1,146 +1,154 @@
 import { useState, useEffect, type ReactNode } from 'react'
 import { Link, useLocation } from 'wouter'
-import { Container } from '../lib/ui'
+import { Container, Placeholder } from '../lib/ui'
 import Logo from './Logo'
 
 /*
   Primary nav, right-justified in the header. About sits left-most.
 
-  KU-31: every pathway carries a dropdown of that page's sections; About and
-  Contact are plain links. Dropdown items are hard-coded <a>s (not wouter
-  <Link>s) so the browser handles the #anchor scroll — hence the explicit
-  /kingsway-wireframes base path.
+  KU-31: hovering the nav encapsulates it in a card that expands to preview the
+  hovered page — image, title, blurb, and a "Learn more" link.
 */
-const BASE = '/kingsway-wireframes'
-
 type NavItem = {
   href: string
   label: string
-  blurb?: string
-  items?: { hash: string; label: string; desc: string }[]
+  title: string
+  blurb: string
 }
 
 const NAV: NavItem[] = [
-  { href: '/about', label: 'About' },
+  {
+    href: '/about',
+    label: 'About',
+    title: 'Who we are',
+    blurb:
+      'A public, evergreen owner of entrepreneur-led essential services businesses — built on the Kingsway Business System.',
+  },
   {
     href: '/companies',
     label: 'Our companies',
-    blurb: 'Entrepreneur-led essential services businesses across North America.',
-    items: [
-      { hash: '#portfolio', label: 'Browse the portfolio', desc: 'Every company, filtered by sector' },
-      { hash: '#in-focus', label: 'In focus', desc: 'A closer look at one business' },
-      { hash: '#pipeline', label: 'Know a company that would fit?', desc: 'Introduce an opportunity' },
-    ],
+    title: 'Our companies',
+    blurb:
+      'A growing family of entrepreneur-led, essential services businesses serving customers across North America.',
   },
   {
     href: '/investors',
     label: 'Investors',
-    blurb: 'A public, permanent-capital platform compounding for the long run.',
-    items: [
-      { hash: '#why-invest', label: 'Why invest in Kingsway', desc: 'Four structural advantages' },
-      { hash: '#how-it-compounds', label: 'How the model compounds', desc: 'The five-step flywheel' },
-      { hash: '#proof', label: 'Proof of model', desc: 'The portfolio today' },
-      { hash: '#resources', label: 'Investor resources', desc: 'Filings, earnings, governance' },
-      { hash: '#ir-contact', label: 'Contact investor relations', desc: 'Speak to the IR team' },
-    ],
+    title: 'The compounding power of entrepreneurship',
+    blurb:
+      'A public, permanent-capital platform that acquires essential services businesses and compounds them for the long run.',
   },
   {
     href: '/business-owners',
     label: 'Business owners',
-    blurb: 'A permanent home for the business you built.',
-    items: [
-      { hash: '#promise', label: 'What we promise', desc: 'How we treat your legacy' },
-      { hash: '#criteria', label: 'What we look for', desc: 'Whether your business fits' },
-      { hash: '#process', label: 'What happens next', desc: 'The process, end to end' },
-      { hash: '#testimonials', label: 'What owners say', desc: 'From founders who sold to us' },
-    ],
+    title: 'A permanent home for your business',
+    blurb:
+      'We buy to hold, not to flip — protecting the culture, the team, and the legacy you spent a career building.',
   },
   {
     href: '/intermediaries',
     label: 'Intermediaries',
-    blurb: 'A responsive, well-capitalised buyer that closes.',
-    items: [
-      { hash: '#why', label: 'Why work with Kingsway', desc: 'Clear criteria, permanent capital' },
-      { hash: '#criteria', label: 'Our investment criteria', desc: 'Self-qualify a client' },
-      { hash: '#submit', label: 'How to submit an opportunity', desc: 'A simple three-step process' },
-      { hash: '#direct-contact', label: 'Your direct contact', desc: 'Go straight to the team' },
-    ],
+    title: 'A reliable buyer for your clients',
+    blurb:
+      'A responsive, well-capitalised platform with clear investment criteria and a consistent process. We close and we don’t re-trade.',
   },
   {
     href: '/entrepreneurs',
     label: 'Entrepreneurs',
-    blurb: 'Become a CEO through the Kingsway Search Xcelerator.',
-    items: [
-      { hash: '#why-ksx', label: 'Why choose the KSX platform', desc: 'Five advantages for operators' },
-      { hash: '#phases', label: 'Three phases of the programme', desc: 'Search, acquire, grow' },
-      { hash: '#profile', label: "What we're looking for", desc: 'The operator profile' },
-      { hash: '#apply', label: 'Ready to apply?', desc: 'How to start the conversation' },
-    ],
+    title: 'Become a CEO through KSX',
+    blurb:
+      'You bring the talent, ambition, and craft. We bring the capital, coaching, and support to acquire and lead a company.',
   },
-  { href: '/talk-to-an-expert', label: 'Contact' },
+  {
+    href: '/talk-to-an-expert',
+    label: 'Contact',
+    title: 'Talk to an expert',
+    blurb:
+      'Tell us who you are and we’ll point you to the right person — no forms required, and a reply within one business day.',
+  },
 ]
 
 /*
-  A nav entry. Items with sections render a dropdown on hover/focus; the label
-  itself stays a link to the page. The wrapper keeps the pointer inside the
-  group while travelling from the label down to the panel, so the panel is
-  anchored directly beneath with no gap to fall through.
+  The nav row plus, when a link is hovered, a preview panel for that page. The
+  whole thing sits in a card that only shows its border/shadow while open, so
+  the closed state reads as a plain nav.
+
+  The card is absolutely positioned over an invisible spacer of the same nav
+  row, so expanding it overlays the page instead of growing the header.
 */
-function NavLink({ item, active }: { item: NavItem; active: boolean }) {
-  const hasMenu = !!item.items?.length
+function NavCard({ location }: { location: string }) {
+  const [hovered, setHovered] = useState<string | null>(null)
+  const open = NAV.find((n) => n.href === hovered) ?? null
+
+  const row = (interactive: boolean) => (
+    <div className="flex items-center gap-1">
+      {NAV.map((item) => {
+        const on = hovered === item.href
+        const classes = `whitespace-nowrap rounded-full px-3.5 py-2 text-[15px] transition-colors ${
+          on ? 'bg-paper-warm text-ink' : location === item.href ? 'font-medium' : ''
+        }`
+        return interactive ? (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={classes}
+            onMouseEnter={() => setHovered(item.href)}
+            onFocus={() => setHovered(item.href)}
+          >
+            {item.label}
+          </Link>
+        ) : (
+          <span key={item.href} className={classes}>
+            {item.label}
+          </span>
+        )
+      })}
+    </div>
+  )
+
   return (
-    <div className="group relative">
-      <Link
-        href={item.href}
-        aria-haspopup={hasMenu || undefined}
-        className={`flex items-center gap-1.5 whitespace-nowrap py-7 text-[15px] transition-opacity hover:opacity-70 ${
-          active ? 'font-medium' : ''
+    <div
+      className="relative hidden lg:block"
+      onMouseLeave={() => setHovered(null)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setHovered(null)
+      }}
+    >
+      {/* Spacer: keeps the header's layout and height stable while the real
+          card floats above it. */}
+      <div className="invisible p-2" aria-hidden>
+        {row(false)}
+      </div>
+
+      <div
+        className={`absolute right-0 top-0 z-50 rounded-[26px] border p-2 transition-[background-color,border-color,box-shadow] duration-200 ${
+          open
+            ? 'border-line bg-paper text-ink shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)]'
+            : 'border-transparent'
         }`}
       >
-        {item.label}
-        {hasMenu && (
-          <svg
-            width="11"
-            height="11"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
-            className="mt-0.5 opacity-50 transition-transform duration-200 group-hover:rotate-180"
-          >
-            <path d="M6 9l6 6 6-6" />
-          </svg>
-        )}
-      </Link>
+        {row(true)}
 
-      {hasMenu && (
-        <div
-          className="invisible absolute left-1/2 top-full z-50 w-[380px] -translate-x-1/2 translate-y-1 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
-        >
-          <div className="overflow-hidden rounded-[6px] border border-line bg-paper text-ink shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)]">
-            {item.blurb && (
-              <p className="border-b border-line bg-paper-warm px-5 py-4 text-[13px] leading-[1.5] text-ink-soft">
-                {item.blurb}
+        {open && (
+          <div className="grid grid-cols-[320px_1fr] items-start gap-8 px-3 pb-3 pt-5">
+            <Placeholder label="Image" className="h-[200px] w-full rounded-[3px]" />
+            <div className="flex h-full flex-col">
+              <h2 className="text-[22px] font-semibold tracking-[-0.01em]">
+                {open.title}
+              </h2>
+              <p className="mt-3 max-w-[42ch] text-[14px] leading-[1.6] text-ink-soft">
+                {open.blurb}
               </p>
-            )}
-            <div className="p-2">
-              {item.items!.map((sub) => (
-                <a
-                  key={sub.hash}
-                  href={`${BASE}${item.href}${sub.hash}`}
-                  className="block rounded-[3px] px-3 py-2.5 transition-colors hover:bg-paper-warm"
-                >
-                  <div className="text-[14px] font-medium">{sub.label}</div>
-                  <div className="mt-0.5 text-[12.5px] text-ink-soft">{sub.desc}</div>
-                </a>
-              ))}
+              <Link
+                href={open.href}
+                className="mt-auto self-end pt-4 text-[14px] font-medium underline underline-offset-4"
+              >
+                Learn more
+              </Link>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }
@@ -180,11 +188,7 @@ function Header() {
           </Link>
 
           <div className="flex items-center gap-5">
-            <nav className="hidden items-center gap-6 lg:flex">
-              {NAV.map((item) => (
-                <NavLink key={item.href} item={item} active={location === item.href} />
-              ))}
-            </nav>
+            <NavCard location={location} />
 
             <button
               type="button"
@@ -212,36 +216,23 @@ function Header() {
       {mobile && (
         <div className="border-t border-line bg-paper lg:hidden">
           <Container>
-            {/* The desktop dropdown detail becomes an inline list under each
-                pathway — no hover to depend on. */}
+            {/* There's no hover on mobile, so each pathway just carries its
+                blurb inline. */}
             <nav className="py-4">
               {NAV.map((item, i) => (
-                <div
+                <Link
                   key={item.href}
-                  className={i < NAV.length - 1 ? 'border-b border-line' : ''}
+                  href={item.href}
+                  className={`block py-4 ${i < NAV.length - 1 ? 'border-b border-line' : ''}`}
+                  onClick={() => setMobile(false)}
                 >
-                  <Link
-                    href={item.href}
-                    className="block pb-3 pt-4 text-[20px] font-semibold tracking-[-0.01em]"
-                    onClick={() => setMobile(false)}
-                  >
+                  <span className="block text-[20px] font-semibold tracking-[-0.01em]">
                     {item.label}
-                  </Link>
-                  {item.items?.length ? (
-                    <div className="pb-4">
-                      {item.items.map((sub) => (
-                        <a
-                          key={sub.hash}
-                          href={`${BASE}${item.href}${sub.hash}`}
-                          className="block py-1.5 text-[15px] text-ink-soft"
-                          onClick={() => setMobile(false)}
-                        >
-                          {sub.label}
-                        </a>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
+                  </span>
+                  <span className="mt-1 block text-[14px] leading-[1.5] text-ink-soft">
+                    {item.blurb}
+                  </span>
+                </Link>
               ))}
             </nav>
           </Container>
