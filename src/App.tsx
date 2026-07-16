@@ -11,6 +11,8 @@ import Entrepreneurs from './pages/Entrepreneurs'
 import TalkToAnExpert from './pages/TalkToAnExpert'
 import Legal from './pages/Legal'
 import Document from './pages/Document'
+import News from './pages/News'
+import NewsPost from './pages/NewsPost'
 import NotFound from './pages/NotFound'
 
 // GitHub Pages project site base. Matches vite `base` and the 404.html redirect.
@@ -39,6 +41,8 @@ export default function App() {
           <Route path="/entrepreneurs" component={Entrepreneurs} />
           <Route path="/talk-to-an-expert" component={TalkToAnExpert} />
           <Route path="/legal" component={Legal} />
+          <Route path="/news" component={News} />
+          <Route path="/news/:slug" component={NewsPost} />
           <Route path="/documents/:slug" component={Document} />
           <Route component={NotFound} />
         </Switch>

@@ -324,6 +324,7 @@ function Footer() {
         { href: '/about', label: 'About us' },
         { href: '/companies', label: 'Our companies' },
         { href: '/about', label: 'Kingsway Business System' },
+        { href: '/news', label: 'News & press' },
       ],
     },
     {
@@ -408,6 +409,14 @@ function Footer() {
             <Link href="/legal" className="transition-colors hover:text-paper">
               Legal
             </Link>
+            <a
+              href="https://transparency-in-coverage.uhc.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-paper"
+            >
+              Transparency in coverage
+            </a>
             <span>WCAG 2.1 AA</span>
           </div>
           <p className="mt-4 max-w-[80ch] text-[12px] leading-[1.6] text-paper/40">

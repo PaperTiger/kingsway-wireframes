@@ -82,7 +82,13 @@ automatically. Hard-coded `<a>`s must include the `/kingsway-wireframes` prefix.
 
 - `src/App.tsx` — routes (`/`, `/about`, `/companies`, `/investors`,
   `/business-owners`, `/intermediaries`, `/entrepreneurs`,
-  `/talk-to-an-expert`, `/legal`, `/documents/:slug`, 404).
+  `/talk-to-an-expert`, `/legal`, `/news`, `/news/:slug`, `/documents/:slug`,
+  404).
+- `src/pages/News.tsx` / `NewsPost.tsx` — news listing (year filter; thumbnail
+  posts render as image tiles with white text, others as plain boxes) and the
+  article page (rich-text body + related news). Content lives in
+  `src/lib/news.ts`; entries with `documentHref` and no `body` are PDF-only and
+  link to their `/documents/<slug>` page instead of an article.
 - `src/pages/Document.tsx` — document detail page (date, title, description,
   PDF link), driven by a `DOCUMENTS` array keyed on slug; unknown slugs render
   a "document not found" state. Mirrors the live site's `/documents/<slug>`.
