@@ -165,6 +165,30 @@ export function TextLink({
   )
 }
 
+/* Icons -------------------------------------------------------------------- */
+
+// Tray-with-arrow download glyph, sized to sit inline with 15px label text.
+export function DownloadIcon({ size = 17 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className="shrink-0"
+    >
+      <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+      <path d="M7 11l5 5l5 -5" />
+      <path d="M12 4l0 12" />
+    </svg>
+  )
+}
+
 /* Wireframe image placeholder --------------------------------------------- */
 
 function Aperture({ className = '' }: { className?: string }) {

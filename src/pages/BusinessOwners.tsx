@@ -6,6 +6,7 @@ import {
   Placeholder,
 } from '../lib/ui'
 import Accordion from '../components/Accordion'
+import PdfCallout from '../components/PdfCallout'
 import SocialProof from '../components/SocialProof'
 import TestimonialGallery, { type Testimonial } from '../components/TestimonialGallery'
 
@@ -161,6 +162,19 @@ export default function BusinessOwners() {
               </div>
             </div>
           </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
+          <PdfCallout
+            eyebrow="Guide"
+            title="The owner's guide to a Kingsway exit"
+            description="What selling to a permanent owner actually looks like — how we value a business, what changes on day one, and what happens to your team and your name."
+            href="#"
+            thumbnail="480 × 620px"
+            meta="PDF · file pending"
+          />
         </Container>
       </Section>
 

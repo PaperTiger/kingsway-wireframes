@@ -99,6 +99,9 @@ automatically. Hard-coded `<a>`s must include the `/kingsway-wireframes` prefix.
   by the About KBS section and the Entrepreneurs "Three phases" slider: full-
   width dark cards, equal height via the flex track, neighbours peek both
   sides), `AudiencePathways` (home "Who we work with" flush-imagery cards),
+  `PdfCallout` (boxed "download this PDF" callout — title, description, button
+  and an optional thumbnail; drop it on any page. Used by Business owners,
+  Intermediaries and Entrepreneurs),
   `AudienceCards` (compact contact-page routing cards), `Accordion`,
   `SocialProof`, `Logo` (Kingsway wordmark SVG; `fill: currentColor` so it
   inherits the header/footer text colour — header and footer render it at

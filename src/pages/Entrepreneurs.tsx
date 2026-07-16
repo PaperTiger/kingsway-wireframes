@@ -8,6 +8,7 @@ import {
   Placeholder,
 } from '../lib/ui'
 import Carousel from '../components/Carousel'
+import PdfCallout from '../components/PdfCallout'
 import SocialProof from '../components/SocialProof'
 import TestimonialGallery, { type Testimonial } from '../components/TestimonialGallery'
 import Accordion, { type AccordionItem } from '../components/Accordion'
@@ -315,6 +316,19 @@ export default function Entrepreneurs() {
           </div>
         </div>
       </section>
+
+      <Section>
+        <Container>
+          <PdfCallout
+            eyebrow="Program overview"
+            title="The KSX program in detail"
+            description="The whole picture in one document — how the search works, the capital and coaching behind you, the economics of ownership, and what the three phases look like month by month."
+            href="#"
+            thumbnail="480 × 620px"
+            meta="PDF · file pending"
+          />
+        </Container>
+      </Section>
 
       {/* How to apply. KU-22: high-level steps, click one to dive into detail. */}
       <Section warm id="apply">

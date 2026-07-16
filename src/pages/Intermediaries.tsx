@@ -7,6 +7,7 @@ import {
   Placeholder,
 } from '../lib/ui'
 import Accordion from '../components/Accordion'
+import PdfCallout from '../components/PdfCallout'
 import SocialProof from '../components/SocialProof'
 import TestimonialGallery, { type Testimonial } from '../components/TestimonialGallery'
 
@@ -160,37 +161,7 @@ export default function Intermediaries() {
             reaching out.
           </p>
           <div className="mt-12 grid items-start gap-10 md:grid-cols-[0.8fr_1.6fr] md:gap-12">
-            {/* KU-56: downloadable one-page extract. The PDF itself is a
-                swappable asset — the file is pending. */}
-            <div className="self-start">
-              <Placeholder label="Image placeholder" dims="680 × 560px" className="w-full" />
-              <a
-                href="#"
-                download
-                className="mt-5 inline-flex items-center gap-2.5 text-[15px] font-medium text-ink underline underline-offset-4"
-              >
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                  className="shrink-0"
-                >
-                  <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                  <path d="M7 11l5 5l5 -5" />
-                  <path d="M12 4l0 12" />
-                </svg>
-                Download our investment criteria (PDF)
-              </a>
-              <p className="mt-2 text-[13px] text-ink-faint">
-                A one-page extract — file pending (KU-56).
-              </p>
-            </div>
+            <Placeholder label="Image placeholder" dims="680 × 560px" className="w-full self-start" />
             <div className="border border-line">
               {CRITERIA.map((c, i) => (
                 <div
@@ -204,6 +175,18 @@ export default function Intermediaries() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* KU-56: the downloadable extract, as the shared PDF callout. */}
+          <div className="mt-12">
+            <PdfCallout
+              eyebrow="Tear sheet"
+              title="Our investment criteria"
+              description="A one-page extract of the criteria above — revenue and EBITDA ranges, sectors, geography and situation. Keep it to hand when you're qualifying a client."
+              href="#"
+              thumbnail="480 × 620px"
+              meta="PDF · file pending"
+            />
           </div>
         </Container>
       </Section>
