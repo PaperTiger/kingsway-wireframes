@@ -19,7 +19,7 @@ type Doc = {
 
 const DOCUMENTS: Doc[] = [
   {
-    slug: 'may-18-2026-kingsway-publishes-2026-investor-day-presentation',
+    slug: 'investor-day-2026',
     date: 'May 18, 2026',
     title: 'Kingsway publishes 2026 Investor Day presentation',
     // Placeholder description — the live page carries no summary copy.
