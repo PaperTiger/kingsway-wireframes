@@ -382,7 +382,7 @@ export default function Investors() {
 
       {/* Why invest. Same card treatment as the About "Kingsway Business
           System" section, laid out as a static 4-column grid (no slider). */}
-      <Section>
+      <Section id="why-invest">
         <Container>
           <SectionHeading>Why invest in Kingsway</SectionHeading>
           <p className="mt-6 max-w-[56ch] text-[18px] leading-[1.55] text-ink-soft">
@@ -397,7 +397,7 @@ export default function Investors() {
       </Section>
 
       {/* How the model compounds — dark interactive flywheel */}
-      <Section dark>
+      <Section dark id="how-it-compounds">
         <Container>
           <SectionHeading>How the model compounds</SectionHeading>
           <p className="mt-5 text-[18px] text-paper/60 md:text-[20px]">
@@ -408,7 +408,7 @@ export default function Investors() {
       </Section>
 
       {/* Proof of model */}
-      <Section>
+      <Section id="proof">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -429,7 +429,7 @@ export default function Investors() {
       </Section>
 
       {/* Investor resources */}
-      <Section warm>
+      <Section warm id="resources">
         <Container>
           <SectionHeading>Investor resources</SectionHeading>
           <div className="mt-12 grid grid-cols-1 border border-line sm:grid-cols-2 lg:grid-cols-3">
@@ -456,7 +456,7 @@ export default function Investors() {
       </Section>
 
       {/* Contact investor relations */}
-      <Section>
+      <Section id="ir-contact">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 md:gap-16 lg:items-center">
             <div>

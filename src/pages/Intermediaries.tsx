@@ -116,7 +116,7 @@ export default function Intermediaries() {
       </Section>
 
       {/* Why intermediaries work with Kingsway. KU-15: separate cards. */}
-      <Section warm>
+      <Section warm id="why">
         <Container>
           <SectionHeading>Why intermediaries work with Kingsway</SectionHeading>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -145,7 +145,7 @@ export default function Intermediaries() {
       </Section>
 
       {/* Our investment criteria. KU-16: bottom tick boxes removed for consistency with business owners. */}
-      <Section>
+      <Section id="criteria">
         <Container>
           <SectionHeading>Our investment criteria</SectionHeading>
           <p className="mt-5 max-w-[60ch] text-[18px] leading-[1.55] text-ink-soft">
@@ -172,7 +172,7 @@ export default function Intermediaries() {
       </Section>
 
       {/* How to submit. KU-14: dark feature removed; high-level view, dive into detail. KU-17: fleshed out with an italic intro. */}
-      <Section warm>
+      <Section warm id="submit">
         <Container>
           <Overline>How to submit</Overline>
           <SectionHeading className="mt-6">How to submit an opportunity</SectionHeading>
@@ -190,7 +190,7 @@ export default function Intermediaries() {
       {/* Your direct contact. KU-17: editorial two-column layout mirroring the
           contact page — portrait on the left; italic intro + large inquiry
           blocks on the right. */}
-      <Section className="border-b border-line">
+      <Section className="border-b border-line" id="direct-contact">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
             <Placeholder

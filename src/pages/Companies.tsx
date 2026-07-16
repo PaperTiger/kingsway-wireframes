@@ -171,7 +171,7 @@ export default function Companies() {
       </div>
 
       {/* Company grid — KU-25: minimal cards */}
-      <Section>
+      <Section id="portfolio">
         <Container>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filtered.map((c) => (
@@ -194,7 +194,7 @@ export default function Companies() {
       </Section>
 
       {/* In focus */}
-      <Section warm>
+      <Section warm id="in-focus">
         <Container>
           <Overline className="mb-8">In focus</Overline>
           <div className="grid overflow-hidden rounded-[3px] border border-line md:grid-cols-[1.7fr_1fr]">
@@ -234,7 +234,7 @@ export default function Companies() {
       <SocialProof overline="Serving customers across North America" />
 
       {/* Pipeline CTA */}
-      <Section warm>
+      <Section warm id="pipeline">
         <Container>
           <div className="grid items-start gap-12 lg:grid-cols-2 md:gap-16">
             <div className="flex flex-col justify-center">

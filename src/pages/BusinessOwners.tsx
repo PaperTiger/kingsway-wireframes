@@ -107,7 +107,7 @@ export default function BusinessOwners() {
       </Section>
 
       {/* What we promise. KU-10: separate cards. */}
-      <Section warm>
+      <Section warm id="promise">
         <Container>
           <SectionHeading>What we promise</SectionHeading>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -136,7 +136,7 @@ export default function BusinessOwners() {
       </Section>
 
       {/* What we look for. KU-12: image placeholder matches content height. */}
-      <Section>
+      <Section id="criteria">
         <Container>
           <div className="grid items-stretch gap-10 lg:grid-cols-2 md:gap-16">
             <Placeholder label="Image placeholder" dims="840 × 680px" className="h-full w-full" />
@@ -166,7 +166,7 @@ export default function BusinessOwners() {
 
       {/* What happens next. KU-11: two-column — high-level steps on the right,
           click one to dive into detail. */}
-      <Section warm>
+      <Section warm id="process">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
             <div className="lg:sticky lg:top-28">
@@ -182,7 +182,7 @@ export default function BusinessOwners() {
       </Section>
 
       {/* What business owners say */}
-      <Section>
+      <Section id="testimonials">
         <Container>
           <SectionHeading>What business owners say about Kingsway</SectionHeading>
           <div className="mt-12">

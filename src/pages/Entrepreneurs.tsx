@@ -210,7 +210,7 @@ export default function Entrepreneurs() {
       {/* Why choose KSX. KU-19: stacking scroll — each advantage pins and the
           next panel scrolls up to overlap it, revealing a new image each time.
           Sticky stacking on desktop; plain stacked blocks on mobile. */}
-      <section className="bg-paper pt-20 md:pt-28">
+      <section id="why-ksx" className="bg-paper pt-20 md:pt-28">
         <Container>
           <SectionHeading>Why choose the KSX platform</SectionHeading>
           <p className="mt-5 max-w-[46ch] text-[18px] text-ink-soft md:text-[20px]">
@@ -254,7 +254,7 @@ export default function Entrepreneurs() {
       </section>
 
       {/* Three phases. KU-20/KU-22: full-width phases, click to follow the path. */}
-      <Section>
+      <Section id="phases">
         <Container>
           <SectionHeading>Three phases of the KSX programme</SectionHeading>
           <p className="mt-5 text-[18px] text-ink-soft md:text-[20px]">
@@ -266,7 +266,7 @@ export default function Entrepreneurs() {
 
       {/* What we're looking for. KU-21: full-width — image with the heading
           overlaid top-left, dark checklist panel on the right. */}
-      <section className="grid lg:grid-cols-2">
+      <section id="profile" className="grid lg:grid-cols-2">
         <div className="relative min-h-[340px] overflow-hidden">
           <Placeholder dark label="Image" className="absolute inset-0 h-full w-full" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/55 via-black/10 to-transparent" />
@@ -314,7 +314,7 @@ export default function Entrepreneurs() {
       </section>
 
       {/* How to apply. KU-22: high-level steps, click one to dive into detail. */}
-      <Section warm>
+      <Section warm id="apply">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
             <div className="lg:sticky lg:top-28">
