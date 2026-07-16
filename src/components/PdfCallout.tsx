@@ -14,8 +14,6 @@ export type PdfCalloutProps = {
   href: string
   /* Optional cover, as "W × Hpx". */
   thumbnail?: string
-  /* Small note beside the button — e.g. "PDF · 2 pages". */
-  meta?: string
   cta?: string
 }
 
@@ -25,7 +23,6 @@ export default function PdfCallout({
   description,
   href,
   thumbnail,
-  meta = 'PDF',
   cta = 'Download the PDF',
 }: PdfCalloutProps) {
   return (
@@ -60,7 +57,7 @@ export default function PdfCallout({
           </h3>
           <p className="mt-3 text-[16px] leading-[1.6] text-ink-soft">{description}</p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-4">
+          <div className="mt-7">
             <a
               href={href}
               download
@@ -69,7 +66,6 @@ export default function PdfCallout({
               <DownloadIcon />
               {cta}
             </a>
-            {meta && <span className="text-[14px] text-ink-faint">{meta}</span>}
           </div>
         </div>
       </div>

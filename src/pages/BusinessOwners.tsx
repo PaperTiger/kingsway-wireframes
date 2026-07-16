@@ -176,7 +176,6 @@ export default function BusinessOwners() {
             description="What selling to a permanent owner actually looks like — how we value a business, what changes on day one, and what happens to your team and your name."
             href="#"
             thumbnail="480 × 620px"
-            meta="PDF · file pending"
           />
         </Container>
       </Section>

@@ -325,7 +325,6 @@ export default function Entrepreneurs() {
             description="The whole picture in one document — how the search works, the capital and coaching behind you, the economics of ownership, and what the three phases look like month by month."
             href="#"
             thumbnail="480 × 620px"
-            meta="PDF · file pending"
           />
         </Container>
       </Section>

@@ -12,7 +12,6 @@ type Doc = {
   title: string
   description: string
   pdfHref: string
-  meta: string
   /* Optional cover thumbnail, as "W × Hpx" — omit for a text-only document. */
   thumbnail?: string
 }
@@ -27,7 +26,6 @@ const DOCUMENTS: Doc[] = [
       'The presentation given at Kingsway’s 2026 Investor Day, covering the search-driven acquisition model, the performance of the portfolio, and how the company compounds capital over the long term.',
     pdfHref:
       'https://kingsway-financial.com/wp-content/uploads/2026/05/KFS-May-2026-Investor-Day-Deck.pdf',
-    meta: 'PDF',
     thumbnail: '960 × 540px',
   },
 ]
@@ -73,7 +71,7 @@ export default function Document() {
               {doc.description}
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-5">
+            <div className="mt-10">
               <a
                 href={doc.pdfHref}
                 target="_blank"
@@ -83,7 +81,6 @@ export default function Document() {
                 <DownloadIcon />
                 Download the PDF
               </a>
-              <span className="text-[14px] text-ink-faint">{doc.meta}</span>
             </div>
           </div>
 

@@ -185,7 +185,6 @@ export default function Intermediaries() {
               description="A one-page extract of the criteria above — revenue and EBITDA ranges, sectors, geography and situation. Keep it to hand when you're qualifying a client."
               href="#"
               thumbnail="480 × 620px"
-              meta="PDF · file pending"
             />
           </div>
         </Container>
