@@ -72,6 +72,10 @@ const NAV: NavItem[] = [
   },
 ]
 
+/* Shared by the Investors preview panel and the mobile menu, so the URL only
+   has to be filled in once. */
+const IR_PORTAL = NAV.find((n) => n.href === '/investors')?.extra
+
 /*
   The nav row plus, when a link is hovered, a preview panel for that page. The
   whole thing sits in a card that only shows its border/shadow while open, so
@@ -264,24 +268,46 @@ function Header() {
       {mobile && (
         <div className="border-t border-line bg-paper lg:hidden">
           <Container>
-            {/* There's no hover on mobile, so each pathway just carries its
-                blurb inline. */}
             <nav className="py-4">
-              {NAV.map((item, i) => (
+              {NAV.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`block py-4 ${i < NAV.length - 1 ? 'border-b border-line' : ''}`}
+                  className="block border-b border-line py-4 text-[20px] font-semibold tracking-[-0.01em]"
                   onClick={() => setMobile(false)}
                 >
-                  <span className="block text-[20px] font-semibold tracking-[-0.01em]">
-                    {item.label}
-                  </span>
-                  <span className="mt-1 block text-[14px] leading-[1.5] text-ink-soft">
-                    {item.blurb}
-                  </span>
+                  {item.label}
                 </Link>
               ))}
+
+              {/* IR portal sits below the pathways, set smaller. */}
+              {IR_PORTAL && (
+                <a
+                  href={IR_PORTAL.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 py-4 text-[15px] text-ink-soft"
+                  onClick={() => setMobile(false)}
+                >
+                  {IR_PORTAL.label}
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                    className="shrink-0"
+                  >
+                    <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+                    <path d="M10 14l10 -10" />
+                    <path d="M15 4h5v5" />
+                  </svg>
+                </a>
+              )}
             </nav>
           </Container>
         </div>
