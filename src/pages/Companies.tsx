@@ -204,7 +204,7 @@ export default function Companies() {
                 [Sector] · [Location] · Acquired [year]
               </div>
               <p className="mt-5 max-w-[60ch] text-[17px] leading-[1.65] text-ink-soft">
-                [Company name] was acquired in [year] through the KSX programme.
+                [Company name] was acquired in [year] through the KSX program.
                 Since then, revenue has grown [X]% and the team has expanded from [X]
                 to [X] employees — a result of applying the KBS across operations,
                 sales, and talent.

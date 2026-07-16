@@ -10,7 +10,7 @@ import AudiencePathways from '../components/AudiencePathways'
 const SPECIFIC = [
   { title: 'For investors', desc: 'Investment story & IR resources', cta: 'Go', href: '/investors' },
   { title: 'For business owners', desc: 'Exit options & acquisition process', cta: 'Go', href: '/business-owners' },
-  { title: 'For entrepreneurs', desc: 'The KSX programme', cta: 'Go', href: '/entrepreneurs' },
+  { title: 'For entrepreneurs', desc: 'The KSX program', cta: 'Go', href: '/entrepreneurs' },
   { title: 'For intermediaries', desc: 'Criteria & CIM submission', cta: 'Go', href: '/intermediaries' },
 ]
 

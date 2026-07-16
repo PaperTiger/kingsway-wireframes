@@ -24,7 +24,7 @@ const COMPANIES = [
 
 const METRICS = [
   { value: 'XX', label: 'Portfolio companies', caption: 'Essential services across North America' },
-  { value: 'XX', label: 'Acquisitions completed', caption: 'Since programme launch' },
+  { value: 'XX', label: 'Acquisitions completed', caption: 'Since program launch' },
   { value: '$XXM', label: 'Portfolio revenue', caption: 'Combined annual revenue' },
   { value: 'XX%', label: 'Revenue CAGR', caption: 'Compounding across the portfolio' },
   { value: 'XX', label: 'Operators placed', caption: 'Active and alumni' },
@@ -69,7 +69,7 @@ const FLYWHEEL = [
   {
     cat: 'Talent',
     title: 'Search & attract operators',
-    body: 'Identify and recruit top entrepreneurial talent ready to lead an acquisition. We source from MBA programmes, operator networks, and our own alumni.',
+    body: 'Identify and recruit top entrepreneurial talent ready to lead an acquisition. We source from MBA programs, operator networks, and our own alumni.',
   },
   {
     cat: 'Capital',
@@ -431,7 +431,34 @@ export default function Investors() {
       {/* Investor resources */}
       <Section warm id="resources">
         <Container>
-          <SectionHeading>Investor resources</SectionHeading>
+          {/* KU-58: IR portal button sits top-right, opposite the heading. */}
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <SectionHeading>Investor resources</SectionHeading>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-[2px] bg-ink px-6 py-3.5 text-[15px] font-medium text-paper transition-opacity hover:opacity-90"
+            >
+              Visit the IR portal
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+                className="shrink-0"
+              >
+                <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+                <path d="M10 14l10 -10" />
+                <path d="M15 4h5v5" />
+              </svg>
+            </a>
+          </div>
           <div className="mt-12 grid grid-cols-1 border border-line sm:grid-cols-2 lg:grid-cols-3">
             {RESOURCES.map((r, i) => (
               <a

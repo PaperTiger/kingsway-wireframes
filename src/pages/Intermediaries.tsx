@@ -66,11 +66,18 @@ const WHY = [
   },
 ]
 
+/*
+  KU-56. Revenue/EBITDA reference ranges and the US-only geography come from
+  the "Kingsway Overview_2H25v2" deck attached to the ticket. The min/target
+  figures are read off that deck's criteria chart — flagged on the ticket for
+  confirmation.
+*/
 const CRITERIA = [
-  { label: 'Size', value: 'Revenue range TBD' },
+  { label: 'Revenue', value: 'Target range $10–20M+ (minimum $5M). High quality revenue — over 60% recurring or reoccurring.' },
+  { label: 'EBITDA', value: 'Target range $1–3M+ (minimum $0.5M). Historical profitability, minimum 15% EBITDA margin.' },
   { label: 'Industries', value: 'Essential services, skilled trades, healthcare, B2B services, vertical SaaS' },
-  { label: 'Geography', value: 'North America (US and Canada)' },
-  { label: 'Situation', value: 'Owner-operated, founder-led, profitable, recurring or repeat revenue, established customer base' },
+  { label: 'Geography', value: 'United States' },
+  { label: 'Situation', value: 'Buyouts or majority recaps. Owner-operated, founder-led, profitable, recurring or repeat revenue, established customer base' },
   { label: 'Not a fit', value: 'Turnarounds, loss-making, highly cyclical businesses, real estate' },
 ]
 
@@ -153,7 +160,37 @@ export default function Intermediaries() {
             reaching out.
           </p>
           <div className="mt-12 grid items-start gap-10 md:grid-cols-[0.8fr_1.6fr] md:gap-12">
-            <Placeholder label="Image placeholder" dims="680 × 560px" className="w-full self-start" />
+            {/* KU-56: downloadable one-page extract. The PDF itself is a
+                swappable asset — the file is pending. */}
+            <div className="self-start">
+              <Placeholder label="Image placeholder" dims="680 × 560px" className="w-full" />
+              <a
+                href="#"
+                download
+                className="mt-5 inline-flex items-center gap-2.5 text-[15px] font-medium text-ink underline underline-offset-4"
+              >
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                  className="shrink-0"
+                >
+                  <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                  <path d="M7 11l5 5l5 -5" />
+                  <path d="M12 4l0 12" />
+                </svg>
+                Download our investment criteria (PDF)
+              </a>
+              <p className="mt-2 text-[13px] text-ink-faint">
+                A one-page extract — file pending (KU-56).
+              </p>
+            </div>
             <div className="border border-line">
               {CRITERIA.map((c, i) => (
                 <div

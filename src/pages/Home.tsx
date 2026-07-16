@@ -15,7 +15,7 @@ const STEPS = [
     title: 'Attract',
     body: 'We recruit highly qualified operators ready to lead.',
     detail:
-      'Placeholder copy — a longer description of how Kingsway sources and evaluates operator talent will live here. It will expand on the pipeline: top MBA programmes, operator networks, and our own alumni, along with the qualities we screen for before backing someone to lead an acquisition.',
+      'Placeholder copy — a longer description of how Kingsway sources and evaluates operator talent will live here. It will expand on the pipeline: top MBA programs, operator networks, and our own alumni, along with the qualities we screen for before backing someone to lead an acquisition.',
   },
   {
     n: '02',
@@ -42,7 +42,7 @@ const STEPS = [
 
 const METRICS = [
   { value: 'XX', label: 'Portfolio companies', caption: 'Essential services across North America' },
-  { value: 'XX', label: 'Acquisitions completed', caption: 'Since the programme launched' },
+  { value: 'XX', label: 'Acquisitions completed', caption: 'Since the program launched' },
   { value: '$XXM', label: 'Portfolio revenue', caption: 'Combined annual revenue' },
   { value: 'XX', label: 'Operators placed', caption: 'Active and alumni' },
 ]

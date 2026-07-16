@@ -15,9 +15,9 @@ import Accordion, { type AccordionItem } from '../components/Accordion'
 const TESTIMONIALS: Testimonial[] = [
   {
     label: 'The operator',
-    desc: 'On the KSX programme and the support to lead.',
+    desc: 'On the KSX program and the support to lead.',
     quote:
-      'Operator testimonial text pending approval. Will speak to the KSX programme experience, the capital and coaching support, and the outcome of leading their acquired company.',
+      'Operator testimonial text pending approval. Will speak to the KSX program experience, the capital and coaching support, and the outcome of leading their acquired company.',
     name: '[Name]',
     title: 'CEO of [Company], acquired [year]',
   },
@@ -25,7 +25,7 @@ const TESTIMONIALS: Testimonial[] = [
     label: 'The CEO',
     desc: 'On the capital, coaching, and the outcome.',
     quote:
-      'Operator testimonial text pending approval. Will speak to the KSX programme experience, the capital and coaching support, and the outcome of leading their acquired company.',
+      'Operator testimonial text pending approval. Will speak to the KSX program experience, the capital and coaching support, and the outcome of leading their acquired company.',
     name: '[Name]',
     title: 'CEO of [Company], acquired [year]',
   },
@@ -33,20 +33,21 @@ const TESTIMONIALS: Testimonial[] = [
     label: 'The searcher',
     desc: 'On the deal flow and infrastructure behind the search.',
     quote:
-      'Operator testimonial text pending approval. Will speak to the KSX programme experience, the capital and coaching support, and the outcome of leading their acquired company.',
+      'Operator testimonial text pending approval. Will speak to the KSX program experience, the capital and coaching support, and the outcome of leading their acquired company.',
     name: '[Name]',
     title: 'CEO of [Company], acquired [year]',
   },
   {
     label: 'The graduate',
-    desc: 'On going from programme to leading a company.',
+    desc: 'On going from program to leading a company.',
     quote:
-      'Operator testimonial text pending approval. Will speak to the KSX programme experience, the capital and coaching support, and the outcome of leading their acquired company.',
+      'Operator testimonial text pending approval. Will speak to the KSX program experience, the capital and coaching support, and the outcome of leading their acquired company.',
     name: '[Name]',
     title: 'CEO of [Company], acquired [year]',
   },
 ]
 
+/* KU-54: sequence is Committed capital, Deal flow, Coaching, Growth. */
 const ADVANTAGES = [
   {
     n: '1',
@@ -56,15 +57,15 @@ const ADVANTAGES = [
   },
   {
     n: '2',
-    category: 'Coaching',
-    heading: 'Coaching from operators who have done it before.',
-    body: "Structured mentorship with experienced operators and the KSX advisory board. You're never alone in the process.",
-  },
-  {
-    n: '3',
     category: 'Deal flow',
     heading: 'Deal flow and infrastructure that accelerate your search.',
     body: "Kingsway's relationships and M&A infrastructure accelerate the search timeline significantly.",
+  },
+  {
+    n: '3',
+    category: 'Coaching',
+    heading: 'Coaching from operators who have done it before.',
+    body: "Structured mentorship with experienced operators and the KSX advisory board. You're never alone in the process.",
   },
   {
     n: '4',
@@ -105,7 +106,7 @@ const PROFILE = [
   { title: 'Strong credentials', desc: 'An MBA or equivalent practical operating experience.' },
   { title: 'Proven leadership', desc: 'Demonstrated leadership and management skills.' },
   { title: 'Financial literacy', desc: 'Comfortable analysing a P&L and a balance sheet.' },
-  { title: 'Ownership mindset', desc: "Entrepreneurial drive and a builder's mentality." },
+  { title: 'Long-term ownership mindset', desc: "Entrepreneurial drive and a builder's mentality." },
   { title: 'Willing to relocate', desc: "Ready to move to the business's location and lead on the ground." },
 ]
 
@@ -116,11 +117,11 @@ const APPLY: AccordionItem[] = [
   },
   {
     title: 'Meet the KSX team',
-    body: 'Initiate a conversation with the KSX team to explore fit, the programme, and the path from search to running your own company.',
+    body: 'Initiate a conversation with the KSX team to explore fit, the program, and the path from search to running your own company.',
   },
   {
-    title: 'Join the programme',
-    body: "If selected, you're admitted to the KSX programme — paired with committed capital, coaching, and infrastructure from day one.",
+    title: 'Join the program',
+    body: "If selected, you're admitted to the KSX program — paired with committed capital, coaching, and infrastructure from day one.",
   },
 ]
 
@@ -213,7 +214,9 @@ export default function Entrepreneurs() {
       <section id="why-ksx" className="bg-paper pt-20 md:pt-28">
         <Container>
           <SectionHeading>Why choose the KSX platform</SectionHeading>
+          {/* KU-57 */}
           <p className="mt-5 max-w-[46ch] text-[18px] text-ink-soft md:text-[20px]">
+            Search is hard and getting harder. KSX was built to change those odds.
             Five advantages that make Kingsway the right accelerator for serious
             operators.
           </p>
@@ -256,7 +259,7 @@ export default function Entrepreneurs() {
       {/* Three phases. KU-20/KU-22: full-width phases, click to follow the path. */}
       <Section id="phases">
         <Container>
-          <SectionHeading>Three phases of the KSX programme</SectionHeading>
+          <SectionHeading>Three phases of the KSX program</SectionHeading>
           <p className="mt-5 text-[18px] text-ink-soft md:text-[20px]">
             A high-level view of the journey. Follow the path phase by phase.
           </p>
@@ -319,14 +322,16 @@ export default function Entrepreneurs() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
             <div className="lg:sticky lg:top-28">
               <SectionHeading>Ready to apply?</SectionHeading>
+              {/* KU-59 */}
               <p className="mt-5 max-w-[36ch] text-[18px] leading-[1.55] text-ink-soft">
-                A straightforward process — we respond to every application
-                personally. Follow the steps to see what to expect.
+                Review the steps to see what to expect. Reach out for an
+                introduction to our team to learn more by sharing your
+                application.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-5">
-                <Button href="mailto:ksx@kingswaycorporation.com">Apply now</Button>
+                <Button href="mailto:Talent@KingswayCorporation.com">Apply now</Button>
                 <span className="text-[15px] text-ink-soft">
-                  ksx@kingswaycorporation.com
+                  Talent@KingswayCorporation.com
                 </span>
               </div>
             </div>
@@ -370,7 +375,7 @@ export default function Entrepreneurs() {
       </Section>
 
       {/* KU-24: social proof strip */}
-      <SocialProof overline="Backing operators from top programmes and networks" warm />
+      <SocialProof overline="Backing operators from top programs and networks" warm />
 
       {/* What operators say */}
       <Section>
