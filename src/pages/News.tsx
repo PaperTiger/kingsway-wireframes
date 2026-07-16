@@ -90,26 +90,43 @@ export default function News() {
       <div className="border-y border-line bg-paper-warm">
         <Container>
           <div className="flex flex-wrap items-center gap-4 py-5">
-            <span className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-faint">
+            <label
+              htmlFor="news-year"
+              className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-faint"
+            >
               Year
-            </span>
-            <div className="flex flex-wrap gap-2.5">
-              {['All', ...NEWS_YEARS].map((y) => (
-                <button
-                  key={y}
-                  type="button"
-                  onClick={() => setYear(y)}
-                  aria-pressed={year === y}
-                  className={`rounded-[2px] border px-4 py-2 text-[14px] transition-colors ${
-                    year === y
-                      ? 'border-ink bg-ink text-paper'
-                      : 'border-line bg-paper text-ink hover:border-ink-faint'
-                  }`}
-                >
-                  {y}
-                </button>
-              ))}
+            </label>
+            <div className="relative">
+              <select
+                id="news-year"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                className="appearance-none rounded-[2px] border border-line bg-paper py-2.5 pl-4 pr-10 text-[14px] text-ink outline-none transition-colors hover:border-ink-faint focus:border-ink"
+              >
+                {['All', ...NEWS_YEARS].map((y) => (
+                  <option key={y} value={y}>
+                    {y === 'All' ? 'All years' : y}
+                  </option>
+                ))}
+              </select>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-ink-faint"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
             </div>
+            <span className="text-[13px] text-ink-faint">
+              {filtered.length} {filtered.length === 1 ? 'post' : 'posts'}
+            </span>
           </div>
         </Container>
       </div>
